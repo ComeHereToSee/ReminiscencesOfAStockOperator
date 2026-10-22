@@ -420,8 +420,9 @@ function bg(kind, w, h, o = {}) {
 }
 
 // ---------- comic primitives ----------
+let _clipSeq = 0;
 function panel(p, inner) {
-  const id = 'clip' + Math.random().toString(36).slice(2, 8);
+  const id = 'clip' + (++_clipSeq);
   return `<g filter="url(#shadow)"><rect x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}" fill="#fff"/></g><clipPath id="${id}"><rect x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}"/></clipPath><g clip-path="url(#${id})"><g transform="translate(${p.x} ${p.y})">${inner}</g></g><rect x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}" fill="none" stroke="${C.ink}" stroke-width="7"/>`;
 }
 function caption(c) {
@@ -713,6 +714,7 @@ function subtitle(line) {
 }
 
 function renderFrame(shot, step, line, meta) {
+  _clipSeq = 0;
   let body;
   if (shot.kind === 'comic') body = renderComic(shot, step);
   else if (shot.kind === 'info') body = renderInfo(shot, step);
