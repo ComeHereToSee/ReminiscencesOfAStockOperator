@@ -50,8 +50,8 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
       [['Old Southern', '老南方铁路'], ['Henry Keep, "William the Silent"', '亨利·基普（"沉默者威廉"）'], ['Squeezed Addison G. Jerome out of his millions', '把艾迪生·G·杰罗姆的数百万家产轧光']],
       [['Northern Pacific, 9 May 1901', '北太平洋铁路，1901年5月9日'], ['Competitive buying', '竞购'], ['A corner, but not manipulation', '是逼空，但不是操纵']],
     ], hl: [5] },
-    { type: 'box', at: 3, x: 70, y: 290, w: 1780, h: 220, anchor: 'middle', color: '#f6d77a', en: 'A corner pays only if you can sell the hoard above cost: it needs a big short interest.', zh: '逼空只有在能高于成本卖出囤货时才赚钱：需要巨大的空头仓位。', size: 42 },
-    { type: 'box', at: 4, x: 70, y: 560, w: 1780, h: 220, anchor: 'middle', color: '#f3c6c0', en: 'Aimed at professionals: the public rarely sells short. Motive: often vanity or revenge.', zh: '目标是职业交易者：公众很少做空。动机：常是虚荣或报复。', size: 42 },
+    { type: 'box', at: 3, x: 70, y: 300, w: 1780, h: 170, anchor: 'middle', color: '#f6d77a', en: 'A corner pays only if you can sell the hoard above cost: it needs a big short interest.', zh: '逼空只有在能高于成本卖出囤货时才赚钱：需要巨大的空头仓位。', size: 42 },
+    { type: 'box', at: 4, x: 70, y: 520, w: 1780, h: 170, anchor: 'middle', color: '#f3c6c0', en: 'Aimed at professionals: the public rarely sells short. Motive: often vanity or revenge.', zh: '目标是职业交易者：公众很少做空。动机：常是虚荣或报复。', size: 42 },
   ], lines: [
     L('host', 'Corners count as manipulation, though some come from competitive buying, like Northern Pacific on May 9, 1901.', '逼空也算操纵，但有些逼空源于竞购，比如1901年5月9日的北太平洋铁路。'),
     L('larry', 'Very few of the great corners paid. Vanderbilt\'s Harlem corners paid big, but Jay Gould lost in Northwestern.', '历史上的大逼空，很少有赚钱的。范德比尔特的哈莱姆逼空大赚，杰伊·古尔德却在西北铁路上亏了。'),
@@ -67,7 +67,7 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
       P(b, { at: 2, bg: 'street', props: [{ t: 'paper', x: 250, y: 120, w: 420, h: 300, en: 'HARLEM: TOO HIGH TO BUY?', zh: '哈莱姆：太高了不能买？', size: 36, rot: -3 }],
         chars: [ch('trader', b, 0.25, 0.85, { expr: 'sad', hy: 0.66, hat: 'bowler', exprAt: { 2: 'grin' } })] }),
     ], caps: [{ x: 70, y: 70, w: 360, en: 'Drew and Vanderbilt.', zh: '德鲁与范德比尔特。' }],
-    bubbles: [{ at: 1, until: 1, x: 400, y: 50, w: 540, size: 26, zsize: 22, kind: 'speech', en: 'He that sells what isn\'t his\'n must buy it back or go to pris\'n.', zh: '卖出不属于自己的东西，要么买回来，要么进监狱。', tx: 700, ty: 290 }],
+    bubbles: [{ at: 1, until: 1, x: 455, y: 50, w: 480, size: 24, zsize: 22, kind: 'speech', en: 'He that sells what isn\'t his\'n must buy it back or go to pris\'n.', zh: '卖了不属于自己的东西，要么买回，要么坐牢。', tx: 700, ty: 290 }],
     sfx: [{ at: 3, x: 1520, y: 640, t: 'WENT SHORT OF HARLEM!', zh: '做空了哈莱姆！（＝一贫如洗）', size: 56, color: '#f6d77a' }], lines: [
       L('larry', 'Old Daniel Drew often squeezed the boys in Erie. When Commodore Vanderbilt squeezed him in turn and Drew begged for mercy, the Commodore quoted Drew\'s own rhyme.', '老丹尼尔·德鲁常在伊利股票上轧空别人。后来范德比尔特准将反过来轧他，德鲁求饶时，准将念出了德鲁自己的打油诗。'),
       L('banker', '"He that sells what isn\'t his\'n, must buy it back or go to pris\'n."', '"卖出不属于自己的东西，要么买回来，要么进监狱。"', { who: VANDERBILT }),

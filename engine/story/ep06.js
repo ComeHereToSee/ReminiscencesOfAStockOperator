@@ -30,7 +30,7 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
       { num: 4, en: 'Oats break. "Armour is attacking!" Traders dump corn.', zh: '燕麦下跌。"阿穆尔出手了！"交易员抛售玉米。', at: 2 },
       { num: 5, en: '6M bu bought in 10 minutes; last 4M at market', zh: '10分钟买进600万；剩下400万市价买入', at: 3 },
     ] },
-    { type: 'cards', at: 3, x: 70, y: 575, w: 1780, ch: 105, cols: 4, max: 26, items: [
+    { type: 'cards', at: 3, x: 70, y: 575, w: 1780, ch: 150, cols: 4, max: 28, items: [
       { en: 'All 10M bu within ½¢', zh: '1000万全部在½美分内回补', n: '½', at: 3 },
       { en: 'Oats bait cost: $3,000', zh: '燕麦诱饵成本：3,000美元', n: '$', at: 4 },
       { en: 'Net grain loss: $25,000', zh: '谷物净亏：2.5万美元', n: '−', at: 4, tagColor: '#b8322a' },
@@ -82,7 +82,7 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
     const [a, b] = HALF;
     shot({ id: 'p06_percyhist', kind: 'comic', panels: [
       P(a, { bg: 'beach', chars: [ch('larry', a, 0.3, 0.85, { expr: 'shock', hat: 'boater', hatColor: '#e0c27a', hy: 0.48 }), ch('friend', a, 0.72, 0.85, { expr: 'grin', hy: 0.48, flip: true })] }),
-      P(b, { at: 1, bg: 'dark', props: [{ t: 'paper', x: 90, y: 90, w: 720, h: 560, paper: 'THE SUN', en: 'SHELDON & THOMAS FAIL FOR MILLIONS', zh: '谢尔登与托马斯公司倒闭，亏损数百万', size: 50, rot: -2 }] }),
+      P(b, { at: 1, bg: 'dark', props: [{ t: 'paper', x: 90, y: 90, w: 720, h: 560, paper: 'EXTRA', en: 'SHELDON & THOMAS FAIL FOR MILLIONS', zh: '谢尔登与托马斯公司倒闭，亏损数百万', size: 50, rot: -2 }] }),
     ], caps: [{ x: 70, y: 70, w: 400, en: 'Palm Beach gossip.', zh: '棕榈滩的传闻。' }],
     sfx: [{ at: 2, x: 1430, y: 690, t: 'PAID IN FULL + INTEREST', zh: '连本带息全额偿还', size: 58, color: '#f6d77a', font: 'cond' }], lines: [
       L('larry', 'Cruising Florida again, I heard in Palm Beach that Percy Thomas, the famous cotton operator, had lost every cent in March cotton.', '再次在佛罗里达巡游时，我在棕榈滩听说，著名棉花作手珀西·托马斯在三月棉花上输光了。'),
@@ -103,10 +103,10 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
   }
   shot({ id: 'p06_test', kind: 'info', tag: { en: 'METHOD', zh: '方法' }, title: { en: 'Test for Supply in the Last Ten Minutes', zh: '收盘前十分钟测试卖盘' }, els: [
     { type: 'flow', x: 70, y: 255, w: 860, dir: 'v', bh: 110, max: 28, nodes: [
-      { num: 1, en: 'Saturday, last 10 minutes: shorts are exposed', zh: '周六收盘前10分钟：空头最脆弱', at: 0 },
-      { num: 2, en: '4 orders × 5,000 bales, at market, at once', zh: '4张单×5,000包，市价，同时下', at: 1 },
-      { num: 3, en: '+30 points; closes at the top', zh: '上涨30点；收在最高', at: 1, color: '#cfe3c4' },
-      { num: 4, en: 'Now long 140,000 bales', zh: '此时持有14万包', at: 3, color: '#f6d77a' },
+      { en: 'Saturday, last 10 minutes: shorts are exposed', zh: '周六收盘前10分钟：空头最脆弱', at: 0 },
+      { en: '4 orders × 5,000 bales, at market, at once', zh: '4张单×5,000包，市价，同时下', at: 1 },
+      { en: '+30 points; closes at the top', zh: '上涨30点；收在最高', at: 1, color: '#cfe3c4' },
+      { en: 'Now long 140,000 bales', zh: '此时持有14万包', at: 3, color: '#f6d77a' },
     ] },
     { type: 'bars', at: 2, x: 980, y: 255, w: 870, h: 400, max: 60, bars: [
       { v: 20, vl: '+20', en: 'Liverpool expected (parity)', zh: '利物浦预期（对齐纽约）', color: '#8a8a8a' },
@@ -167,7 +167,7 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
       P(a, { bg: 'office', chars: [ch('agent', a, 0.32, 1.0, { expr: 'grin', pose: 'paper', headline: 'WALTER SCOTT $500', hy: 0.5 }), ch('larry', a, 0.75, 1.0, { expr: 'shock', hy: 0.5, flip: true, exprAt: { 1: 'think' } })] }),
       P(b, { at: 1, bg: 'dark', props: [{ t: 'svg', svg: '<g transform="translate(355 190)"><g transform="rotate(-12) translate(-150 -80)"><rect width="200" height="230" fill="#f1ead6" stroke="#16130f" stroke-width="5"/><text x="20" y="50" font-family="Special Elite" font-size="26">CONTRACT</text><text x="20" y="90" font-family="Special Elite" font-size="22">SCOTT $500</text></g><g transform="rotate(14) translate(60 -60)"><rect width="200" height="230" fill="#f1ead6" stroke="#16130f" stroke-width="5"/><text x="20" y="50" font-family="Special Elite" font-size="26">…ACT</text></g><text y="170" text-anchor="middle" font-family="Bangers" font-size="70" fill="#f6d77a" stroke="#16130f" stroke-width="8" paint-order="stroke">RIP!</text></g>' }] }),
       P(c, { at: 3, bg: 'office', chars: [ch('harding', c, 0.5, 0.75, { expr: 'smile', pose: 'money', hy: 0.42 })] }),
-    ], bubbles: [{ at: 2, x: 1190, y: 240, w: 440, en: 'You did not whine.', zh: '你没有抱怨。', tx: 1290, ty: 150, size: 30 }],
+    ], bubbles: [{ at: 2, x: 80, y: 70, w: 420, en: 'You did not whine.', zh: '你没有抱怨。', tx: 380, ty: 300, size: 30 }],
     caps: [{ at: 3, x: 1190, y: 740, w: 470, en: 'Ed Harding: $2,000 of books.', zh: '艾德·哈丁：买了2,000美元的书。', size: 24, zsize: 20 }],
     lines: [
       L('larry', 'I should have been on guard. Not long before, a book agent got past my door and talked me into signing for a five-hundred-dollar set of Walter Scott.', '我本该提防的。不久前，一个推销员闯进我的房间，三言两语就让我签下一套五百美元的司各特全集。'),
@@ -191,16 +191,16 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
     ] });
   }
   shot({ id: 'p06_reverse', kind: 'info', tag: { en: 'THE FATAL MISTAKE', zh: '致命错误' }, title: { en: 'He Sold the Winner and Kept the Loser', zh: '卖掉赢家，留下输家' }, els: [
-    { type: 'table', x: 70, y: 255, w: 1780, widths: [0.14, 0.2, 0.28, 0.38], reveal: true, rowAt: [1, 1], size: 26, cols: [['Position', '仓位'], ['Status', '状态'], ['At Bayshore he…', '在贝肖尔，他…'], ['What followed', '后来']], rows: [
+    { type: 'table', x: 70, y: 255, w: 1780, widths: [0.12, 0.18, 0.26, 0.44], reveal: true, rowAt: [1, 1], size: 24, cols: [['Position', '仓位'], ['Status', '状态'], ['At Bayshore he…', '在贝肖尔，他…'], ['What followed', '后来']], rows: [
       [['Wheat', '小麦'], ['Big, profitable', '大仓位，盈利'], ['SOLD it', '卖掉了'], ['Rose 20¢ without stopping: ≈$8 million foregone (his estimate)', '一口气涨20美分：错失约800万美元（他的估计）']],
       [['Cotton', '棉花'], ['Large, losing', '大仓位，亏损'], ['KEPT it, and bought more', '留着，还继续买'], ['Sold out at 440,000 bales; over nine-tenths of his stake gone', '加到44万包才清仓；九成以上本钱化为乌有']],
     ], hl: [1] },
-    { type: 'bars', at: 2, x: 70, y: 540, w: 860, h: 270, max: 440, vsize: 26, bars: [
+    { type: 'bars', at: 2, x: 70, y: 585, w: 860, h: 230, max: 440, vsize: 24, bars: [
       { v: 60, vl: '60,000', en: 'First line', zh: '初始仓位', color: '#d9a441' },
       { v: 150, vl: '~150,000', en: 'Holding it up', zh: '托价', color: '#c8762a' },
       { v: 440, vl: '440,000', en: 'Incl. Liverpool', zh: '含利物浦', color: '#b8322a' },
     ] },
-    { type: 'quote', at: 3, x: 970, y: 540, w: 880, size: 34, zsize: 28, en: 'Always sell what shows you a loss and keep what shows you a profit.', zh: '永远卖出亏损的，留住盈利的。', src: 'Ch. XII' },
+    { type: 'quote', at: 3, x: 970, y: 585, w: 880, size: 32, zsize: 28, en: 'Always sell what shows you a loss and keep what shows you a profit.', zh: '永远卖出亏损的，留住盈利的。', src: 'Ch. XII' },
   ], lines: [
     L('larry', 'I also carried a heavy line of wheat, showing a handsome profit. Feeling unwell, I went to Bayshore to rest, and decided my commitments were too large.', '我还持有大量小麦，利润可观。身体不适，我去贝肖尔休养，觉得自己仓位过重，决定减仓。'),
     L('larry', 'The cotton showed a loss, and I kept it. The wheat showed a profit, and I sold it. Wheat then rose twenty cents, about eight million dollars, by my estimate.', '棉花亏着，我留下了；小麦赚着，我卖掉了。随后小麦涨了二十美分——按我的估计，约八百万美元。'),
@@ -263,7 +263,7 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
     L('host', 'Cut the loser, keep the winner, and never ask the market to pay a bill.', '砍掉亏损，留住盈利，永远别指望股市替你付账。'),
   ] });
   shot({ id: 'p06_mistakes', kind: 'info', tag: { en: 'MISTAKE REVIEW', zh: '错误复盘' }, title: { en: 'Mistakes in Chapters XI – XII', zh: '第十一至十二章中的错误' }, els: [
-    { type: 'table', x: 70, y: 250, w: 1780, widths: [0.34, 0.31, 0.35], reveal: true, rowAt: [0, 0, 1, 1, 1, 1], size: 23, zsize: 20, cols: [['Mistake', '错误'], ['Why', '原因'], ['Rule', '规则']], rows: [
+    { type: 'table', x: 70, y: 250, w: 1780, widths: [0.34, 0.31, 0.35], reveal: true, rowAt: [0, 0, 1, 1, 1, 1], size: 25, zsize: 22, cols: [['Mistake', '错误'], ['Why', '原因'], ['Rule', '规则']], rows: [
       [['Let Percy Thomas talk him out of his bear view', '让珀西·托马斯说服自己放弃看空'], ['Persuasive personality; stopped thinking for himself', '被魅力打动；不再独立思考'], ['Play a lone hand; trade only your own conclusions', '单打独斗；只按自己的结论交易']],
       [['Went long 60,000 bales at once', '一次性做多6万包'], ['Ignored his own probing method', '无视自己的试探建仓法'], ['Build a line only as the market proves you right', '只在市场证明你正确时建仓']],
       [['Bought cotton to hold the price up (to 440,000)', '为托价而买棉花（直到44万包）'], ['Hope; refused to take the loss', '心存侥幸；不肯认亏'], ['Never average a losing game', '永远不要摊平亏损']],
