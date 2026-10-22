@@ -1,11 +1,11 @@
-// 30-minute version, part 5: the method (Book ch. VIII and X)
+// 30-minute version, part 5: the method (Book ch. VII and X)
 const { lesson } = require('../lib');
 module.exports = (h) => {
   const { N, chapter, music, title } = h;
   chapter('5 · The Method', '五 · 方法');
   music('calm');
   title({ id: 's_t5', kicker: 'PART 5 · 第五部分', en: 'The Method', zh: '交易方法', color: '#b8862a',
-    sub: ['Book chapters VIII & X, in his own examples', '原著第八、十章，用他自己的例子'],
+    sub: ['Book chapters VII & X, in his own examples', '原著第七、十章，用他自己的例子'],
     lines: [N('Part five. The method, in my own examples and numbers.', '第五部分：交易方法，用我自己的例子和数字来讲。')] });
   lesson(h, { id: 's_scale', tag: ['METHOD 5 · BUY ON A RISING SCALE', '方法五 · 越涨越买'], title: ['Let Each Fill Tell You If You Are Right', '让每一笔成交告诉你对不对'], titleSize: 50,
     gest: ['explain', 'pointUp', 'explainR', 'shrug', 'up', 'explain'],

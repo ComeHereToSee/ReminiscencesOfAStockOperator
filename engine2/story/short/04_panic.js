@@ -32,7 +32,7 @@ module.exports = (h) => {
       { type: 'flow', at: 'L2', x: 120, y: 690, w: 1680, bh: 170, size: 27, nodes: [
         { en: 'Railroads need cash', zh: '铁路公司急需现金', at: 'L2' }, { en: 'They race each other for scarce money', zh: '彼此抢夺稀缺的资金', at: 'L2@racing' },
         { en: 'Money is tight, and will be tighter', zh: '资金紧张，还会更紧', at: 'L2@later' }, { en: 'SELL STOCKS', zh: '卖出股票', at: 'L2@sell', color: '#f3c6c0' }] },
-      { type: 'stamp', at: 'L3', x: 1600, y: 230, en: 'GN pfd ~330 → −60 to −70 pts', zh: '大北方优先股约330→跌60–70点', size: 54 }],
+      { type: 'stamp', at: 'L3', x: 1500, y: 560, en: 'SHORT GN PFD ~330', zh: '随后下跌60–70点', size: 60 }],
     lines: [
       N('This time I waited for a real signal. Great Northern and Northern Pacific announced new stock, payable in installments. That was something new.', '这一次，我等待真正的信号。大北方和北太平洋宣布发行新股，分期缴款。这是前所未有的。'),
       N('It was a signed confession that money was tight. Days later St. Paul announced an issue, payable before the other two.', '这等于白纸黑字承认资金紧张。几天后，圣保罗铁路也宣布发行新股，缴款日比前两家还早。'),

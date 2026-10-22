@@ -65,7 +65,7 @@ module.exports = (h) => {
     gest: ['explain', 'chin', 'explain', 'explainR'],
     items: [
       { type: 'timeline', at: 0.4, x: 520, y: 330, w: 1320, range: [1908, 1916],
-        ticks: [[1908, 'Cotton King', '棉花大王', 'L0'], [1910, 'Williamson', '威廉森', 'L0@Williamson'], [1912, 'Lean years', '低谷', 'L1'], [1914, '>$1M debt · bankrupt', '负债超百万·破产', 'L2'], [1915, 'Comeback', '东山再起', 'L3e']],
+        ticks: [[1908, 'Cotton King', '棉花大王', 'L0'], [1910, 'Williamson', '威廉森', 'L0+1.2'], [1912, 'Lean years', '低谷', 'L1'], [1914, '>$1M debt · bankrupt', '负债超百万·破产', 'L2'], [1915, 'Comeback', '东山再起', 'L3e']],
         marker: [['L0', 1908], ['L1', 1912], ['L2', 1914], ['L3e', 1915]] },
       { type: 'photo', at: 'L2@Exchange', x: 520, y: 500, w: 420, h: 260, rot: -2, src: `${PD}/nyse_trading_floor_1922.jpg`, en: 'NYSE closed: Jul 31 – Dec 1914', zh: '纽交所停市：1914年7月31日至12月' },
       { type: 'note', at: 'L3', x: 1020, y: 500, w: 820, h: 260, size: 30, fill: '#f6d77a', en: 'He studied himself like a market: the problem wasn\'t the market, it was worry about debts. A speculator needs his whole mind.', zh: '他像研究市场一样研究自己：问题不在市场，而在对债务的焦虑。投机者需要全神贯注。', anim: 'slideU' }],

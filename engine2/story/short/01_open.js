@@ -21,7 +21,7 @@ module.exports = (h) => {
     kb: [{ t: 0, x: 960, y: 520, z: 1.0 }, { t: 9, x: 960, y: 470, z: 1.12 }],
     lines: [N('Jesse Livermore. The writer Edwin Lefèvre set down my story in 1923 and changed the names, mine included.', '杰西·利弗莫尔。作家埃德温·勒菲弗在1923年记下了我的故事，并改换了人名，包括我自己的。')] });
   lesson(h, { id: 's_fortune', tag: ['THE WHOLE STORY IN ONE CHART', '一张图看懂全书'], title: ['Fortunes Made and Lost', '赚到又输光，一次又一次'],
-    items: [{ type: 'fortune', at: 0.5, x: 470, y: 240, w: 1400, h: 560, lsize: 19, vsize: 24, items: [
+    items: [{ type: 'fortune', at: 0.5, x: 470, y: 240, w: 1400, h: 580, lsize: 24, vsize: 30, items: [
       { v: 3.12, vl: '$3.12', en: 'Age 14', zh: '14岁', at: 'L0' }, { v: 10000, vl: '$10,000', en: 'Age 20', zh: '20岁', at: 'L0+0.8' },
       { v: 0, vl: 'broke', en: 'NY, age 21', zh: '21岁纽约', at: 'L1' }, { v: 50000, vl: '≈$50,000', en: '1901', zh: '1901', at: 'L1+0.6' },
       { v: 0, vl: 'wiped out', en: 'May 9, 1901', zh: '1901.5.9', at: 'L1@wiped' }, { v: 250000, vl: '+$250,000', en: '1906', zh: '1906', at: 'L2' },
@@ -147,7 +147,7 @@ module.exports = (h) => {
         marks: [{ x: 0, y: 105.25, at: 'L0', en: 'Short 3,500 @ 105¼', zh: '105¼做空3,500股', dx: 20, dy: 40, w: 240 },
           { x: 5, y: 103, at: 'L0@about', en: 'Closed @ 103', zh: '103平仓', dx: -110, dy: 50, w: 190 },
           { x: 7.2, y: 108, at: 'L1@push', en: 'Pushed to 108: shorts wiped out', zh: '推到108：空头被洗光', dx: -330, dy: -10, w: 300 }],
-        pnl: { entry: 105.25, shares: 3500, side: 'short', at: 'L0', x: 1030, y: 610 } },
+        pnl: { entry: 105.25, shares: 3500, side: 'short', at: 'L0', exitAt: 'L0+2.5', exit: 103, x: 600, y: 300 } },
       { type: 'rule', at: 'L1', x: 1400, y: 230, w: 460, h: 175, n: '1', en: 'Too many shorts? The shop pays a broker to bid the real price up a couple of points.', zh: '空头太多？店家花钱让经纪人把真实价格推高几个点。' },
       { type: 'rule', at: 'L2', x: 1400, y: 425, w: 460, h: 175, n: '2', en: 'Thin margins vanish. Then the price drops right back.', zh: '薄薄的保证金被吃光。然后价格立刻回落。' },
       { type: 'rule', at: 'L3', x: 1400, y: 620, w: 460, h: 175, n: '3', tag: '#2f6b3d', en: 'Act on "something is wrong" before you can name it.', zh: '在说清原因之前，就按"不对劲"行动。', fill: '#cfe3c4' }],

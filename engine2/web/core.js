@@ -108,7 +108,7 @@ function bi(en, zh, x, y, o = {}) {
 }
 // largest size that fits a box
 function fitBi(en, zh, x, y, maxW, maxH, o = {}) {
-  let t; for (let sz = o.max || 40; sz >= (o.min || 16); sz -= 1) {
+  let t; for (let sz = o.max || 40; sz >= (o.min || 21); sz -= 1) {
     t = bi(en, zh, x, y, Object.assign({}, o, { size: sz, zsize: Math.round(sz * (o.zr || 0.86)), maxW }));
     if (t.h <= maxH) return t;
   }

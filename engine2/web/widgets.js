@@ -84,8 +84,15 @@ WIDGETS.caption = (w, t) => {
 // ---- speech / thought / shout bubbles ----
 WIDGETS.bubble = (w, t) => {
   const bw = w.w || 480, pad = 26;
-  const tx = bi(w.en, w.zh, w.x + bw / 2, w.y + pad, { size: w.size || 32, font: F.comic, weight: 700, maxW: bw - pad * 2, anchor: 'middle', zsize: w.zsize || Math.round((w.size || 32) * 0.84) });
-  const h = tx.h + pad * 2, cx = w.x + bw / 2, cy = w.y + h / 2;
+  let tx = bi(w.en, w.zh, w.x + bw / 2, w.y + pad, { size: w.size || 32, font: F.comic, weight: 700, maxW: bw - pad * 2, anchor: 'middle', zsize: w.zsize || Math.round((w.size || 32) * 0.84) });
+  const h = tx.h + pad * 2;
+  if (w.clamp) {
+    const m = w.kind === 'shout' ? 50 : 24;
+    const nx = clamp(w.x, m, 1920 - bw - m), ny = clamp(w.y, m, 845 - h - m);
+    if (nx !== w.x || ny !== w.y) { w = Object.assign({}, w, { x: nx, y: ny }); tx = bi(w.en, w.zh, w.x + bw / 2, w.y + pad, { size: w.size || 32, font: F.comic, weight: 700, maxW: bw - pad * 2, anchor: 'middle', zsize: w.zsize || Math.round((w.size || 32) * 0.84) }); }
+    if (w.tx !== undefined && w.ty > w.y && w.ty < w.y + h) w = Object.assign({}, w, { ty: w.y + h + 40 });
+  }
+  const cx = w.x + bw / 2, cy = w.y + h / 2;
   const { tf, op } = enterTf(w, t, 'pop', w.tx ?? cx, w.ty ?? cy);
   let shape;
   if (w.kind === 'shout') {
@@ -129,9 +136,9 @@ WIDGETS.stamp = (w, t) => {
 // ---- note card (white rounded box with bilingual text) ----
 WIDGETS.note = (w, t) => {
   const x = w.x, y = w.y, bw = w.w || 520, pad = 22;
-  const tx = w.h ? fitBi(w.en, w.zh, x + (w.align === 'center' ? bw / 2 : pad + (w.icon ? 62 : 0)), y + pad, bw - pad * 2 - (w.icon ? 62 : 0), w.h - pad * 2, { max: w.size || 34, font: F.comic, weight: 700, anchor: w.align === 'center' ? 'middle' : 'start' })
+  const tx = w.h ? fitBi(w.en, w.zh, x + (w.align === 'center' ? bw / 2 : pad + (w.icon ? 62 : 0)), y + pad, bw - pad * 2 - (w.icon ? 62 : 0), w.h - pad * 2, { max: w.size || 34, min: 24, font: F.comic, weight: 700, anchor: w.align === 'center' ? 'middle' : 'start' })
     : bi(w.en, w.zh, x + (w.align === 'center' ? bw / 2 : pad + (w.icon ? 62 : 0)), y + pad, { size: w.size || 32, font: F.comic, weight: 700, maxW: bw - pad * 2 - (w.icon ? 62 : 0), anchor: w.align === 'center' ? 'middle' : 'start' });
-  const h = w.h || tx.h + pad * 2;
+  const h = Math.max(w.h || 0, tx.h + pad * 2);
   const { tf, op } = enterTf(w, t, w.anim || 'pop', x + bw / 2, y + h / 2);
   const hl = w.pulse !== undefined && t >= w.pulse ? 0.5 + 0.5 * Math.sin((t - w.pulse) * 6) : 0;
   let ic = '';
@@ -141,9 +148,10 @@ WIDGETS.note = (w, t) => {
 
 // ---- numbered rule card that flips in ----
 WIDGETS.rule = (w, t) => {
-  const x = w.x, y = w.y, bw = w.w || 820, h = w.h || 150;
+  const x = w.x, y = w.y, bw = w.w || 820;
+  const tx = fitBi(w.en, w.zh, x + 120, y + 18, bw - 150, (w.h || 150) - 36, { max: w.size || 36, min: 23, font: F.comic, weight: 700 });
+  const h = Math.max(w.h || 150, tx.h + 36);
   const { tf, op } = enterTf(w, t, 'flip', x + bw / 2, y + h / 2);
-  const tx = fitBi(w.en, w.zh, x + 120, y + 18, bw - 150, h - 36, { max: w.size || 36, font: F.comic, weight: 700 });
   return `<g transform="${tf}" opacity="${op}">${box(x, y, bw, h, { fill: w.fill || PAL.cream })}<rect x="${x}" y="${y}" width="96" height="${h}" rx="12" fill="${w.tag || PAL.navy}" stroke="${PAL.ink}" stroke-width="5"/><text x="${x + 48}" y="${y + h / 2 + 22}" text-anchor="middle" font-family="${F.title}" font-size="60" fill="#fff">${esc(w.n ?? '')}</text><g transform="translate(0 ${(h - 36 - tx.h) / 2})">${tx.svg}</g></g>`;
 };
 
@@ -156,8 +164,13 @@ WIDGETS.counter = (w, t) => {
   const txt = (w.prefix || '') + fmtNum(v, w.fmt || 'int') + (w.suffix || '');
   const { tf, op } = enterTf(w, t, 'pop', w.x, w.y);
   const size = w.size || 120;
-  let s = tb(txt, w.x, w.y - size * 0.6, { size, font: F.cond, weight: 700, anchor: w.align || 'middle', fill: w.color || PAL.ink, stroke: w.stroke, sw: 8 }).svg;
-  if (w.label) s += bi(w.label[0], w.label[1], w.x, w.y + size * 0.55, { size: w.lsize || 30, font: F.cond, weight: 700, anchor: w.align || 'middle', fill: PAL.grey, zfill: PAL.grey }).svg;
+  let s = '';
+  if (w.panel) {
+    const pw = Math.max(measure((w.prefix || '') + fmtNum(w.to, w.fmt || 'int') + (w.suffix || ''), size, F.cond, 700), w.label ? measure(w.label[0], w.lsize || 30, F.cond, 700) : 0) + 70;
+    s += box(w.x - pw / 2, w.y - size * 0.72, pw, size * (w.label ? 1.55 : 0.95) + (w.label ? 30 : 0), { fill: '#fbf5e3', r: 14 });
+  }
+  s += tb(txt, w.x, w.y - size * 0.6, { size, font: F.cond, weight: 700, anchor: w.align || 'middle', fill: w.color || PAL.ink, stroke: w.stroke, sw: 8 }).svg;
+  if (w.label) s += bi(w.label[0], w.label[1], w.x, w.y + size * 0.55, { size: w.lsize || 30, font: F.cond, weight: 700, anchor: w.align || 'middle', fill: w.panel ? PAL.ink : PAL.grey, zfill: w.panel ? PAL.sepia : PAL.grey }).svg;
   return `<g transform="${tf}" opacity="${op}">${s}</g>`;
 };
 
@@ -205,6 +218,12 @@ WIDGETS.chart = (w, t) => {
   // bands and horizontal lines
   for (const b of (w.bands || [])) { const bp = prog(t, b.at ?? at, 0.6); if (bp <= 0) continue; s += `<rect x="${px(b.x0 ?? x0)}" y="${py(b.y1)}" width="${(px(b.x1 ?? x1) - px(b.x0 ?? x0)) * bp}" height="${py(b.y0) - py(b.y1)}" fill="${b.color || PAL.gold}" opacity="${0.25 * bp}"/>`; if (b.en) s += `<g opacity="${bp}">${bi(b.en, b.zh, px(b.x0 ?? x0) + 12, py(b.y1) + 8, { size: 24, zsize: 21, font: F.cond, weight: 700, fill: b.tc || PAL.brown }).svg}</g>`; }
   for (const l of (w.hlines || [])) { const lp = prog(t, l.at ?? at, 0.7, 'inOut'); if (lp <= 0) continue; const xa = px(l.x0 ?? x0), xb = px(l.x1 ?? x1); s += `<line x1="${xa}" y1="${py(l.v)}" x2="${lerp(xa, xb, lp)}" y2="${py(l.v)}" stroke="${l.color || PAL.red}" stroke-width="4" stroke-dasharray="14 9"/>`; if (l.en) s += `<g opacity="${lp}">${bi(l.en, l.zh, (l.labelX !== undefined ? px(l.labelX) : xb) - 6, py(l.v) + (l.below ? 10 : -58), { size: 24, zsize: 21, font: F.cond, weight: 700, fill: l.color || PAL.red, anchor: l.labelX !== undefined ? 'start' : 'end' }).svg}</g>`; }
+  // legend (instead of end-of-line labels) when several series are labelled
+  const legend = w.series.filter(se => se.label).length > 1;
+  if (legend) w.series.filter(se => se.label).forEach((se, i) => {
+    const lx = x + cw - 40 - (w.series.filter(q => q.label).length - i) * 290, ly = y + 54;
+    s += `<g opacity="${axP}"><line x1="${lx}" y1="${ly + 16}" x2="${lx + 46}" y2="${ly + 16}" stroke="${se.color || PAL.blue}" stroke-width="7"${se.dash ? ` stroke-dasharray="12 7"` : ''}/>${bi(se.label[0], se.label[1], lx + 56, ly, { size: 22, zsize: 19, font: F.cond, weight: 700, fill: PAL.ink, maxW: 230, gap: 0 }).svg}</g>`;
+  });
   // series with progressive reveal: draw: [[t, idx], ...]
   let head = null;
   for (const se of w.series) {
@@ -224,16 +243,16 @@ WIDGETS.chart = (w, t) => {
     s += `<path d="${d}" fill="none" stroke="${PAL.ink}" stroke-width="${(se.width || 6) + 4}" stroke-linejoin="round" stroke-linecap="round"/><path d="${d}" fill="none" stroke="${se.color || PAL.blue}" stroke-width="${se.width || 6}" stroke-linejoin="round" stroke-linecap="round"${se.dash ? ` stroke-dasharray="${se.dash}"` : ''}/>`;
     const last = vis[vis.length - 1];
     const lastV = kk < pts.length - 1 ? lerp(pts[kk][1], pts[kk + 1][1], fr) : pts[kk][1];
-    if (se.label && k >= pts.length - 1.01) s += bi(se.label[0], se.label[1], last[0] - 8, last[1] + (se.labelBelow ? 18 : -66), { size: 24, zsize: 21, font: F.cond, weight: 700, fill: se.color || PAL.blue, anchor: 'end' }).svg;
+    if (se.label && !legend && k >= pts.length - 1.01) s += bi(se.label[0], se.label[1], last[0] - 8, last[1] + (se.labelBelow ? 18 : -66), { size: 26, zsize: 22, font: F.cond, weight: 700, fill: se.color || PAL.blue, anchor: 'end' }).svg;
     if (se.cursor !== false && !head) head = { X: last[0], Y: last[1], v: lastV, color: se.color || PAL.blue, se };
   }
   // annotation marks (pop in at their cue)
   for (const m of (w.marks || [])) {
     const mp = prog(t, m.at ?? at, 0.5, 'back'); if (mp <= 0) continue;
     if (m.until !== undefined && t > m.until) continue;
-    const X = px(m.x), Y = py(m.y), bw = m.w || 280;
+    const X = px(m.x), Y = py(m.y), bw = (m.w || 280) * 1.08;
     const bx = X + (m.dx ?? 24), by = Y + (m.dy ?? -120);
-    const tx = bi(m.en, m.zh, bx + 12, by + 10, { size: m.size || 25, zsize: Math.round((m.size || 25) * 0.86), font: F.comic, weight: 700, maxW: bw - 24 });
+    const tx = bi(m.en, m.zh, bx + 12, by + 10, { size: m.size || 27, zsize: Math.round((m.size || 27) * 0.86), font: F.comic, weight: 700, maxW: bw - 24 });
     s += `<g opacity="${clamp(mp)}"><circle cx="${X}" cy="${Y}" r="${12 * mp}" fill="${m.color || PAL.red}" stroke="${PAL.ink}" stroke-width="4"/><line x1="${X}" y1="${Y}" x2="${bx + bw / 2}" y2="${by + (by < Y ? tx.h + 20 : 0)}" stroke="${PAL.ink}" stroke-width="3"/><g transform="translate(${bx + bw / 2} ${by + tx.h / 2}) scale(${Math.max(0.001, mp)}) translate(${-(bx + bw / 2)} ${-(by + tx.h / 2)})"><rect x="${bx}" y="${by}" width="${bw}" height="${tx.h + 20}" rx="9" fill="${m.fill || '#fff'}" stroke="${PAL.ink}" stroke-width="3.5"/>${tx.svg}</g></g>`;
   }
   // moving cursor + price label + optional live P&L
@@ -243,9 +262,10 @@ WIDGETS.chart = (w, t) => {
     if (w.cursorLabel !== false) s += `<g transform="translate(${head.X + 18} ${head.Y - 22})"><rect x="0" y="-22" width="${measure((w.yPre || '') + fmtNum(head.v, w.cursorFmt || w.yFmt || 'frac'), 26, F.cond, 700) + 22}" height="38" rx="6" fill="${PAL.ink}"/><text x="11" y="6" font-family="${F.cond}" font-weight="700" font-size="26" fill="#fff">${esc((w.yPre || '') + fmtNum(head.v, w.cursorFmt || w.yFmt || 'frac'))}</text></g>`;
     if (w.pnl && t >= (w.pnl.at ?? at)) {
       const side = w.pnl.side === 'short' ? -1 : 1;
-      const pl = (head.v - w.pnl.entry) * side * w.pnl.shares * (w.pnl.mult || 1);
-      const bx = w.pnl.x ?? (R - 330), by = w.pnl.y ?? (T + 6);
-      s += `<g>${box(bx, by, 320, 100, { fill: PAL.ink, r: 10 })}<text x="${bx + 18}" y="${by + 34}" font-family="${F.cond}" font-size="22" fill="#bbb">${esc(w.pnl.label || (side < 0 ? 'SHORT' : 'LONG') + ' ' + (w.pnl.shares).toLocaleString('en-US') + ' · P&L 盈亏')}</text><text x="${bx + 18}" y="${by + 82}" font-family="${F.cond}" font-weight="700" font-size="46" fill="${pl >= 0 ? '#7fd38a' : '#ff7a6a'}">${esc((pl >= 0 ? '+' : '') + money(pl))}</text></g>`;
+      const closed = w.pnl.exitAt !== undefined && t >= w.pnl.exitAt;
+      const pl = ((closed ? w.pnl.exit : head.v) - w.pnl.entry) * side * w.pnl.shares * (w.pnl.mult || 1);
+      const bx = w.pnl.x ?? (R - 340), by = w.pnl.y ?? (T + 6);
+      s += `<g>${box(bx, by, 330, 100, { fill: PAL.ink, r: 10 })}<text x="${bx + 18}" y="${by + 34}" font-family="${F.cond}" font-size="22" fill="#bbb">${esc(closed ? 'CLOSED @ ' + fmtNum(w.pnl.exit, 'frac') + ' · 已平仓' : w.pnl.label || (side < 0 ? 'SHORT' : 'LONG') + ' ' + (w.pnl.shares).toLocaleString('en-US') + ' · P&L 盈亏')}</text><text x="${bx + 18}" y="${by + 82}" font-family="${F.cond}" font-weight="700" font-size="46" fill="${pl >= 0 ? '#7fd38a' : '#ff7a6a'}">${esc((pl >= 0 ? '+' : '') + money(pl))}</text></g>`;
     }
   }
   return s + '</g>';
@@ -256,9 +276,10 @@ WIDGETS.bars = (w, t) => {
   const { x, y } = w; const bw0 = w.w, bh0 = w.h; const at = w.at ?? 0;
   const max = w.max || Math.max(...w.bars.map(b => Math.abs(b.v)));
   const hasNeg = w.bars.some(b => b.v < 0);
-  const base = hasNeg ? y + bh0 * 0.56 : y + bh0 - 96;
-  const sc = (hasNeg ? bh0 * 0.38 : bh0 - 180) / max;
   const slot = (bw0 - 60) / w.bars.length;
+  const labH = Math.max(...w.bars.map(b => bi(b.en, b.zh, 0, 0, { size: 26, zsize: 22, font: F.cond, weight: 700, maxW: slot - 6 }).h)) + 22;
+  const base = hasNeg ? y + bh0 * 0.56 : y + bh0 - labH;
+  const sc = (hasNeg ? bh0 * 0.38 : bh0 - labH - 130) / max;
   const ap = prog(t, at, 0.5);
   let s = `<g opacity="${ap}">` + box(x, y, bw0, bh0, { fill: w.fill || '#fbf5e3', r: 10 });
   if (w.title) s += bi(w.title[0], w.title[1], x + 24, y + 14, { size: 26, zsize: 22, font: F.cond, weight: 700, zfill: PAL.sepia, gap: 2 }).svg;
@@ -268,7 +289,7 @@ WIDGETS.bars = (w, t) => {
     const v = b.v * p, bh = Math.abs(v) * sc, bx = x + 30 + i * slot + slot * 0.17, ww = slot * 0.66, by = v >= 0 ? base - bh : base;
     s += `<rect x="${bx}" y="${by}" width="${ww}" height="${Math.max(bh, 2)}" fill="${b.color || (b.v >= 0 ? PAL.up : PAL.down)}" stroke="${PAL.ink}" stroke-width="4"/>`;
     s += `<text x="${bx + ww / 2}" y="${v >= 0 ? by - 14 : by + bh + 38}" text-anchor="middle" font-family="${F.cond}" font-weight="700" font-size="${w.vsize || 32}" fill="${PAL.ink}">${esc(b.vl !== undefined && p >= 1 ? b.vl : fmtNum(v, w.fmt || 'int'))}</text>`;
-    s += bi(b.en, b.zh, bx + ww / 2, hasNeg ? (b.v >= 0 ? base + 12 : base - 76) : base + 10, { size: 25, zsize: 22, font: F.cond, weight: 700, anchor: 'middle', maxW: slot - 6 }).svg;
+    s += bi(b.en, b.zh, bx + ww / 2, hasNeg ? (b.v >= 0 ? base + 12 : base - 76) : base + 10, { size: 26, zsize: 22, font: F.cond, weight: 700, anchor: 'middle', maxW: slot - 6 }).svg;
   });
   return s + '</g>';
 };
@@ -277,14 +298,17 @@ WIDGETS.bars = (w, t) => {
 WIDGETS.flow = (w, t) => {
   const n = w.nodes.length, dir = w.dir || 'h';
   const gap = w.gap ?? 70;
-  const bw = w.bw || (dir === 'h' ? (w.w - (n - 1) * gap) / n : w.w), bh = w.bh || 210;
+  const bw = w.bw || (dir === 'h' ? (w.w - (n - 1) * gap) / n : w.w);
+  let bh = w.bh || 210;
+  const minSz = Math.min(w.size || 32, 25);
+  for (const nd of w.nodes) { const top = nd.num !== undefined ? 64 : 18; const need = bi(nd.en, nd.zh, 0, 0, { size: minSz, zsize: Math.round(minSz * 0.86), font: F.comic, weight: 700, maxW: bw - 34 }).h + top + 16; if (need > bh) bh = need; }
   const pos = i => dir === 'h' ? [w.x + i * (bw + gap), w.y] : [w.x, w.y + i * (bh + gap * 0.6)];
   let s = '';
   w.nodes.forEach((nd, i) => {
     const at = nd.at ?? (w.at ?? 0) + i * 0.4; const p = prog(t, at, 0.55, 'back'); if (p <= 0) return;
     const [bx, by] = pos(i);
     const top = nd.num !== undefined ? 64 : 18;
-    const tx = fitBi(nd.en, nd.zh, bx + bw / 2, by + top, bw - 34, bh - top - 16, { max: w.size || 32, font: F.comic, weight: 700, anchor: 'middle' });
+    const tx = fitBi(nd.en, nd.zh, bx + bw / 2, by + top, bw - 34, bh - top - 16, { max: w.size || 32, min: minSz, font: F.comic, weight: 700, anchor: 'middle' });
     const hl = nd.hl !== undefined && t >= nd.hl;
     s += `<g transform="translate(${bx + bw / 2} ${by + bh / 2}) scale(${Math.max(0.001, p)}) translate(${-(bx + bw / 2)} ${-(by + bh / 2)})">${box(bx, by, bw, bh, { fill: hl ? PAL.goldL : (nd.color || PAL.cream) })}`;
     if (nd.num !== undefined) s += `<circle cx="${bx + 36}" cy="${by + 36}" r="26" fill="${PAL.red}" stroke="${PAL.ink}" stroke-width="4"/><text x="${bx + 36}" y="${by + 48}" text-anchor="middle" font-family="${F.title}" font-size="32" fill="#fff">${esc(nd.num)}</text>`;
@@ -301,7 +325,7 @@ WIDGETS.flow = (w, t) => {
   });
   // travelling tokens: {from, to, at, dur, label}
   for (const tk of (w.tokens || [])) {
-    const p = prog(t, tk.at, tk.dur || 1.6, 'inOut'); if (p <= 0 || (tk.until !== undefined && t > tk.until)) continue;
+    const p = prog(t, tk.at, tk.dur || 1.6, 'inOut'); if (p <= 0 || t > (tk.until ?? tk.at + (tk.dur || 1.6) + 0.5)) continue;
     const [ax, ay] = pos(tk.from), [bx2, by2] = pos(tk.to);
     const X = lerp(ax + bw / 2, bx2 + bw / 2, p), Y = lerp(ay + bh / 2, by2 + bh / 2, p) - Math.sin(p * Math.PI) * (dir === 'h' ? 90 : 0);
     s += `<g transform="translate(${X} ${Y})"><circle r="26" fill="${tk.color || PAL.gold}" stroke="${PAL.ink}" stroke-width="4"/>${tk.label ? `<text y="9" text-anchor="middle" font-family="${F.cond}" font-weight="700" font-size="24">${esc(tk.label)}</text>` : ''}</g>`;
@@ -319,7 +343,7 @@ WIDGETS.table = (w, t) => {
   const cell = (en, zh, cx, cw, head, yy, sz) => bi(en, zh, cx + 16, yy, { size: sz, font: head ? F.cond : F.comic, weight: 700, maxW: cw - 32, zsize: Math.round(sz * 0.84), fill: head ? '#fff' : PAL.ink, zfill: head ? '#ffe3a0' : '#5a4a36', lh: sz * 1.18 });
   const rows = [{ cells: w.cols, head: true }, ...w.rows.map((r, i) => ({ cells: r, i }))];
   const heights = sz => rows.map(r => Math.max(...r.cells.map((c, i) => cell(c[0], c[1], 0, widths[i], r.head, 0, sz).h)) + 24);
-  for (; size > 16; size--) { if (y + heights(size).reduce((a, b) => a + b, 0) <= bottom) break; }
+  for (; size > (w.minSize || 22); size--) { if (y + heights(size).reduce((a, b) => a + b, 0) <= bottom) break; }
   const hs = heights(size);
   let s = '', yy = y;
   rows.forEach((r, ri) => {
@@ -346,7 +370,7 @@ WIDGETS.timeline = (w, t) => {
   const px = v => x + (v - a) / (b - a) * tw;
   const ap = prog(t, w.at ?? 0, 0.8, 'inOut');
   let s = `<line x1="${x}" y1="${y}" x2="${x + tw * ap}" y2="${y}" stroke="${PAL.ink}" stroke-width="8" stroke-linecap="round"/>`;
-  for (const [v, en, zh, at] of (w.ticks || [])) { const p = prog(t, at ?? (w.at ?? 0) + 0.4, 0.4, 'back'); if (p <= 0) continue; s += `<g opacity="${p}"><line x1="${px(v)}" y1="${y - 16}" x2="${px(v)}" y2="${y + 16}" stroke="${PAL.ink}" stroke-width="4"/>${bi(en, zh, px(v), y + 26, { size: 24, zsize: 20, font: F.cond, weight: 700, anchor: 'middle' }).svg}</g>`; }
+  for (const [v, en, zh, at] of (w.ticks || [])) { const p = prog(t, at ?? (w.at ?? 0) + 0.4, 0.4, 'back'); if (p <= 0) continue; s += `<g opacity="${p}"><line x1="${px(v)}" y1="${y - 16}" x2="${px(v)}" y2="${y + 16}" stroke="${PAL.ink}" stroke-width="4"/>${bi(en, zh, px(v), y + 26, { size: 28, zsize: 23, font: F.cond, weight: 700, anchor: 'middle', maxW: 260 }).svg}</g>`; }
   if (w.marker) { let mv = w.marker[0][1]; for (const [mt, v] of w.marker) if (t >= mt) mv = lerp(mv, v, prog(t, mt, 1.2, 'inOut')); s += `<g transform="translate(${px(mv)} ${y})"><circle r="20" fill="${PAL.red}" stroke="${PAL.ink}" stroke-width="5"/><path d="M -14 -40 L 14 -40 L 0 -22 Z" fill="${PAL.red}" stroke="${PAL.ink}" stroke-width="3"/><text y="-50" text-anchor="middle" font-family="${F.cond}" font-weight="700" font-size="32">${esc(Math.round(mv))}</text></g>`; }
   return s;
 };
@@ -470,7 +494,7 @@ WIDGETS.bales = (w, t) => { let s = ''; for (let i = 0; i < (w.n || 6); i++) { c
 // ---- section tag (red label) ----
 WIDGETS.tag = (w, t) => {
   const p = prog(t, w.at ?? 0, 0.45, 'out');
-  const ew = measure(w.en, 30, F.cond, 700), zw = measure(w.zh || '', 28, F.zh, 700);
+  const ew = measure(w.en, 30, F.cond, 700) + w.en.length * 2.2, zw = measure(w.zh || '', 28, F.zh, 700);
   const bw = ew + zw + 80;
   return `<g opacity="${p}" transform="translate(${(1 - p) * -60} 0)"><rect x="${w.x}" y="${w.y}" width="${bw}" height="54" fill="${w.color || PAL.red}" stroke="${PAL.ink}" stroke-width="4"/><text x="${w.x + 20}" y="${w.y + 38}" font-family="${F.cond}" font-weight="700" font-size="30" fill="#fff" letter-spacing="2">${esc(w.en)}</text><text x="${w.x + 50 + ew}" y="${w.y + 38}" font-family="${F.zh}" font-weight="700" font-size="28" fill="#ffe9b0">${esc(w.zh || '')}</text></g>`;
 };
@@ -491,12 +515,12 @@ WIDGETS.fortune = (w, t) => {
     const top = it.v >= 0 ? base - hh : base;
     const col = it.color || (it.v < 0 ? PAL.down : it.v === 0 ? PAL.grey : PAL.up);
     s += `<rect x="${cx - ww / 2}" y="${top}" width="${ww}" height="${Math.max(hh, 4)}" fill="${col}" stroke="${PAL.ink}" stroke-width="3"/>`;
-    s += `<text x="${cx}" y="${it.v >= 0 ? top - 12 : top + hh + 30}" text-anchor="middle" font-family="${F.cond}" font-weight="700" font-size="${w.vsize || 26}" fill="${PAL.ink}" opacity="${p}">${esc(it.vl)}</text>`;
+    s += `<text x="${cx}" y="${it.v >= 0 ? top - 12 : top + hh + 30}" text-anchor="middle" font-family="${F.cond}" font-weight="700" font-size="${w.vsize || 30}" fill="${PAL.ink}" opacity="${p}">${esc(it.vl)}</text>`;
     const pt = [cx, it.v >= 0 ? top : top + hh];
     if (prev && p > 0.6) s += `<line x1="${prev[0]}" y1="${prev[1]}" x2="${pt[0]}" y2="${pt[1]}" stroke="${PAL.sepia}" stroke-width="3" stroke-dasharray="7 6"/>`;
     prev = pt;
-    const ly = it.v >= 0 ? base + 10 : base - 12 - (w.lsize || 20) * 2.4;
-    s += `<g opacity="${p}">${bi(it.en, it.zh, cx, ly, { size: w.lsize || 20, zsize: (w.lsize || 20) - 2, font: F.cond, weight: 700, anchor: 'middle', maxW: bw - 4 }).svg}</g>`;
+    const ly = it.v >= 0 ? base + 10 : base - 12 - (w.lsize || 24) * 2.4;
+    s += `<g opacity="${p}">${bi(it.en, it.zh, cx, ly, { size: w.lsize || 24, zsize: (w.lsize || 24) - 3, font: F.cond, weight: 700, anchor: 'middle', maxW: bw - 4 }).svg}</g>`;
   });
   return s + '</g>';
 };

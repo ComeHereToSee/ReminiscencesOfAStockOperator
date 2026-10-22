@@ -64,7 +64,7 @@ module.exports = (h) => {
     items: [
       { type: 'text', at: 0.2, x: 960, y: 40, size: 50, font: 'serif', fill: '#f1ead6', zfill: '#f6d77a', en: 'May 1901: the fight for Northern Pacific', zh: '1901年5月：北太平洋铁路控制权之争' },
       { type: 'photo', at: 'L0', x: 140, y: 230, w: 380, h: 470, rot: -3, src: `${PD}/portrait_eh_harriman_1908_bain.jpg`, en: 'E. H. Harriman', zh: '哈里曼（联合太平洋）' },
-      { type: 'photo', at: 'L0@against', x: 600, y: 230, w: 380, h: 470, rot: 2, src: `${PD}/portrait_james_j_hill_c1915_bain.jpg`, en: 'James J. Hill', zh: '詹姆斯·希尔（大北方）' },
+      { type: 'photo', at: 'L0@Hill', x: 600, y: 230, w: 380, h: 470, rot: 2, src: `${PD}/portrait_james_j_hill_c1915_bain.jpg`, en: 'James J. Hill', zh: '詹姆斯·希尔（大北方）' },
       { type: 'photo', at: 'L0@Morgan', x: 1060, y: 230, w: 380, h: 470, rot: -2, src: `${PD}/portrait_jp_morgan_1902.jpg`, en: 'J. P. Morgan', zh: 'J.P.摩根' },
       { type: 'counter', at: 'L1@shares', x: 1690, y: 470, from: 110, to: 1000, prefix: '$', size: 130, dur: 2.4, color: '#f6d77a', stroke: '#17120c', label: ['N. Pac. high, May 9', '北太平洋 5月9日最高价'] },
       { type: 'stamp', at: 'L2', x: 960, y: 800, en: 'CORNER → PANIC', zh: '逼空→恐慌', size: 80 }],

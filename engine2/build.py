@@ -229,10 +229,20 @@ def prepare_shot(sh):
                 spk[f0 + i] = who
     sh['lip'] = {'env': env, 'spk': spk}
     sh['fps'] = FPS
-    # caption & sfx defaults
+    # caption & overlay defaults
+    lesson_like = sh.get('set') in ('paper', 'chalk', 'dark', 'burst', 'photo')
+    has_bubble = any(w.get('type') == 'bubble' for w in sh.get('items', []))
     for w in sh.get('items', []):
         if w.get('type') in ('caption',) and 'screen' not in w:
             w['screen'] = True
+            # establishing captions step aside once dialogue starts, so they never sit on top of speech bubbles
+            if has_bubble and 'until' not in w and len(sh['lines']) >= 2:
+                w['until'] = sh['lines'][1]['t0'] + 0.6
+        # explanatory graphics in story scenes stay fixed on screen while the camera moves, on a legible panel
+        if not lesson_like and w.get('type') in ('counter', 'note', 'equation', 'rule', 'table', 'chart', 'bars', 'flow') and 'screen' not in w:
+            w['screen'] = True
+            if w['type'] == 'counter' and 'panel' not in w:
+                w['panel'] = True
     # subtitles
     subs = []
     for ln in sh['lines']:

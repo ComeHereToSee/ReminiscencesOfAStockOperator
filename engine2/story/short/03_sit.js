@@ -1,11 +1,11 @@
-// 30-minute version, part 3: sit tight (Book ch. V–VII)
+// 30-minute version, part 3: sit tight (Book ch. V–VI)
 const { lesson } = require('../lib');
 module.exports = (h) => {
   const { shot, N, L, chapter, music, title, photo, PD } = h;
   chapter('3 · Sit Tight', '三 · 坐得住');
   music('calm');
   title({ id: 's_t3', kicker: 'PART 3 · 第三部分', en: 'Sit Tight', zh: '坐得住', color: '#2f6b3d',
-    sub: ['Book chapters V–VII · c. 1901–1906', '原著第五至七章 · 约1901–1906年'],
+    sub: ['Book chapters V–VI · c. 1901–1906', '原著第五至六章 · 约1901–1906年'],
     lines: [N('Part three. Sit tight.', '第三部分：坐得住。')] });
   shot({ id: 's_partridge', set: 'office', trans: 'wipe',
     setOpts: { board: [['CLIMAX MOT.', 'UNION PAC', 'N. PAC', 'STEEL', 'READING'], ['57', '160½', '110', '45¾', '96'], ['56½', '160', '109⅞', '45⅝', '95½']], boardSeq: [{ t: 'L1', r: 1, c: 0, v: '64' }], hl: [1, 0] },
@@ -97,12 +97,12 @@ module.exports = (h) => {
   lesson(h, { id: 's_courage', tag: ['MISTAKE · 错误', '放弃自己的判断'], title: ['The Price of Doubting Your Own Reading', '怀疑自己判断的代价'], tagColor: '#b3302a',
     items: [{ type: 'chart', at: 0.4, x: 470, y: 220, w: 950, h: 610, xr: [0, 10], yr: [155, 178], yTicks: [160, 165, 170, 175], illustrative: true, cursorFmt: 'frac',
         title: ['Union Pacific, Saratoga 1906', '联合太平洋，1906年萨拉托加'],
-        series: [{ pts: [[0, 158], [2, 160], [4, 161], [5, 162], [6, 162.3], [7, 165], [8, 172], [9, 174], [10, 173]], color: '#2f5d8a', draw: [['L0', 3], ['L0@short', 5], ['L1', 7], ['L1@fills', 9]] }],
+        series: [{ pts: [[0, 158], [2, 160], [4, 161], [5, 162], [6, 162.3], [7, 165], [8, 172], [9, 174], [10, 173]], color: '#2f5d8a', draw: [['L0', 3], ['L0@short', 5], ['L1', 7], ['L1@fills', 8]] }],
         marks: [{ x: 2, y: 160, at: 'L0', en: 'His own reading: buy ~160', zh: '自己的判断：160左右买入', dx: 20, dy: 40, w: 250 },
           { x: 5, y: 162, at: 'L0@short', en: 'On a friend\'s fear: short 4,000 ~162', zh: '因朋友的担心：162左右做空4,000股', dx: -140, dy: -170, w: 280, fill: '#f3c6c0' },
           { x: 7, y: 165, at: 'L1', en: 'Cover order sent ~165', zh: '在165左右发出平仓指令', dx: -330, dy: -40, w: 250 },
           { x: 9, y: 174, at: 'L1@fills', en: 'Filled as high as 172–174', zh: '成交价高达172–174', dx: -300, dy: 20, w: 240, fill: '#f3c6c0' }],
-        pnl: { entry: 162, shares: 4000, side: 'short', at: 'L0@short', x: 980, y: 700 } },
+        pnl: { entry: 162, shares: 4000, side: 'short', at: 'L0@short', exitAt: 'L1@fills+1.2', exit: 172, x: 1040, y: 640 } },
       { type: 'counter', at: 'L2', x: 1650, y: 380, from: 0, to: -40000, prefix: '', fmt: '$', size: 90, dur: 1.4, color: '#b3302a', label: ['the cost', '代价'] },
       { type: 'note', at: 'L3', x: 1450, y: 520, w: 430, h: 290, size: 27, fill: '#f6d77a', anim: 'slideU', en: '"A low price for a man to pay for not having the courage of his own convictions."', zh: '"对一个没有勇气坚持自己信念的人来说，这代价算便宜的。"' }],
     lines: [

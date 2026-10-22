@@ -22,6 +22,11 @@ function shot(o) {
   if (shots.some(s => s.id === o.id)) throw new Error('duplicate shot id ' + o.id);
   if (!o.lines || !o.lines.length) throw new Error('shot without lines: ' + o.id);
   for (const ln of o.lines) if (!ln.en || !ln.zh) throw new Error('line missing en/zh in ' + o.id);
+  for (const w of o.items || []) {
+    if (w.type === 'chart') for (const se of w.series) for (const d of se.draw || []) if (d[1] > se.pts.length - 1) throw new Error(`${o.id}: chart draw index ${d[1]} beyond ${se.pts.length - 1}`);
+    if (w.type === 'table' && w.rowAt && w.rowAt.length !== w.rows.length) throw new Error(`${o.id}: table rowAt has ${w.rowAt.length} cues for ${w.rows.length} rows`);
+    if (w.type === 'sfx' && w.t !== undefined && w.text === undefined) throw new Error(`${o.id}: sfx needs text, not t`);
+  }
   o.music = o.music || MUSIC;
   o.ep = EP;
   if (CH) { o.chapter = CH; CH = null; }

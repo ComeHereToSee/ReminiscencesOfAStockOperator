@@ -58,16 +58,25 @@ function renderShotSvg(shot, t) {
     const op = Math.min(enter, leave);
     world.push({ z: c.z ?? 0, svg: `<g opacity="${op.toFixed(3)}" transform="translate(0 ${((1 - enter) * 40).toFixed(1)})">${drawChar(c, t, ctx)}</g>` });
   }
-  for (const w of (shot.items || [])) if (!w.screen) world.push({ z: w.z ?? 1, svg: drawWidget(w, t) });
+  for (const w of (shot.items || [])) if (!w.screen && w.type !== 'bubble') world.push({ z: w.z ?? 1, svg: drawWidget(w, t) });
   world.sort((a, b) => a.z - b.z);
   s += `<g transform="${camTf(cam, 1)}">${world.map(o => o.svg).join('')}</g>`;
   // foreground layers (depth >= 1)
   layers.forEach((L, i) => { if (L.depth >= 1) s += `<g transform="${camTf(cam, L.depth)}">${layerSvg(L, i)}</g>`; });
+  // speech bubbles follow their speaker through camera moves but are drawn at screen scale and kept inside the safe area
+  for (const w of (shot.items || [])) if (w.type === 'bubble' && !w.screen) s += drawWidget(bubbleOnScreen(w, cam), t);
   // screen-space items (captions, sfx, HUD)
   for (const w of (shot.items || [])) if (w.screen) s += drawWidget(w, t);
   // tint
   if (shot.tint) s += `<rect width="${W}" height="${H}" fill="${shot.tint}" opacity="${shot.tintOp ?? 0.18}"/>`;
   return s + '</svg>';
+}
+
+function bubbleOnScreen(w, cam) {
+  const map = (X, Y) => [(X - cam.x) * cam.z + 960, (Y - cam.y) * cam.z + 540];
+  if (w.tx === undefined) { const [x, y] = map(w.x, w.y); return Object.assign({}, w, { x, y, clamp: true }); }
+  const [tx, ty] = map(w.tx, w.ty);
+  return Object.assign({}, w, { x: tx + (w.x - w.tx), y: ty + (w.y - w.ty), tx, ty, clamp: true });
 }
 
 // ---------- static layer bitmap cache ----------
@@ -93,6 +102,7 @@ function showStatic(job) {
   const b = job.box;
   $('frame').style.display = 'none';
   document.body.style.background = 'transparent';
+  document.documentElement.style.background = 'transparent';
   $('cap').style.display = 'block';
   $('cap').style.width = b[2] + 'px'; $('cap').style.height = b[3] + 'px';
   $('cap').innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="${b[2]}" height="${b[3]}" viewBox="${b.join(' ')}">${job.svg}</svg>`;
@@ -100,7 +110,7 @@ function showStatic(job) {
 function registerStatic(job, b64, mime) {
   const bin = atob(b64); const u = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i);
   STATIC[job.key] = { url: URL.createObjectURL(new Blob([u], { type: mime })), box: job.box, scale: job.scale };
-  $('cap').innerHTML = ''; $('cap').style.display = 'none'; $('frame').style.display = 'block'; document.body.style.background = '#000';
+  $('cap').innerHTML = ''; $('cap').style.display = 'none'; $('frame').style.display = 'block'; document.body.style.background = '#000'; document.documentElement.style.background = '#000';
 }
 window.staticJobs = staticJobs; window.showStatic = showStatic; window.registerStatic = registerStatic;
 
