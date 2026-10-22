@@ -164,7 +164,7 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
   {
     const [a, b, c] = BIGL;
     shot({ id: 'p06_book', kind: 'comic', panels: [
-      P(a, { bg: 'office', chars: [ch('agent', a, 0.32, 1.0, { expr: 'grin', pose: 'paper', headline: 'WALTER SCOTT $500', hy: 0.5 }), ch('larry', a, 0.75, 1.0, { expr: 'shock', hy: 0.5, flip: true, exprAt: { 1: 'think' } })] }),
+      P(a, { bg: 'office', chars: [ch('agent', a, 0.32, 1.0, { expr: 'grin', pose: 'paper', headline: 'WALTER SCOTT $500', hy: 0.5 }), ch('larry', a, 0.75, 1.0, { expr: 'shock', hy: 0.5, flip: true, exprAt: { 1: 'think', 2: 'smile', 3: 'smile', 4: 'think' } })] }),
       P(b, { at: 1, bg: 'dark', props: [{ t: 'svg', svg: '<g transform="translate(355 190)"><g transform="rotate(-12) translate(-150 -80)"><rect width="200" height="230" fill="#f1ead6" stroke="#16130f" stroke-width="5"/><text x="20" y="50" font-family="Special Elite" font-size="26">CONTRACT</text><text x="20" y="90" font-family="Special Elite" font-size="22">SCOTT $500</text></g><g transform="rotate(14) translate(60 -60)"><rect width="200" height="230" fill="#f1ead6" stroke="#16130f" stroke-width="5"/><text x="20" y="50" font-family="Special Elite" font-size="26">…ACT</text></g><text y="170" text-anchor="middle" font-family="Bangers" font-size="70" fill="#f6d77a" stroke="#16130f" stroke-width="8" paint-order="stroke">RIP!</text></g>' }] }),
       P(c, { at: 3, bg: 'office', chars: [ch('harding', c, 0.5, 0.75, { expr: 'smile', pose: 'money', hy: 0.42 })] }),
     ], bubbles: [{ at: 2, x: 80, y: 70, w: 420, en: 'You did not whine.', zh: '你没有抱怨。', tx: 380, ty: 300, size: 30 }],

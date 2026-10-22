@@ -15,8 +15,8 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
         chars: [ch('friend', a, 0.28, 0.95, { expr: 'grin', pose: 'point', hy: 0.42 })] }),
       P(b, { at: 1, bg: 'court', props: [{ t: 'sign', x: 150, y: 40, w: 600, en: 'COMMITTEE · TAX ON STOCK SALES', zh: '国会委员会 · 股票交易税', size: 30, zsize: 26, color: '#5b3a1e' }],
         chars: [ch('larryOld', b, 0.5, 0.95, { expr: 'frown', pose: 'cross', hy: 0.52, exprAt: { 2: 'think', 3: 'think' } })] }),
-    ], caps: [{ x: 70, y: 70, w: 420, en: 'The "black cat" story.', zh: '"黑猫"的故事。' }],
-    bubbles: [{ at: 0, until: 0, x: 380, y: 150, w: 400, en: 'The cat told him to sell!', zh: '是猫叫他卖的！', tx: 640, ty: 420 }], lines: [
+    ], caps: [{ x: 500, y: 700, w: 420, en: 'The "black cat" story.', zh: '"黑猫"的故事。' }],
+    bubbles: [{ at: 0, until: 0, x: 420, y: 110, w: 400, en: 'The cat told him to sell!', zh: '是猫叫他卖的！', tx: 390, ty: 330 }], lines: [
       L('larry', 'A close friend loves to tell how a black cat at his breakfast table told me to sell my whole line, and I got nearly the top prices.', '一位好友总爱讲：在他家早餐桌旁，一只黑猫"告诉"我卖掉全部持仓，结果我几乎卖在了最高价。'),
       L('larry', 'The truth is duller. I was in Washington, urging Congressmen to tax stock trading fairly, not to death. They weren\'t convinced, so I was grumpy.', '真相平淡得多。我当时在华盛顿，劝说国会议员对股票交易公平征税，而不是把我们税死。他们没被说服，所以我心情不好。'),
       L('larry', 'I do get sudden urges to get out. I think they come from many small warning signals, none strong enough alone to give a definite reason.', '我确实会突然产生离场的冲动。我认为那来自许多微小的警告信号，单独哪一个都不足以构成明确的理由。'),
@@ -101,7 +101,7 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
 
   shot({ id: 'p09_groups', kind: 'info', tag: { en: 'GROUP BEHAVIOUR', zh: '板块行为' }, title: { en: 'Blackwood Leads, Chester Lags: the Laggard Is a Warning', zh: '布莱克伍德领涨，切斯特掉队：落后股是警告' }, els: [
     { type: 'line', x: 70, y: 250, w: 1180, h: 570, xr: [0, 10], yr: [0, 100], yTicks: [], yLabel: ['Motor group (illustrative shapes, no prices in the book)', '汽车板块（示意形态，原书无价格）'], illustrative: true,
-      xTicks: [[1, 'leader rises', '龙头上涨'], [4.5, 'public buys laggard', '公众买落后股'], [9, 'break', '暴跌']],
+      xTicks: [[1, 'leader rises', '龙头上涨'], [9, 'break', '暴跌']],
       series: [
         { pts: [[0, 30], [2, 42], [4, 55], [6, 68], [8, 78], [10, 86]], color: '#2f7d3a', label: ['Blackwood Motors', '布莱克伍德汽车'] },
         { pts: [[0, 28], [2, 30], [4, 29], [6, 26], [7.5, 24], [8.3, 14], [10, 8]], color: '#b8322a', reveal: [1, 1, 1, 2, 2, 3, 3], label: ['Chester', '切斯特'] },
