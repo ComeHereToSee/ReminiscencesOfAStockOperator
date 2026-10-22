@@ -476,7 +476,7 @@ def assemble(name, shots, vdir, adir, odir, chapters=False):
             for a, title in ch:
                 f.write(f'{int(a // 3600)}:{int(a % 3600 // 60):02d}:{int(a % 60):02d} {title}\n')
     fontsdir = os.path.join(ROOT, 'assets', 'fonts')
-    vf = (f"noise=alls=3:allf=t,vignette=angle=PI/5.2,colorbalance=rs=.035:gs=.01:bs=-.045,"
+    vf = (f"noise=alls=1.5:allf=t,vignette=angle=PI/5.2,colorbalance=rs=.035:gs=.01:bs=-.045,"
           f"eq=brightness='0.006*sin(t*29)*sin(t*7.3)':eval=frame,"
           f"subtitles='{ass}':fontsdir='{fontsdir}'")
     af = ('[1:a]volume=1.0,asplit=2[vox1][vox2];[2:a]volume=0.85[fxa];[3:a]volume=0.30[mus0];'
@@ -485,7 +485,7 @@ def assemble(name, shots, vdir, adir, odir, chapters=False):
     out = os.path.join(odir, name + '.mp4')
     run(['ffmpeg', '-y', '-v', 'error', '-i', vjoin, '-i', os.path.join(adir, name + '.vox.wav'), '-i', os.path.join(adir, name + '.fx.wav'),
          '-i', os.path.join(adir, name + '.music.wav'), '-filter_complex', af, '-vf', vf, '-map', '0:v', '-map', '[aout]',
-         '-c:v', 'libx264', '-preset', 'medium', '-crf', '21', '-tune', 'animation', '-pix_fmt', 'yuv420p',
+         '-c:v', 'libx264', '-preset', 'medium', '-crf', '24', '-tune', 'animation', '-pix_fmt', 'yuv420p',
          '-c:a', 'aac', '-b:a', '192k', '-movflags', '+faststart', out])
     print(f'  -> {out}  ({total / 60:.1f} min)')
 
