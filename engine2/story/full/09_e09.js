@@ -25,7 +25,7 @@ module.exports = (h) => {
       { type: 'note', at: 'L2@Washington', x: 1220, y: 110, w: 660, h: 150, size: 30, anim: 'slideU',
         en: 'In fact: a failed trip to Washington to argue for a fair stock tax', zh: '实情：他去华盛顿为合理的股票交易税游说，无功而返' },
       { type: 'note', at: 'L3@warnings', x: 1220, y: 280, w: 660, h: 160, size: 30, fill: '#f6d77a', anim: 'slideU',
-        en: 'Many small warnings, none clear alone: old traders called it "ticker-sense"', zh: '许多细小预警，单看都不明确：老交易员称之为"盘感"' }],
+        en: 'Many small warnings, none clear alone: the "ticker-sense" old traders said Keene had', zh: '许多细小预警，单看都不明确：老交易员说基恩就有这种"盘感"' }],
     lines: [
       N('A friend loves to say a black cat at his breakfast table told me to sell my whole line, near the very top.', '一位朋友总爱讲：在他家早餐桌上，一只黑猫叫我卖光全部持仓，结果我几乎卖在了最高点。'),
       L('friend', 'The cat told him to sell! He was grouchy till he\'d sold every share!', '是猫叫他卖的！不卖光每一股，他就一直闷闷不乐！', { speak: 'friend' }),
@@ -80,7 +80,7 @@ module.exports = (h) => {
     items: [{ type: 'note', at: 'L1@delayed', x: 1180, y: 600, w: 680, h: 190, size: 30, fill: '#f6d77a', anim: 'slideU',
       en: 'Late winter wheat + early spring wheat arrive together → who will buy?', zh: '迟到的冬小麦＋提前的春小麦一起上市→谁来买？' }],
     lines: [
-      N('That attitude at work: wheat, in 1922. Reports showed a normal winter crop, and a bigger, earlier spring crop.', '来看这种职业态度的实战：1922年的小麦。报告显示，冬小麦产量正常，春小麦更多，收获也更早。'),
+      N('That attitude at work: wheat, in 1922. Reports showed a winter crop like last year\'s, and a bigger, earlier spring crop.', '来看这种职业态度的实战：1922年的小麦。报告显示，冬小麦产量与去年相当，春小麦更多，收获也更早。'),
       N('I thought at once of the coal and railroad strikes. Delayed winter wheat would arrive with the early spring crop. Who would buy?', '我立刻想到了煤矿罢工和铁路工人罢工。被耽误的冬小麦，会和提前收获的春小麦一起涌进市场。谁会来买？'),
     ] });
   lesson(h, { id: 'e09_test', tag: ['METHOD · TEST THE MARKET', '方法 · 试探市场'], title: ['Take the Market\'s Pulse Before You Press', '加码之前，先给市场把脉'], titleSize: 50,
@@ -151,8 +151,10 @@ module.exports = (h) => {
   photo({ id: 'e09_curb', src: `${PD}/broad_st_curb_brokers_1916.jpg`, credit: 'Curb brokers on Broad Street, c.1916 · Irving Underhill, Library of Congress (public domain)',
     cap: ['The Curb market on Broad Street, c.1916. Guiana Gold sold here before its listing.', '约1916年，布罗德街上的场外市场。圭亚那黄金上市前就在这里交易。'], capW: 660,
     kb: [{ t: 0, x: 960, y: 520, z: 1.02 }, { t: 12, x: 930, y: 500, z: 1.14 }],
-    items: [{ type: 'note', at: 'L0@listed', x: 1200, y: 560, w: 660, h: 140, size: 32, fill: '#f6d77a', anim: 'slideU',
-      en: 'Curb ≈50 → listed ≈35 → broke 20', zh: '场外≈50→上市≈35→跌破20' }],
+    items: [{ type: 'note', at: 'L0@listed', x: 1200, y: 540, w: 660, h: 130, size: 32, fill: '#f6d77a', anim: 'slideU',
+      en: 'Curb ≈50 → listed ≈35 → broke 20', zh: '场外≈50→上市≈35→跌破20' },
+      { type: 'note', at: 'L1@ten', x: 1200, y: 690, w: 660, h: 140, size: 30, anim: 'slideU',
+        en: 'Belle Isle: >$10 million → bonds + 250,000 of 1,000,000 shares', zh: '贝尔岛：1000多万美元→债券＋100万股中的25万股' }],
     lines: [
       N('Guiana Gold followed the same script. It sold near 50 on the Curb, listed around 35, and finally broke 20.', '圭亚那黄金走的是同一个剧本。它在场外市场卖到50左右，上市时约35，最终跌破了20。'),
       N('Belle Isle Exploration had advanced it over ten million dollars, for bonds and two hundred and fifty thousand of its million shares.', '贝尔岛勘探公司曾预付给它一千多万美元，换来债券和它一百万股中的二十五万股。'),
@@ -166,12 +168,12 @@ module.exports = (h) => {
         { en: 'Their pool takes the stock at 41: +5 points to the bankers', zh: '自家资金池按41接手：先让银行家赚5点', at: 'L0@41' },
         { en: 'Public buys ≈400,000 shares, up to 47', zh: '公众买进约40万股，一路买到47', at: 'L1', color: '#f3c6c0' }] },
       { type: 'chart', at: 'L1', x: 1060, y: 220, w: 830, h: 620, xr: [0, 10], yr: [15, 52], yTicks: [20, 35, 47], illustrative: true, cursorLabel: false,
-        title: ['Guiana Gold, listed', '上市后的圭亚那黄金'],
-        series: [{ pts: [[0, 35], [1.5, 41], [3, 47], [4, 43], [5, 37], [6, 35], [7, 31], [8, 27], [9, 22], [10, 19]], color: '#b8862a',
-          draw: [['L1', 2], ['L1@sagged', 4], ['L2', 6], ['L3', 9]] }],
-        marks: [{ x: 5, y: 37, at: 'L1@sagged', en: '−10 pts while gold stocks are strong', zh: '黄金股走强时，它跌了10点', dx: 50, dy: -130, w: 240, fill: '#f3c6c0' },
-          { x: 6, y: 35, at: 'L2@cheap', en: '"Cheap at 35", dividend still paid', zh: '"35真便宜"，股息照付', dx: -330, dy: 60, w: 240 },
-          { x: 10, y: 19, at: 'L3', en: 'News: barren rock. Breaks 20', zh: '消息：挖到废石。跌破20', dx: -560, dy: -20, w: 240, fill: '#f3c6c0' }] }],
+        title: ['Guiana Gold: the Curb, then listed', '圭亚那黄金：先在场外，后上市'], xTicks: [[3.8, 'Curb ≈50', '场外≈50'], [7, 'listed ≈35', '上市≈35']],
+        series: [{ pts: [[0, 40], [1.5, 45], [3, 47], [3.8, 49], [5.5, 39], [7, 35], [8, 30], [9, 24], [10, 19]], color: '#b8862a',
+          draw: [['L1', 3], ['L1@sagged', 4], ['L2', 5], ['L3', 8]] }],
+        marks: [{ x: 5.5, y: 39, at: 'L1@sagged', en: '−10 pts while gold stocks are strong', zh: '黄金股走强时，它跌了10点', dx: 30, dy: -150, w: 260, fill: '#f3c6c0' },
+          { x: 7, y: 35, at: 'L2@cheap', en: '"Cheap at 35", dividend still paid', zh: '"35真便宜"，股息照付', dx: -330, dy: 60, w: 260 },
+          { x: 10, y: 19, at: 'L3', en: 'News: barren rock. Breaks 20', zh: '消息：挖到废石。跌破20', dx: -560, dy: -20, w: 260, fill: '#f3c6c0' }] }],
     lines: [
       N('Bankers got a call on those shares at 36. To save a professional\'s fee, they ran their own pool, putting the stock in at 41.', '银行家拿到了这批股票每股36美元的认购权。为省下职业操盘手的佣金，他们自组资金池，按41接手。'),
       N('The public bought about four hundred thousand shares, up to 47. Then, with the gold group strong, Guiana sagged ten points.', '公众一路买到47，共买了约四十万股。随后，在黄金板块走强时，圭亚那却跌了十个点。'),
@@ -195,7 +197,7 @@ module.exports = (h) => {
       N('Another time I was short stocks and fifty thousand bales of cotton. Busy with stocks, I neglected the cotton, waiting for a reaction. The loss grew to two hundred and fifty thousand dollars.', '另一次，我同时做空股票和五万包棉花。忙着股票，我冷落了棉花，总想等回调再平仓。结果亏损涨到了二十五万美元。'),
       N('At Hot Springs I was a million to the bad. I told myself: I must be wrong. With me, feeling wrong and getting out are one act. I covered.', '到了温泉城，我已亏了一百万。我对自己说：我一定错了。对我来说，意识到错和离场是同一个动作。我平了仓。'),
     ] });
-  lesson(h, { id: 'e09_cotton', tag: ['WHEN THE EVIDENCE FLIPS', '当证据反转时'], title: ['Cotton: Wrong, Out, Then Right Again', '棉花：做错，离场，再做对'], music: 'tense',
+  lesson(h, { id: 'e09_cotton', trans: 'zoom', tag: ['WHEN THE EVIDENCE FLIPS', '当证据反转时'], title: ['Cotton: Wrong, Out, Then Right Again', '棉花：做错，离场，再做对'], music: 'tense',
     gest: ['point', 'up', 'explainR', 'explain'], expr: ['think', 'determined', null, 'smile'],
     items: [
       { type: 'table', at: 'L0', x: 470, y: 220, w: 1000, widths: [0.3, 0.26, 0.44], size: 29, bottom: 840,
@@ -212,7 +214,7 @@ module.exports = (h) => {
           { v: 20000, vl: '20,000', en: '2nd', zh: '第二笔', at: 'L1@lunch', color: '#c9a26a' },
           { v: 60000, vl: '60,000', en: 'total', zh: '合计', at: 'L2', color: '#b3302a' }] },
       { type: 'note', at: 'L3@hunch', x: 1500, y: 620, w: 390, h: 220, size: 29, fill: '#cfe3c4', anim: 'slideU',
-        en: 'Not a hunch: a change in behaviour. The line of least resistance turned down.', zh: '不是直觉，而是走势变了：最小阻力线掉头向下。' }],
+        en: 'Not a hunch: the line of least resistance turned down.', zh: '不是直觉：最小阻力线掉头向下。' }],
     lines: [
       N('Next day, after golf, cotton was off 50 points. For weeks it had always rallied after selling. This time it didn\'t.', '第二天打完高尔夫，我看到棉花跌了50点。几个星期以来，每次被卖压打下去它都会反弹。这一次没有。'),
       N('My reason for covering was gone. I sold ten thousand bales: off 50 more. At lunch I jumped up, sold ten thousand more: off 40.', '我平仓的理由不存在了。我卖出一万包：又跌50点。午饭时我跳起身，再卖一万包：又跌40点。'),
@@ -225,7 +227,9 @@ module.exports = (h) => {
   photo({ id: 'e09_florida', src: `${PD}/florida_houseboat_miami_river_1904_detroit.jpg`, credit: 'House boating on the Miami River, Florida, c.1904 · Detroit Publishing Co. (public domain)',
     cap: ['Florida, his winter fishing holiday. Quotations came only with the semi-weekly mail.', '佛罗里达，他每年冬天的钓鱼假期。行情只能靠每周两班的邮件送来。'], capW: 660,
     kb: [{ t: 0, x: 960, y: 540, z: 1.02 }, { t: 12, x: 1000, y: 520, z: 1.14 }],
-    items: [{ type: 'note', at: 'L1@155', x: 1200, y: 600, w: 660, h: 150, size: 32, fill: '#f6d77a', anim: 'slideU',
+    items: [{ type: 'note', at: 'L0@squeeze', x: 1200, y: 420, w: 660, h: 150, size: 29, anim: 'slideU',
+      en: 'A broker: not even Drew in Erie or Havemeyer in Sugar milked a stock so well', zh: '一位经纪人说：就连伊利的德鲁、糖业的哈夫迈耶，也没这么会"挤奶"' },
+      { type: 'note', at: 'L1@155', x: 1200, y: 600, w: 660, h: 150, size: 32, fill: '#f6d77a', anim: 'slideU',
       en: 'TT: ≈140 → 155, while the general list is heavy', zh: '热带贸易：≈140→155，而大盘沉重' }],
     lines: [
       N('History repeats in Wall Street. Tropical Trading\'s insiders loved to coax the bears in, then squeeze them like a hydraulic press.', '华尔街的历史总在重演。热带贸易公司的内部人最爱引诱空头进场，再像液压机一样把他们挤爆。'),
@@ -247,25 +251,24 @@ module.exports = (h) => {
       N('In New York the company\'s business confirmed my view. I kept testing and selling, until at 133 I was short thirty thousand.', '回到纽约，公司的实际经营印证了我的判断。我不断试探、不断卖出，到133时，我已做空三万股。'),
     ] });
   lesson(h, { id: 'e09_squeeze', tag: ['HOLDING THROUGH THE SQUEEZE', '顶住逼空'], title: ['Tropical Trading: Squeezed, and Staying Pat', '热带贸易：遭遇逼空，稳坐不动'], titleSize: 50, music: 'tense',
-    gest: ['cross', 'explainR', 'point', 'fist'], expr: ['determined', null, 'sly', 'determined'],
+    gest: ['cross', 'fist', 'explainR', 'point'], expr: ['determined', 'determined', null, 'sly'],
     items: [
       { type: 'chart', at: 0.4, x: 470, y: 220, w: 980, h: 620, xr: [0, 10], yr: [125, 160], yTicks: [133, 140, 150, 153], illustrative: true, cursorFmt: 'int',
         title: ['Tropical Trading', '热带贸易'],
-        series: [{ pts: [[0, 153], [2, 140], [3, 133], [4.5, 150], [5.5, 144], [6.5, 139], [7.5, 149], [8.5, 141], [10, 134]], color: '#7a4a22',
-          draw: [['L0', 3], ['L0@squeezed', 4], ['L2', 6], ['L2@ten', 7], ['L3', 8]] }],
-        marks: [{ x: 3, y: 133, at: 'L0', en: 'Short 30,000 by 133', zh: '到133时做空3万股', dx: -40, dy: 40, w: 240 },
+        series: [{ pts: [[0, 153], [2, 140], [3, 133], [4.5, 150], [5.5, 144], [6.5, 139], [7.5, 149]], color: '#7a4a22',
+          draw: [['L0', 2], ['L0@squeezed', 3], ['L3', 5], ['L3@ten', 6]] }],
+        marks: [{ x: 3, y: 133, at: 'L0', en: 'Short 30,000 by 133', zh: '到133时做空3万股', dx: -40, dy: 40, w: 260 },
           { x: 4.5, y: 150, at: 'L0@squeezed', en: 'Squeezed to 150: he stays pat', zh: '被逼空到150：他按兵不动', dx: -330, dy: -125, w: 270, fill: '#f3c6c0' },
-          { x: 7.5, y: 149, at: 'L2@ten', en: '+10 on bull rumours: 149', zh: '利好传闻拉高10点：149', dx: -80, dy: -170, w: 240, fill: '#f3c6c0' },
-          { x: 10, y: 134, at: 'L3', en: 'Reasons stronger than ever: holds', zh: '理由比以往更充分：持有', dx: -300, dy: 60, w: 240, fill: '#cfe3c4' }] },
-      { type: 'note', at: 'L1', x: 1480, y: 220, w: 410, h: 300, size: 30, anim: 'slideU',
-        en: '"Courage is confidence to act on the decision of your mind." (Dickson G. Watts)', zh: '"勇气，就是按自己头脑的决定行事的信心。"（迪克森·G·瓦茨）' },
-      { type: 'note', at: 'L1@character', x: 1480, y: 540, w: 410, h: 300, size: 30, fill: '#f6d77a', anim: 'slideU',
-        en: 'Price alone doesn\'t prove you wrong. The character of the move does.', zh: '单凭价格证明不了你错，走势的性质才能。' }],
+          { x: 7.5, y: 149, at: 'L3@ten', en: '+10 on bull rumours: 149', zh: '利好传闻拉高10点：149', dx: -80, dy: -170, w: 260, fill: '#f3c6c0' }] },
+      { type: 'note', at: 'L1', x: 1480, y: 220, w: 410, h: 300, size: 30, fill: '#cfe3c4', anim: 'slideU',
+        en: 'His reasons were stronger than ever: basic conditions fought for him.', zh: '他的理由比以往更充分：基本形势站在他这边。' },
+      { type: 'note', at: 'L2', x: 1480, y: 540, w: 410, h: 300, size: 29, fill: '#f6d77a', anim: 'slideU',
+        en: 'Watts: courage = confidence to act on your decision. Price alone doesn\'t prove you wrong.', zh: '瓦茨：勇气＝按自己决定行事的信心。单凭价格证明不了你错。' }],
     lines: [
       N('The public bought the dip as a bargain, the floating supply shrank, and the insiders squeezed it up to 150. I stayed pat.', '公众把回调当成捡便宜，流通筹码随之减少，内部人趁机逼空，把价格推到150。我稳坐不动。'),
+      N('My reasons for selling were stronger than ever. Basic conditions were fighting for me.', '我卖空的理由比以往任何时候都更充分。基本形势站在我这边。'),
       N('Dickson Watts said courage is confidence to act on your decision. A price alone doesn\'t prove me wrong. The character of the move does.', '迪克森·瓦茨说，勇气就是按自己的决定行事的信心。单凭价格证明不了我错，走势的性质才能。'),
       N('It broke 140. Then, on a flood of bull rumours, the insiders ran it up ten points, to 149.', '它跌破了140。随后，伴着满天飞的利好传闻，内部人又把它拉高了十个点，到149。'),
-      N('My reasons for selling were stronger than ever. Basic conditions were fighting for me.', '我卖空的理由比以往任何时候都更充分。基本形势站在我这边。'),
     ] });
   shot({ id: 'e09_equatorial', set: 'floor', setOpts: { agitated: true, paperN: 16 }, trans: 'whip', music: 'tense',
     cam: [{ t: 0, x: 960, y: 520, z: 1.0 }, { t: 'L1', on: 't1', z: 1.35, dur: 1.0 }, { t: 'L2', x: 960, y: 520, z: 1.05, dur: 1.2 }],
@@ -276,15 +279,15 @@ module.exports = (h) => {
         acts: [{ t: 'L1', pose: 'pointL', expr: 'shout' }, { t: 'L2', pose: 'fist', expr: 'angry' }] },
       { id: 'friend', key: 't2', x: 1560, y: 900, s: 1.05, flip: true, z: -1, pose: 'idle', expr: 'neutral', acts: [{ t: 'L1e', pose: 'up', expr: 'shock' }] }],
     items: [
-      { type: 'note', at: 'L0@thirty', until: 'L1', x: 1220, y: 110, w: 660, h: 160, size: 30, anim: 'slideU',
-        en: 'Short 30,000 TT: as big a share of the floating supply as he thought wise', zh: '做空3万股热带贸易：已达他认为明智的流通盘比例上限' },
+      { type: 'note', at: 'L0@thirty', until: 'L1', x: 1220, y: 110, w: 660, h: 200, size: 30, anim: 'slideU',
+        en: 'Short 30,000 TT: all the floating supply he thought wise. So he sells ≈10,000 Equatorial instead', zh: '已做空3万股热带贸易，达到流通盘的明智上限。于是改为卖空约1万股赤道商业' },
       { type: 'bubble', at: 'L1', until: 'L2', x: 880, y: 70, w: 640, kind: 'shout', tx: 1250, ty: 590, en: 'Equatorial is breaking! The TT rally is a smoke screen. They\'re unloading!', zh: '赤道商业在暴跌！热带贸易的上涨是烟幕，他们在出货！' },
       { type: 'note', at: 'L2@tool', x: 1220, y: 110, w: 660, h: 160, size: 30, fill: '#f6d77a', anim: 'slideU',
-        en: 'Same idea as selling oats to make traders bearish on corn (the Stratton corner)', zh: '与当年斯特拉顿逼空玉米时卖燕麦、让交易员看空玉米是同一招' }],
+        en: 'Like selling oats in the Stratton corn corner. Rumour squeezes and trading to mislead: illegal today', zh: '与斯特拉顿逼空玉米时卖燕麦同一招。散布谣言逼空、为误导而交易：如今均属违法' }],
     lines: [
       N('Nobody believes a man short thirty thousand shares, but everyone believes the tape. So I sold about ten thousand Equatorial Commercial, a big holder of TT.', '没人会相信一个做空三万股的人，但人人都相信纸带。于是我没有加空热带贸易，而是卖空了约一万股赤道商业——它持有大量热带贸易股票。'),
       L('trader', 'Equatorial is breaking! The TT rally is a smoke screen. They\'re unloading!', '赤道商业在暴跌！热带贸易的上涨是烟幕，他们在出货！', { speak: 't1' }),
-      N('Traders sold TT, the insiders stopped supporting it, and it fell. I covered Equatorial at a small profit. It was a tool, not a bet.', '交易员纷纷卖出热带贸易，内部人撤掉支撑，股价随之下跌。我小赚一笔平掉了赤道商业。它是工具，不是赌注。'),
+      N('Traders sold TT, the insiders stopped supporting it, and it fell. I covered Equatorial at a small profit. It was a tool, not a bet. Today, trading to mislead is illegal.', '交易员纷纷卖出热带贸易，内部人撤掉支撑，股价随之下跌。我小赚一笔平掉了赤道商业。它是工具，不是赌注。如今，为误导他人而交易是违法的。'),
     ] });
   shot({ id: 'e09_ttend', set: 'office', trans: 'wipe', music: 'tense',
     setOpts: { board: [['TROPICAL TRADING', 'THE MOVE'], ['125', 'big short interest']],
@@ -310,7 +313,7 @@ module.exports = (h) => {
       acts: [{ t: 'L0@selling', pose: 'point', expr: 'determined' }, { t: 'L0@character', pose: 'hold', expr: 'shock' }, { t: 'L1@156', pose: 'up', expr: 'grin' }, { t: 'L2@held', pose: 'shrug', expr: 'tired' }] }],
     items: [
       { type: 'caption', at: 0.3, until: 'L1', en: 'A year later.', zh: '一年之后。' },
-      { type: 'newspaper', screen: true, at: 'L2@Reports', x: 1480, y: 330, w: 560, h: 400, paper: 'The Daily Chronicle', en: 'TT ABOVE 200: LIVINGSTON SQUEEZED FOR MILLIONS?', zh: '热带贸易破200：利文斯顿被逼空损失数百万？', size: 40 },
+      { type: 'newspaper', screen: true, at: 'L2@Reports', x: 1480, y: 330, w: 560, h: 400, paper: 'The Daily Chronicle', en: 'TT ABOVE 200: LIVINGSTON SQUEEZED FOR $8–9 MILLION?', zh: '热带贸易破200：利文斯顿被逼空损失八九百万？', size: 38 },
       { type: 'stamp', screen: true, at: 'L2@long', x: 470, y: 250, en: 'LONG ALL THE WAY', zh: '其实一路做多', size: 56, color: '#2f6b3d' }],
     lines: [
       N('A year later TT hung around 150 for two weeks, in a tired market. I began selling. Then suddenly the character of the buying changed.', '一年后，热带贸易在150附近徘徊了两周，大盘疲软。我开始卖出。忽然间，买盘的性质变了。'),

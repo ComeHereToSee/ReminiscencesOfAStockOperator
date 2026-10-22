@@ -50,7 +50,7 @@ module.exports = (h) => {
   photo({ id: 'e08_santos', src: `${PD}/coffee_santos_unloading_1916.jpg`, credit: 'Coffee at Santos, Brazil, 1916 · Library of Congress (public domain)',
     cap: ['Santos, Brazil, 1916. Coffee was plentiful there. Ships to carry it north were not.', '1916年，巴西桑托斯。那里咖啡充足，北运的船却奇缺。'], capW: 660,
     kb: [{ t: 0, x: 960, y: 540, z: 1.03 }, { t: 10, x: 1000, y: 500, z: 1.15 }],
-    items: [{ type: 'counter', at: 'L0@nine', x: 1520, y: 430, from: 0, to: 9, suffix: ' months', size: 110, dur: 1.4, panel: true, color: '#b3302a', label: ['carried to no purpose', '白白扛着仓位'] }],
+    items: [{ type: 'counter', at: 'L0@nine', x: 1520, y: 430, from: 0, to: 9, suffix: ' months', size: 110, dur: 1.4, panel: true, color: '#b3302a', label: ['from winter 1917, to no purpose', '自1917年冬起，白白扛着'] }],
     lines: [N('I began buying in the winter of 1917. The market did nothing. For nine long months I carried my line to no purpose.', '1917年冬天，我开始买入。市场毫无动静。漫长的九个月里，我白白扛着这批仓位。')] });
 
   // ---- coffee: the campaign ----
@@ -59,12 +59,12 @@ module.exports = (h) => {
     items: [
       { type: 'chart', at: 0.4, x: 470, y: 220, w: 980, h: 620, xr: [0, 20], yr: [0, 10], yTicks: [], illustrative: true, cursorLabel: false,
         title: ['Coffee futures, as he describes them', '他所描述的咖啡期货走势'], xTicks: [[0, 'winter 1917', '1917年冬']],
-        series: [{ pts: [[0, 3], [1.5, 3.3], [3, 2.8], [4.5, 3.1], [6, 2.7], [7.5, 3], [9, 2.6], [10, 2.8], [12, 4], [14, 5.6], [16, 7.2], [17, 7.6]], color: '#7a4a22', draw: [['L0', 7], ['L1', 8], ['L2', 11]] }],
+        series: [{ pts: [[0, 3], [1.5, 3.3], [3, 2.8], [4.5, 3.1], [6, 2.7], [7.5, 3], [9, 2.6], [10, 2.8], [12, 4], [14, 5.6], [16, 7.2], [17, 7.6]], color: '#7a4a22', draw: [['L0', 6], ['L1', 7], ['L2', 11]] }],
         hlines: [{ v: 7.9, x0: 15, at: 'L3@never', color: '#b3302a', en: 'Price fixed, contracts closed', zh: '限价，合约强制了结' }],
-        marks: [{ x: 0, y: 3, at: 'L0', en: 'Try 1: buys', zh: '第一次：买入', dx: 20, dy: -110, w: 200 },
+        marks: [{ x: 0, y: 3, at: 'L0', en: 'Try 1: buys', zh: '第一次：买入', dx: 20, dy: -110, w: 260 },
           { x: 9, y: 2.6, at: 'L0@loss', en: 'After 9 months: sells at a big loss', zh: '九个月后：合约到期，大亏卖出', dx: -120, dy: 50, w: 280, fill: '#f3c6c0' },
           { x: 10, y: 2.8, at: 'L1', en: 'Try 2: 3× the line, far-off months', zh: '第二次：三倍仓位，远期月份', dx: -380, dy: -260, w: 260, fill: '#cfe3c4' },
-          { x: 14, y: 5.6, at: 'L2', en: 'Rises at once', zh: '立刻上涨', dx: 30, dy: 40, w: 180 }] },
+          { x: 14, y: 5.6, at: 'L2', en: 'Rises at once', zh: '立刻上涨', dx: 0, dy: 40, w: 260 }] },
       { type: 'bars', at: 'L1', x: 1480, y: 220, w: 410, h: 400, title: ['Size of his line', '仓位大小'], max: 3, vsize: 36,
         bars: [{ v: 1, vl: '1×', en: 'Try 1', zh: '第一次', at: 'L1', color: '#9a9182' }, { v: 3, vl: '3×', en: 'Try 2', zh: '第二次', at: 'L1@three', color: '#2f6b3d' }] },
       { type: 'note', at: 'L2@hundred', x: 1480, y: 640, w: 410, h: 200, size: 29, fill: '#f6d77a', anim: 'slideU',
@@ -96,7 +96,7 @@ module.exports = (h) => {
       N('The Price Fixing Committee of the War Industries Board fixed a maximum price, and a deadline for closing all contracts.', '战时工业委员会下属的价格管制委员会规定了最高价，并限期了结所有合约。'),
       N('That shut the Coffee Exchange. There was only one thing to do. I sold out.', '咖啡交易所因此只能停业。我别无选择：全部卖出。'),
     ] });
-  lesson(h, { id: 'e08_result', tag: ['THE UNEXPECTABLE', '无法预料之事'], tagColor: '#b3302a', title: ['Right on the Facts and the Time, Still Not Paid', '事实对了，时机对了，钱却没拿到'], titleSize: 46, music: 'dark',
+  lesson(h, { id: 'e08_result', trans: 'ink', tag: ['THE UNEXPECTABLE', '无法预料之事'], tagColor: '#b3302a', title: ['Right on the Facts and the Time, Still Not Paid', '事实对了，时机对了，钱却没拿到'], titleSize: 46, music: 'dark',
     gest: ['explain', 'point', 'shrug', 'explainR'], expr: [null, null, 'sad', 'determined'],
     items: [
       { type: 'bars', at: 0.4, x: 470, y: 220, w: 620, h: 620, title: ['Green coffee, cents per pound', '生咖啡，美分/磅'], max: 23, vsize: 40,
@@ -109,7 +109,7 @@ module.exports = (h) => {
       { type: 'note', at: 'L2', x: 1120, y: 540, w: 770, h: 140, size: 30, fill: '#cfe3c4', anim: 'slideU',
         en: '+2–3¢ a pound = several millions for him, less cost to the public', zh: '只要涨2–3美分，他就能赚几百万，公众的代价也更小' },
       { type: 'rule', at: 'L3@unexpectable', x: 1120, y: 700, w: 770, h: 140, n: '!', tag: '#b3302a', fill: '#f6d77a', size: 32,
-        en: 'Add the UNEXPECTABLE to your list of hazards.', zh: '把"无法预料之事"加进你的风险清单。' }],
+        en: 'Rules changed twice more. Add the UNEXPECTABLE to your hazards.', zh: '规则又被临时改过两次。把"无法预料之事"列入风险清单。' }],
     lines: [
       N('Under the fixed price, green coffee hung around nine cents. Roasted coffee rose anyway. Only the roasters gained.', '限价期间，生咖啡在九美分左右徘徊。烘焙咖啡照涨不误。只有烘焙商得了好处。'),
       N('When the Exchange reopened, coffee sold at twenty-three cents. The fixed price had been too low to pay ocean freight.', '交易所重开后，咖啡卖到了二十三美分。之前的限价太低，付不起远洋运费，货源因此短缺。'),
@@ -144,7 +144,7 @@ module.exports = (h) => {
           { pts: [[0, 100], [1.5, 96], [3, 82], [4, 80], [5.5, 90], [7, 97], [8.5, 99], [10, 100]], color: '#2f6b3d', label: ['A raid: insiders buy', '打压：内部人买入'], draw: [['L0', 3], ['L1', 7]] },
           { pts: [[0, 100], [1.5, 95], [3, 84], [4, 82], [5.5, 80], [7, 74], [8.5, 70], [10, 65]], color: '#b3302a', dash: '16 10', label: ['Real decline: no rally', '真正的下跌：不反弹'], draw: [['L2', 3], ['L2@fails', 7]] }],
         marks: [{ x: 4, y: 80, at: 'L0@worth', en: 'Below value: insiders buy', zh: '低于价值：内部人买进', dx: -270, dy: 70, w: 260, fill: '#cfe3c4' },
-          { x: 7, y: 97, at: 'L1', en: 'Raider stops: price rebounds', zh: '打压者一停：价格反弹', dx: 20, dy: 40, w: 240 },
+          { x: 7, y: 97, at: 'L1', en: 'Raider stops: price rebounds', zh: '打压者一停：价格反弹', dx: -10, dy: 40, w: 260 },
           { x: 8.5, y: 70, at: 'L2@inside', en: 'No rally = no inside buying', zh: '不反弹＝没有内部人买盘', dx: -330, dy: 30, w: 270, fill: '#f3c6c0' }] },
       { type: 'rule', at: 'L3', x: 1440, y: 220, w: 450, h: 290, n: '99', size: 32,
         en: '99 "raids" in 100 are legitimate declines.', zh: '一百次"打压"里，九十九次是正常下跌。' },
@@ -195,15 +195,15 @@ module.exports = (h) => {
         series: [{ pts: [[0, 92], [1, 98], [2, 90], [3, 100], [4, 110], [5, 120], [6, 112], [7.5, 128], [8.5, 150], [9.5, 140], [10.5, 130], [12, 118]], color: '#7a4a22',
           draw: [['L1', 1], ['L2', 3], ['L3', 5], ['L4', 8], ['L4@way', 11]] }],
         marks: [{ x: 1, y: 98, at: 'L1@ten', en: 'Buys 10,000 in the first hour', zh: '第一个小时买入1万股', dx: -70, dy: -250, w: 270 },
-          { x: 2, y: 90, at: 'L2', en: 'Shake-out: he sits tight', zh: '震仓：他坐着不动', dx: -40, dy: 50, w: 240, fill: '#f3c6c0' },
-          { x: 5, y: 120, at: 'L3', en: 'Sells his 10,000 at 120', zh: '在120卖出1万股', dx: 30, dy: 80, w: 250, fill: '#f6d77a' },
-          { x: 10.5, y: 130, at: 'L4@cheap', en: '"Cheap at 130!"', zh: '"130真便宜！"', dx: -90, dy: 100, w: 200, fill: '#f3c6c0' }] },
+          { x: 2, y: 90, at: 'L2', en: 'Shake-out: he sits tight', zh: '震仓：他坐着不动', dx: -40, dy: 50, w: 260, fill: '#f3c6c0' },
+          { x: 5, y: 120, at: 'L3', en: 'Sells his 10,000 at 120', zh: '在120卖出1万股', dx: 30, dy: 80, w: 260, fill: '#f6d77a' },
+          { x: 10.5, y: 130, at: 'L4@cheap', en: '"Cheap at 130!"', zh: '"130真便宜！"', dx: -150, dy: 250, w: 260, fill: '#f3c6c0' }] },
       { type: 'note', at: 'L0@three', x: 1520, y: 220, w: 370, h: 300, size: 30, anim: 'slideU',
         en: 'Opening price marked up 3 times before the first recorded sale', zh: '首笔成交之前，开盘价被调高了三次' },
       { type: 'note', at: 'L4', x: 1520, y: 540, w: 370, h: 300, size: 30, fill: '#f3c6c0', anim: 'slideU',
-        en: 'The pool marks it to 150, then has to sell on the way down', zh: '资金池推到150，然后只能在下跌途中出货' }],
+        en: 'Marked to 150, then sold on the way down. Illegal today.', zh: '推到150，再在下跌途中出货。如今违法。' }],
     lines: [
-      N('Borneo Tin came out at the height of the war boom. Its pool marked up the opening price three times before the first sale.', '婆罗洲锡业在战争繁荣的顶峰上市。资金池在第一笔成交之前，把开盘价连调了三次。'),
+      N('Borneo Tin came out at the height of the war boom. Its pool, in ways illegal today, marked up the opening price three times before the first sale.', '婆罗洲锡业在战争繁荣的顶峰上市。它的资金池用如今属于违法的手法，在第一笔成交之前把开盘价连调了三次。'),
       N('I had refused to join the pool. Knowing its plans and the public, I bought ten thousand shares in the first hour.', '我拒绝了加入资金池的邀请。但我了解他们的计划，也了解公众，于是在第一个小时就买了一万股。'),
       N('They tried to shake me out. I sat tight.', '他们想把我震出去。我坐着不动。'),
       N('At 120 I let them have my ten thousand shares.', '到120时，我把一万股全部卖给了他们。'),
@@ -242,7 +242,7 @@ module.exports = (h) => {
       { id: 'manager', key: 'haley', x: 1100, y: 890, s: 1.15, flip: true, pose: 'write', expr: 'neutral', acts: [{ t: 'L1', pose: 'explain', expr: 'worry' }, { t: 'L2@margin', pose: 'shrug', expr: 'sad' }] },
       { id: 'larry', x: 1650, y: 900, s: 1.0, flip: true, z: -1, pose: 'chin', expr: 'think', lookX: -1 }],
     items: [
-      { type: 'caption', at: 0.3, until: 'L1', en: 'Harding Brothers\' Palm Beach branch. Her "special account".', zh: '哈丁兄弟公司棕榈滩分部。她的"单独账户"。' },
+      { type: 'caption', at: 0.3, until: 'L1', en: 'Harding Brothers, Palm Beach. Her "special account": 100 shares.', zh: '哈丁兄弟公司棕榈滩分部。她的"单独账户"：100股。' },
       { type: 'bubble', at: 'L2', x: 760, y: 70, w: 640, tx: 1100, ty: 600,
         en: 'Mrs. Livingston, if you want me to carry that hundred shares, you will have to give me more margin.', zh: '利文斯顿夫人，您要是想让我继续持有那一百股，就得再追加保证金。' }],
     lines: [
@@ -316,8 +316,8 @@ module.exports = (h) => {
           draw: [['L0', 3], ['L1@six', 4], ['L2', 7], ['L2@broke', 10]] }],
         marks: [{ x: 0, y: 0, at: 'L0@twenty', en: 'Tip 1: each buys ≈2,000. "At least +25"', zh: '消息一：各买约2,000股。"至少涨25点"', dx: 30, dy: -140, w: 300 },
           { x: 3.6, y: -7.5, at: 'L1@six', en: 'Dividend passed: −6 in 6 minutes', zh: '取消分红：6分钟跌6点', dx: 60, dy: -150, w: 280, fill: '#f3c6c0' },
-          { x: 6.4, y: -15, at: 'L2@fifteen', en: 'Tip 2: buy 5,000 jointly', zh: '消息二：合买5,000股', dx: -340, dy: 20, w: 250 },
-          { x: 8.4, y: -21, at: 'L2@broke', en: 'Breaks on inside selling', zh: '内部人抛售，再次暴跌', dx: -120, dy: -220, w: 250, fill: '#f3c6c0' }] },
+          { x: 6.4, y: -15, at: 'L2@fifteen', en: 'Tip 2: buy 5,000 jointly', zh: '消息二：合买5,000股', dx: -340, dy: 20, w: 260 },
+          { x: 8.4, y: -21, at: 'L2@broke', en: 'Breaks on inside selling', zh: '内部人抛售，再次暴跌', dx: -120, dy: -220, w: 260, fill: '#f3c6c0' }] },
       { type: 'note', at: 'L3', x: 1480, y: 220, w: 410, h: 400, size: 32, fill: '#f6d77a', anim: 'pop',
         en: '"Don\'t send it, Bert! We\'ll never get another tip from him!"', zh: '"别发，伯特！发了的话，他就再也不给我们消息了！"' },
       { type: 'note', at: 'L3e', x: 1480, y: 640, w: 410, h: 200, size: 28, anim: 'slideU',

@@ -97,12 +97,12 @@ module.exports = (h) => {
       { type: 'chart', at: 0.4, x: 470, y: 220, w: 960, h: 610, xr: [0, 10], yr: [75, 115], yTicks: [80, 90, 100, 110], illustrative: true, cursorFmt: 'int',
         title: ['Northern Pacific common, 1901 (entry = 110 − 30)', '北太平洋普通股，1901年（买入价＝110−30）'],
         series: [{ pts: [[0, 80], [2, 85], [3, 83.5], [5, 92], [6, 90], [8, 102], [9, 106], [10, 110]], color: '#2f5d8a', draw: [['L1', 3], ['L1@held', 5], ['L2', 7]] }],
-        marks: [{ x: 0, y: 80, at: 'L1@held', en: 'Long 1,000 near 80', zh: '约80做多1,000股', dx: 0, dy: -200, w: 230 },
-          { x: 10, y: 110, at: 'L2@grabbed', en: 'Sold near 110: +30 pts', zh: '约110卖出：赚30点', dx: -420, dy: -50, w: 250, fill: '#cfe3c4' }],
+        marks: [{ x: 0, y: 80, at: 'L1@held', en: 'Long 1,000 near 80', zh: '约80做多1,000股', dx: 0, dy: -200, w: 260 },
+          { x: 10, y: 110, at: 'L2@grabbed', en: 'Sold near 110: +30 pts', zh: '约110卖出：赚30点', dx: -420, dy: -50, w: 260, fill: '#cfe3c4' }],
         pnl: { entry: 80, shares: 1000, side: 'long', at: 'L1@held', exitAt: 'L2@grabbed+0.8', exit: 110, x: 560, y: 300 } },
       { type: 'note', at: 'L0', x: 1460, y: 220, w: 430, h: 240, size: 29, fill: '#f3c6c0', anim: 'slideU',
         en: 'Bearish too early on "A.O.T.", Any Old Thing: every short lost money.', zh: '对"随便什么股"过早看空：每次做空都亏钱。' },
-      { type: 'counter', at: 'L2@fifty', x: 1675, y: 560, from: 0, to: 50000, prefix: '≈$', size: 80, dur: 1.4, color: '#2f6b3d', label: ['his balance', '他的账户余额'] },
+      { type: 'counter', at: 'L2@fifty', x: 1675, y: 545, from: 0, to: 50000, prefix: '≈$', size: 80, dur: 1.4, color: '#2f6b3d', label: ['his balance', '他的账户余额'] },
       { type: 'note', at: 'L2e', x: 1460, y: 670, w: 430, h: 160, size: 28, fill: '#cfe3c4', anim: 'pop',
         en: 'General opinion: early. The tape on one stock: right.', zh: '整体判断：太早。单只股票的纸带：正确。' }],
     lines: [
@@ -122,7 +122,7 @@ module.exports = (h) => {
       { type: 'text', screen: true, at: 0.3, x: 1880, y: 1000, align: 'right', font: 'cond', size: 20, weight: 500, fill: '#e8dcc0',
         en: 'Harriman: Bain News Service · Morgan: c.1902 · Keene: The World\'s Work, 1901 (all public domain)' }],
     lines: [
-      N('We know now that Harriman\'s crowd was quietly buying Northern Pacific. The Morgan people had Keene buy too, and his broker took a hundred thousand shares.', '后来我们才知道，哈里曼一伙一直在悄悄吸纳北太平洋。摩根一方也让基恩买入，他的经纪人一口气吃进了十万股。'),
+      N('We know now that Harriman\'s crowd was quietly buying Northern Pacific. The Morgan people had Keene buy; his broker took a hundred thousand shares.', '后来我们才知道，哈里曼一伙一直在悄悄吸纳北太平洋。摩根一方也让基恩买入，他的经纪人一口气吃进了十万股。'),
       N('The famous corner followed. After the close on May 8, 1901, the whole world knew that a battle of financial giants was on.', '著名的逼空随之而来。1901年5月8日收盘后，全世界都知道一场金融巨头之战已经打响。'),
     ] });
 
@@ -156,8 +156,8 @@ module.exports = (h) => {
         series: [
           { pts: [[0, 112], [1.5, 100], [3, 90], [4, 81], [5, 79], [6, 86], [7, 95], [8.5, 97], [10, 98]], color: '#b3302a', label: ['Real price on the floor', '场内真实价格'], draw: [['L0', 4], ['L1', 5], ['L1@covered', 7], ['L2', 8]] },
           { pts: [[0, 112], [1.5, 106], [3, 100], [4, 97], [5, 90], [6, 84], [7, 80], [8.5, 88], [10, 96]], color: '#2f5d8a', dash: '16 10', width: 5, cursor: false, label: ['Printed tape (minutes late)', '纸带报价（晚了几分钟）'], labelBelow: true, draw: [['L0', 4], ['L1', 5], ['L1@covered', 7], ['L2', 8]] }],
-        marks: [{ x: 4, y: 81, at: 'L0@80', en: 'Tape: 100. Filled ≈80: −20 pts', zh: '纸带100，实际成交约80：−20点', dx: -420, dy: 30, w: 420, fill: '#f3c6c0' },
-          { x: 7, y: 95, at: 'L2', en: 'Figured ≈80. Bought ≈15 pts higher', zh: '按约80计算，买入却贵了约15点', dx: -430, dy: -180, w: 380, fill: '#f3c6c0' }] },
+        marks: [{ x: 4, y: 81, at: 'L0@80', en: 'Tape: 100. Filled ≈80: −20 pts', zh: '纸带100，实际约80：−20点', dx: -340, dy: -20, w: 260, fill: '#f3c6c0' },
+          { x: 7, y: 95, at: 'L2', en: 'Figured ≈80. Bought ≈15 pts higher', zh: '买入贵了约15点', dx: -335, dy: -180, w: 320, fill: '#f3c6c0' }] },
       { type: 'equation', at: 'L0@80', x: 1690, y: 380, size: 56, terms: [{ t: '−20', zh: '卖出滑点', at: 'L0@80' }, { t: '−15', zh: '买入滑点', at: 'L2@fifteen' }] },
       { type: 'equation', at: 'L2@Thirty', x: 1690, y: 520, size: 62, terms: [{ t: '= −35 pts', zh: '一天亏35点', at: 'L2@Thirty', hl: true }] },
       { type: 'note', at: 'L3', x: 1500, y: 600, w: 390, h: 230, size: 28, fill: '#f6d77a', anim: 'slideU',
@@ -171,19 +171,24 @@ module.exports = (h) => {
 
   shot({ id: 'e02_limit', set: 'office', trans: 'wipe', music: 'calm',
     setOpts: { board: [['N. PAC', 'UNION PAC', 'STEEL', 'ST. PAUL', 'SUGAR'], ['150', '102', '44', '165', '140'], ['149', '101', '43¾', '164', '139']] },
-    cam: [{ t: 0, x: 960, y: 500, z: 1.0 }, { t: 'L0', on: 'larry', z: 1.3, dur: 1.2 }, { t: 'L1', x: 960, y: 500, z: 1.05, dur: 1.2 }, { t: 'L2@cleaned', on: 'larry', z: 1.4, dur: 1 }],
+    cam: [{ t: 0, x: 960, y: 500, z: 1.0 }, { t: 'L0', on: 'larry', z: 1.3, dur: 1.2 }, { t: 'L1', x: 960, y: 500, z: 1.05, dur: 1.2 }, { t: 'L2@cleaned', on: 'larry', z: 1.4, dur: 1 }, { t: 'L3', x: 960, y: 520, z: 1.0, dur: 1 }],
     cast: [{ id: 'larry', x: 760, y: 890, s: 1.2, pose: 'explain', expr: 'determined',
-        acts: [{ t: 'L0@sell', pose: 'point', expr: 'determined' }, { t: 'L1', pose: 'chin', expr: 'think' }, { t: 'L2', pose: 'shrug', expr: 'neutral' }, { t: 'L2@cleaned', pose: 'despair', expr: 'sad' }] },
+        acts: [{ t: 'L0@sell', pose: 'point', expr: 'determined' }, { t: 'L1', pose: 'chin', expr: 'think' }, { t: 'L2', pose: 'shrug', expr: 'neutral' }, { t: 'L2@cleaned', pose: 'despair', expr: 'sad' }, { t: 'L3@worse', pose: 'cross', expr: 'tired' }] },
       { id: 'clerk', x: 1300, y: 890, s: 1.15, flip: true, pose: 'write', expr: 'neutral', acts: [{ t: 'L0@sell', pose: 'phone' }, { t: 'L2', pose: 'write' }] }],
     items: [
       { type: 'caption', at: 0.3, until: 'L2', en: 'After May 9. That summer he lived well on the Jersey coast.', zh: '5月9日之后。那年夏天，他在泽西海岸过得很阔绰。' },
-      { type: 'note', at: 'L2', x: 1180, y: 100, w: 700, h: 210, size: 30, fill: '#f6d77a', anim: 'pop',
-        en: '"My old shotgun and BB shot could not do the work of a high-power repeating rifle against big game."', zh: '"我那杆老式猎枪和鸟弹，打不了大猎物，比不上高威力的连发步枪。"' },
+      { type: 'caption', at: 'L3', en: 'The ride so far, age 14 to 22 (log scale)', zh: '一路走来：14岁到22岁（对数刻度）' },
+      { type: 'fortune', screen: true, at: 'L3', x: 900, y: 70, w: 980, h: 420, lsize: 22, vsize: 24, items: [
+        { v: 3.12, vl: '$3.12', en: 'Age 14', zh: '14岁', at: 'L3' }, { v: 1000, vl: '$1,000', en: 'Age 15', zh: '15岁', at: 'L3+0.3' },
+        { v: 10000, vl: '$10,000', en: 'Age 20', zh: '20岁', at: 'L3+0.6' }, { v: 2500, vl: '$2,500', en: 'To NY', zh: '到纽约', at: 'L3+0.9' },
+        { v: 0, vl: 'broke', en: 'Fullerton\'s', zh: '富勒顿', at: 'L3+1.2' }, { v: 50000, vl: '≈$50,000', en: '1901: N.P.', zh: '1901北太', at: 'L3@several' },
+        { v: 0, vl: 'wiped out', en: 'May 9', zh: '5月9日', at: 'L3@several+0.4' }, { v: 0, vl: 'broke', en: 'Fall 1901', zh: '1901秋', at: 'L3@began' }] },
       { type: 'stamp', at: 'L2@cleaned', x: 420, y: 420, en: 'CLEANED OUT', zh: '再次清零', size: 64, rot: -8 }],
     lines: [
       N('I never could trade with a limit. When I think I should sell, I sell. I\'m trying to beat the market, not a particular price.', '我从来做不了限价单。我认为该卖，就卖。我要战胜的是市场，而不是某一个价格。'),
       N('Limit orders would only have been my bucket-shop method, badly adapted. When I tried them, the market simply got away from me.', '限价单不过是把我的对赌行打法生搬硬套过来。我试过，结果市场就这么从我手边溜走了。'),
       N('So I plugged along with a modified but still defective method. Early that fall I was cleaned out again.', '于是我用一套修修补补、但仍有缺陷的方法勉强撑着。那年初秋，我又一次输光了。'),
+      N('I had traded since fourteen. After several years I was back where I began. No, worse: I had habits that needed money.', '我从十四岁就开始交易。几年过去，我又回到了起点。不，比起点更糟：我已经养成了需要花钱的生活习惯。'),
     ] });
 
   // ---- chapter IV: skinning the skinners ----
@@ -264,8 +269,8 @@ module.exports = (h) => {
       { type: 'chart', at: 0.4, x: 470, y: 220, w: 820, h: 380, xr: [0, 10], yr: [0, 10], yTicks: [], illustrative: true, cursorLabel: false,
         title: ['A dull stock, one day', '一只冷门股，一天之内'], xTicks: [],
         series: [{ pts: [[0, 5], [2, 5.1], [3, 4.9], [3.6, 3.4], [4.5, 4.7], [6, 5], [7.5, 5.1], [8.6, 7.4], [10, 6.6]], color: '#7a4a22', draw: [['L0', 2], ['L1@printed', 3], ['L1@printed+1', 5], ['L2', 6], ['L2@jumped', 7], ['L2@sold', 8]] }],
-        marks: [{ x: 3.6, y: 3.4, at: 'L1@printed', en: 'Low print = his buy price at 5 shops', zh: '低价＝5家店的买入价', dx: 80, dy: 30, w: 270, fill: '#f6d77a' },
-          { x: 8.6, y: 7.4, at: 'L2@jumped', en: 'Rush buy-back: the jump', zh: '急买推高价格', dx: -380, dy: -60, w: 330, fill: '#cfe3c4' }] },
+        marks: [{ x: 3.6, y: 3.4, at: 'L1@printed', en: 'Low print = his buy price at 5 shops', zh: '低价＝5家店的买入价', dx: 80, dy: 30, w: 320, fill: '#f6d77a' },
+          { x: 8.6, y: 7.4, at: 'L2@jumped', en: 'Buy-back: the jump', zh: '急买推高价格', dx: -380, dy: -60, w: 300, fill: '#cfe3c4' }] },
       { type: 'flow', dir: 'v', at: 'L0', x: 1320, y: 220, w: 570, bh: 126, gap: 40, size: 25, nodes: [
         { en: '1 · Buy 100 at each of 5 wire houses', zh: '在5家电报经纪行各买100股', at: 'L0@each' },
         { en: '2 · Honest firm: SELL 100 at the market, urgently', zh: '正规经纪行：按市价急卖100股', at: 'L1' },

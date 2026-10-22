@@ -52,7 +52,7 @@ module.exports = (h) => {
     ] });
 
   // ---- corners ----
-  lesson(h, { id: 'e10_corners', tag: ['CORNERS', '逼空'], title: ['The Great Corners: Few of Them Paid', '历史上的大逼空：赚钱的寥寥无几'],
+  lesson(h, { id: 'e10_corners', trans: 'ink', tag: ['CORNERS', '逼空'], title: ['The Great Corners: Few of Them Paid', '历史上的大逼空：赚钱的寥寥无几'],
     gest: ['explain', 'point', 'explainR', 'pointUp'], expr: [null, null, null, 'sly'],
     items: [
       { type: 'table', at: 'L1', x: 470, y: 220, w: 1000, widths: [0.34, 0.36, 0.30], size: 28, bottom: 840,
@@ -64,12 +64,12 @@ module.exports = (h) => {
           [['Hannibal & St. Joe', '汉尼拔与圣约瑟夫'], ['James R. Keene', '詹姆斯·R·基恩'], ['Lost $1 million', '亏100万美元']],
           [['Old Southern', '老南方铁路'], ['Henry Keep', '亨利·基普'], ['Jerome lost his millions', '杰罗姆输光数百万']]],
         rowAt: ['L1@Harlem', 'L1@Gould', 'L2', 'L2@Keene', 'L2@Keep'], hl: ['L1@paid', null, null, null, null] },
-      { type: 'note', at: 'L0@Northern', x: 1500, y: 220, w: 390, h: 200, size: 29, anim: 'slideU',
+      { type: 'note', at: 'L0@Northern', x: 1500, y: 220, w: 390, h: 210, size: 29, anim: 'slideU',
         en: 'Northern Pacific, May 9, 1901: competitive buying, not manipulation', zh: '1901年5月9日北太平洋：竞相买入，并非操纵' },
-      { type: 'note', at: 'L3', x: 1500, y: 440, w: 390, h: 200, size: 29, fill: '#f3c6c0', anim: 'slideU',
-        en: 'It pays only if the hoard sells above cost: a big short interest is needed', zh: '只有囤货能高于成本卖出才赚钱：需要足够大的空头仓位' },
-      { type: 'note', at: 'L3@vanity', x: 1500, y: 660, w: 390, h: 180, size: 30, fill: '#f6d77a', anim: 'slideU',
-        en: 'Real motives: vanity, or revenge', zh: '真正的动机：虚荣，或报复' }],
+      { type: 'note', at: 'L3', x: 1500, y: 445, w: 390, h: 210, size: 29, fill: '#f3c6c0', anim: 'slideU',
+        en: 'Pays only if the hoard sells above cost: needs a big short interest', zh: '囤货高于成本卖出才赚钱：空头仓位要够大' },
+      { type: 'note', at: 'L3@vanity', x: 1500, y: 670, w: 390, h: 170, size: 30, fill: '#f6d77a', anim: 'slideU',
+        en: 'Aimed at professionals. Motives: vanity, or revenge', zh: '针对的是职业玩家。动机：虚荣或报复' }],
     lines: [
       N('Corners count as manipulation too, though some, like Northern Pacific in 1901, came from competitive buying.', '逼空也算操纵，尽管有些逼空，比如1901年的北太平洋，源于竞相买入。'),
       N('Very few great corners paid. Vanderbilt\'s Harlem corners did. Jay Gould lost in Northwestern.', '历史上的大逼空，赚钱的很少。范德比尔特的哈莱姆逼空赚了大钱，杰伊·古尔德在西北铁路上亏了。'),
@@ -297,7 +297,7 @@ module.exports = (h) => {
       { type: 'note', at: 'L0@confidence', x: 1240, y: 110, w: 640, h: 140, size: 30, fill: '#cfe3c4', anim: 'slideU',
         en: 'It rises on his buying → he buys with confidence', zh: '他一买就涨→放心买进' },
       { type: 'note', at: 'L1', x: 1240, y: 270, w: 640, h: 140, size: 30, fill: '#f3c6c0', anim: 'slideU',
-        en: 'Buying no longer lifts it → stop, and sell it down', zh: '买进不再推高股价→停手，转而卖出' },
+        en: 'Waterlogged: buying no longer lifts it → stop, sell it down', zh: '"吸饱了水"：买进推不动→停手，转而卖出' },
       { type: 'rule', at: 'L2', x: 1240, y: 430, w: 640, h: 170, n: '!', tag: '#b3302a', fill: '#f6d77a', size: 32,
         en: 'It doesn\'t act as it should? QUIT. Don\'t argue with the tape.', zh: '走势不对？收手。不要跟纸带争辩。' }],
     lines: [

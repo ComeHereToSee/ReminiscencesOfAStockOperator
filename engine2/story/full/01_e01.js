@@ -45,8 +45,8 @@ module.exports = (h) => {
           { pts: [[0, 0], [1, 0.6], [2, 1.3], [3, 2.0], [4, 2.6]], color: '#2f6b3d', label: ['Rest of the market', '大盘其他股票'], draw: [['L1@rallied', 4]] },
           { pts: [[0, 0], [1, -0.7], [2, -1.5], [3, -2.3], [4, -3]], color: '#b3302a', label: ['Hollow Tube', '霍洛管业'], draw: [['L1@Hollow', 4]] }],
         bands: [{ x0: 5, x1: 6, y0: -4, y1: 4, at: 'L2', color: '#d6a441' }],
-        marks: [{ x: 4, y: -3, at: 'L1@fact', en: 'The fact: −3 pts while the market rose', zh: '事实：大盘涨，它跌3点', dx: -420, dy: -10, w: 290, fill: '#f3c6c0' },
-          { x: 5.5, y: 3.2, at: 'L2', en: 'Reason: no dividend', zh: '原因：不派息', dx: -140, dy: 10, w: 220, fill: '#f6d77a' }] },
+        marks: [{ x: 4, y: -3, at: 'L1@fact', en: 'The fact: −3 pts while the market rose', zh: '事实：大盘涨，它跌3点', dx: -420, dy: -20, w: 320, fill: '#f3c6c0' },
+          { x: 5.5, y: 3.2, at: 'L2', en: 'Reason: no dividend', zh: '原因：不派息', dx: -180, dy: 10, w: 260, fill: '#f6d77a' }] },
       { type: 'note', at: 'L0', x: 1400, y: 220, w: 490, h: 200, size: 30, anim: 'slideU',
         en: 'Buying a trifle better than selling. "The tape is your telescope."', zh: '买盘只比卖盘稍强一点。"纸带就是你的望远镜。"' },
       { type: 'counter', at: 'L0@seven', x: 1645, y: 500, from: 0, to: 7, suffix: ' in 10', size: 100, dur: 1.2, label: ['cases you can depend on', '可以依靠的比例'] },
@@ -55,7 +55,7 @@ module.exports = (h) => {
     lines: [
       N('That was tape reading: spotting where the buying is a trifle better than the selling. It works seven times in ten.', '这就是读盘：找出买盘只比卖盘稍强一点的地方。十次里能对七次。'),
       N('And never ask why. Hollow Tube once fell three points while the market rallied. That was the fact.', '而且从不问为什么。有一次，大盘反弹时霍洛管业却跌了三个点。这是事实。'),
-      N('The next Monday the dividend was passed: the reason. Your business with the tape is now.', '下一个周一，公司宣布取消分红：这才是原因。你跟纸带打交道，看的是现在。'),
+      N('The next Monday the dividend was passed: the reason. Insiders knew, and didn\'t buy. Your business with the tape is now.', '下一个周一，公司宣布取消分红：这才是原因。内部人早就知道，所以没有买。你跟纸带打交道，看的是现在。'),
     ] });
 
   // ---- the first trade ----
@@ -96,7 +96,7 @@ module.exports = (h) => {
       N('In a bucket shop you gave the clerk your money. He wrote the last price on the tape, and the time, on a ticket.', '在对赌行，你把钱交给职员，他把纸带上最后一个价格和时间写在一张单子上。'),
       N('No share was ever bought. You were betting against the house.', '从来没有真正买过一股。你是在跟店家对赌。'),
       N('To close, he marked the last price on your ticket, and the cashier paid. If the price ran past your margin, the ticket closed itself.', '平仓时，职员在单子上记下最后一个价格，出纳照单付钱。如果价格反向走完你的保证金，单子就自动作废。'),
-      N('Small shops sometimes took both commissions up front: buy at 20, and your ticket read 20¼. A one-point rise paid you only three quarters.', '小店有时会预先扣掉买卖两笔佣金：20买入，单子上写的是20¼。涨一个点，你只拿到四分之三。'),
+      N('Small shops sometimes took both commissions up front: buy at 20, and your ticket read 20¼. A point\'s rise paid only three quarters.', '小店有时会预先扣掉买卖两笔佣金：20买入，单子上写的是20¼。涨一个点，你只拿到四分之三。'),
     ] });
 
   // ---- the boy plunger ----
@@ -153,7 +153,7 @@ module.exports = (h) => {
       N('At last only the Cosmopolitan, New England\'s richest shop, would take me: on three points of margin, not one.', '最后，只剩新英格兰最有钱的对赌行"大都会"还肯接我的单：保证金三个点，而不是一个点。'),
       N('That cut my trading power by two-thirds. Plus a premium: half a point, then a point, then a point and a half.', '这让我的交易能力减少了三分之二。再加上溢价：先是半个点，后来一个点，最后一个半点。'),
       N('With Steel at 90, my ticket read not 90⅛ but 91⅛. Steel could rise a point and a quarter and I\'d still lose.', '钢铁股在90时，我的单子上写的不是90⅛，而是91⅛。钢铁股涨了一又四分之一个点，我平仓还是亏的。'),
-      N('Still, I won on balance. By twenty I had ten thousand dollars in cash.', '即便如此，总体上我还是赢的。二十岁时，我有了一万美元现金。'),
+      N('Still, I won on balance. By twenty I had ten thousand in cash, and Mother wanted me in some regular business.', '即便如此，总体上我还是赢的。二十岁时，我有了一万美元现金，母亲却希望我去做份正经生意。'),
     ] });
 
   // ---- the Sugar trap ----
@@ -190,7 +190,7 @@ module.exports = (h) => {
         title: ['Sugar, that day', '糖业，当天'],
         series: [{ pts: [[0, 105.25], [2, 104.5], [3.5, 103.4], [5, 103], [6.4, 103.1], [7.2, 108], [8.4, 104.3], [10, 103.8]], color: '#b8322a', draw: [['L0', 3], ['L2', 5], ['L2@108', 6], ['L2@back', 7]] }],
         marks: [{ x: 0, y: 105.25, at: 'L0', en: 'Short 3,500 @ 105¼', zh: '105¼做空3,500股', dx: 20, dy: -140, w: 200 },
-          { x: 5, y: 103, at: 'L0@103', en: 'Closed @ 103', zh: '103平仓', dx: 20, dy: 40, w: 190 },
+          { x: 5, y: 103, at: 'L0@103', en: 'Closed @ 103', zh: '103平仓', dx: 20, dy: 40, w: 260 },
           { x: 7.2, y: 108, at: 'L2@108', en: 'Run up to 108: shorts wiped out', zh: '推到108：空头被洗光', dx: -300, dy: -80, w: 270, fill: '#f3c6c0' }],
         pnl: { entry: 105.25, shares: 3500, side: 'short', at: 'L0', exitAt: 'L0@103+0.6', exit: 103, x: 600, y: 665 } },
       { type: 'rule', at: 'L1', x: 1400, y: 220, w: 490, h: 185, n: '1', size: 28, en: 'Too many shorts in the shop: 8–10,000 sh, say $20,000 of margin.', zh: '店里空头太多：8,000–10,000股，约2万美元保证金。' },
@@ -214,8 +214,8 @@ module.exports = (h) => {
         { num: 2, en: 'At a fixed hour, all buy one stock', zh: '约定时刻同时买入同一只股票', at: 'L1@fixed' },
         { num: 3, en: 'He bids it up 3–4 pts on the floor', zh: '他在场内把价格推高3–4点', at: 'L1@bid' },
         { num: 4, en: 'Agents sell at a set profit', zh: '代理人按预定利润卖出', at: 'L1@cashed' }] },
-      { type: 'note', at: 'L2', x: 100, y: 330, w: 600, h: 170, size: 28, fill: '#efe3c4', anim: 'slideL',
-        en: 'A favourite: Western Union. Buy · sell 2 pts up · go short · take 3 more.', zh: '最爱西联电报：买入·涨2点卖出·反手做空·再赚3点。' },
+      { type: 'note', at: 'L2', x: 100, y: 320, w: 620, h: 230, size: 28, fill: '#efe3c4', anim: 'slideL',
+        en: 'Repeated in six cities. Favourite: Western Union. Buy · sell 2 up · go short · take 3 more.', zh: '在六个城市如法炮制。最爱西联电报：买入·涨2点卖出·反手做空·再赚3点。' },
       { type: 'counter', at: 'L2@seventy', x: 1560, y: 400, from: 0, to: 70000, prefix: '$', suffix: '+', size: 90, dur: 1.4, color: '#2f6b3d', label: ['his net from the raid', '他这次突袭的净利'] },
       { type: 'stamp', at: 'L2@illegal', x: 1560, y: 680, en: 'ILLEGAL TODAY', zh: '如今违法', size: 60, rot: -8 }],
     lines: [
@@ -249,7 +249,7 @@ module.exports = (h) => {
         title: ['1915: waiting until it was safe', '1915年：等到有把握'], xTicks: [[0, 'day 0', '第0天'], [14, 'two weeks', '两周后']],
         bands: [{ x0: 0, x1: 14, y0: -3, y1: 34, at: 'L2@watched', color: '#d6a441' }],
         series: [{ pts: [[0, 0], [2, 3], [4, 5], [6, 9], [8, 13], [10, 18], [12, 24], [14, 30]], color: '#2f6b3d', draw: [['L2@watched', 7]] }],
-        marks: [{ x: 14, y: 30, at: 'L2@bought', en: '+30 pts: only now he buys', zh: '涨30点后才买', dx: -600, dy: -20, w: 220 }] }],
+        marks: [{ x: 14, y: 30, at: 'L2@bought', en: '+30 pts: only now he buys', zh: '涨30点后才买', dx: -600, dy: -20, w: 260 }] }],
     lines: [
       N('My method won more often than not. I made money whenever I was sure I was right before I began.', '我的方法赢多输少。凡是我在动手之前就确信自己是对的，我总能赚钱。'),
       N('What beat me was trading for excitement. The Wall Street fool thinks he must trade all the time.', '打败我的，是为了刺激而交易。华尔街的傻瓜总觉得自己必须一直交易。'),
@@ -272,7 +272,7 @@ module.exports = (h) => {
       N('At A. R. Fullerton\'s they called me the Boy Trader. Within six months I was broke, and owed the firm a few hundred dollars.', '在A.R.富勒顿公司，大家叫我"少年交易员"。不到六个月我就输光了，还欠公司几百美元。'),
       L('larry', 'Say, A. R., lend me five hundred dollars.', '我说，A.R.，借我五百美元。', { speak: 'larry' }),
       L('fullerton', 'They\'d expect a ten per cent margin, a thousand dollars on a hundred shares. Trade here!', '人家会要求一成的保证金，一百股就是一千美元。就在这儿做吧！', { speak: 'fullerton' }),
-      L('larry', 'I\'m not sure I can beat this office yet. But I\'m sure I can take money out of the bucket shops.', '我还没把握在这儿赢。但我有把握从对赌行赢到钱。', { speak: 'larry' }),
+      L('larry', 'Not in this office, not yet. But I\'m sure I can take money out of the bucket shops.', '在这儿，我还没把握。但我有把握从对赌行赢到钱。', { speak: 'larry' }),
     ] });
 
   lesson(h, { id: 'e01_games', tag: ['DIAGNOSIS', '诊断'], title: ['Why the Bucket-Shop Method Failed', '对赌行打法为什么失灵'],
@@ -281,11 +281,11 @@ module.exports = (h) => {
       { type: 'chart', at: 0.4, x: 470, y: 220, w: 900, h: 610, xr: [0, 10], yr: [100, 107], yTicks: [101, 103, 105], illustrative: true, cursor: false,
         title: ['Sugar: the tape vs. the floor', '糖业：纸带与场内'], xTicks: [[1, 'he sees 105', '他看到105'], [8, 'his fill', '他的成交']],
         series: [
-          { pts: [[0, 105], [1, 103.5], [3, 102.8], [5, 102.3], [8, 101.5], [10, 101.2]], color: '#b3302a', label: ['Real price on the floor', '场内真实价格'], draw: [['L1', 1], ['L2', 4], ['L2@later', 5]] },
-          { pts: [[0, 106], [1, 105], [3, 104], [5, 103.2], [8, 102.3], [10, 101.8]], color: '#2f5d8a', dash: '16 10', width: 5, cursor: false, label: ['Printed tape', '纸带报价'], labelBelow: true, draw: [['L1', 1], ['L2', 4], ['L2@later', 5]] }],
-        marks: [{ x: 1, y: 105, at: 'L1@105', en: 'Tape: 105', zh: '纸带：105', dx: 30, dy: -80, w: 170 },
-          { x: 1, y: 103.5, at: 'L1@104', en: 'Floor: 104 or 103', zh: '场内：104或103', dx: -40, dy: 80, w: 230, fill: '#f3c6c0' },
-          { x: 8, y: 101.5, at: 'L2@later', en: 'His 1,000 sell fills lower still', zh: '他卖1,000股的成交价更低', dx: -340, dy: 40, w: 270, fill: '#f3c6c0' }] },
+          { pts: [[0, 105], [1, 103.5], [3, 102.8], [5, 102.3], [8, 101.5], [10, 101.2]], color: '#b3302a', label: ['Real price on the floor', '场内真实价格'], draw: [['L1', 1], ['L2', 4], ['L2@lower', 5]] },
+          { pts: [[0, 106], [1, 105], [3, 104], [5, 103.2], [8, 102.3], [10, 101.8]], color: '#2f5d8a', dash: '16 10', width: 5, cursor: false, label: ['Printed tape', '纸带报价'], labelBelow: true, draw: [['L1', 1], ['L2', 4], ['L2@lower', 5]] }],
+        marks: [{ x: 1, y: 105, at: 'L1@105', en: 'Tape: 105', zh: '纸带：105', dx: 30, dy: -80, w: 260 },
+          { x: 1, y: 103.5, at: 'L1@104', en: 'Floor: 104 or 103', zh: '场内：104或103', dx: -40, dy: 80, w: 260, fill: '#f3c6c0' },
+          { x: 8, y: 101.5, at: 'L2@lower', en: 'His 1,000 sell fills lower still', zh: '他卖1,000股，成交价更低', dx: -180, dy: -279, w: 300, fill: '#f3c6c0' }] },
       { type: 'note', at: 'L0', x: 1400, y: 220, w: 490, h: 160, size: 28, fill: '#cfe3c4', anim: 'slideU',
         en: 'Bucket shop: price known before you trade; out in a second.', zh: '对赌行：下单前就知道价格；一秒钟就能离场。' },
       { type: 'equation', at: 'L2@Three', x: 1645, y: 450, size: 38, terms: [{ t: '1,000 × 3 pts', zh: '对赌行', at: 'L2@Three' }, { t: '= $3,000', at: 'L2@Three+0.4', hl: true, color: '#2f6b3d' }] },
@@ -295,7 +295,7 @@ module.exports = (h) => {
     lines: [
       N('In a bucket shop I knew my price before I traded, and could get out in a second.', '在对赌行，我下单前就知道成交价，而且一秒钟就能离场。'),
       N('At Fullerton\'s, when the tape printed Sugar at 105, the real price on the floor might already be 104, or 103.', '在富勒顿那里，当纸带打出糖业105时，场内的真实价格可能已经是104，甚至103。'),
-      N('My order to sell a thousand got there later still. Three thousand dollars in a bucket shop might be nothing here.', '我卖一千股的指令到场内时，价格更低了。在对赌行能赚三千美元的交易，在这里可能一分不赚。'),
+      N('When my order to sell a thousand reached the floor, the price was lower still. A sure three thousand in a bucket shop might be nothing here.', '等我卖一千股的指令到达场内，价格已经更低了。在对赌行稳赚三千美元的交易，在这里可能一分不赚。'),
       N('And my own orders moved the price. I was playing the game ignorantly.', '而且我自己的订单会推动价格。我是在稀里糊涂地玩这个游戏。'),
     ] });
 
@@ -349,7 +349,7 @@ module.exports = (h) => {
         title: ['A Saturday session, 10:00 to noon', '周六半日交易，10点到12点'], xTicks: [[0, '10:00', ''], [75, '11:15', ''], [112, 'closes out', '平仓']],
         bands: [{ x0: 115, x1: 120, y0: 0, y1: 10, at: 'L2@five', color: '#2f6b3d' }],
         series: [{ pts: [[0, 5], [20, 5.6], [45, 6.4], [75, 7], [90, 6], [100, 4.4], [110, 3.2], [115, 3], [120, 4.2]], color: '#7a4a22', draw: [['L0', 3], ['L1', 4], ['L1@hammer', 7], ['L2', 7], ['L2@five', 8]] }],
-        marks: [{ x: 75, y: 7, at: 'L0e', en: 'Sells at 11:15, $2,000 up', zh: '11:15卖出，押2,000美元', dx: -420, dy: 70, w: 340 }] },
+        marks: [{ x: 75, y: 7, at: 'L0e', en: '11:15: sells, $2,000 up', zh: '11:15卖出', dx: -420, dy: 70, w: 320 }] },
       { type: 'flow', dir: 'v', at: 'L0', x: 1400, y: 220, w: 490, bh: 120, gap: 40, size: 25, nodes: [
         { en: 'Up all week', zh: '整周上涨', at: 'L0@risen' },
         { en: 'Saturday bank statement: surplus reserve down', zh: '周六银行报表：超额准备金大减', at: 'L0@bank' },
@@ -367,7 +367,7 @@ module.exports = (h) => {
     ] });
 
   photo({ id: 'e01_mcdevitt', src: `${PD}/hoboken_lackawanna_ferry_c1900_detroit.jpg`, credit: 'Lackawanna ferry terminal, Hoboken, c.1900 · Detroit Publishing Co. (public domain)', music: 'rag',
-    cap: ['Hoboken, across the Hudson. McDevitt traded in 20- and 30-share lots.', '霍博肯，隔哈德逊河与纽约相望。麦克德维特每次只做二三十股。'],
+    cap: ['Hoboken. McDevitt traded in 20- and 30-share lots. Soon a crazy bull market was busting shops all over the country.', '霍博肯。麦克德维特每次只做二三十股。不久，一轮疯狂的牛市让全国各地的对赌行纷纷倒闭。'], capW: 720,
     kb: [{ t: 0, x: 960, y: 540, z: 1.02 }, { t: 12, x: 1000, y: 520, z: 1.14 }],
     items: [
       { type: 'counter', screen: true, panel: true, at: 'L1@twenty', x: 1560, y: 330, from: 0, to: 2800, prefix: '+$', size: 96, dur: 1.4, color: '#2f6b3d', label: ['net, after McDevitt\'s cut', '扣除麦克德维特的分成后净赚'] },
@@ -385,9 +385,9 @@ module.exports = (h) => {
     items: [
       { type: 'note', at: 'L0', x: 80, y: 100, w: 600, h: 180, size: 29, fill: '#cfe3c4', anim: 'slideL',
         en: 'Margin gone = trade closed. You can\'t lose more than you put up.', zh: '保证金耗尽＝自动平仓。亏损不会超过你押上的钱。' },
-      { type: 'note', at: 'L1', x: 1240, y: 100, w: 620, h: 180, size: 29, fill: '#f3c6c0', anim: 'slideR',
-        en: 'Sugar, T.C.&I.: max 2 points per ticket, even on a 10-point move.', zh: '糖业、田纳西煤铁：每张单子最多赚2点，哪怕涨了10点。' },
-      { type: 'bubble', at: 'L2@buy', x: 1020, y: 320, w: 460, kind: 'shout', en: 'No buy orders today!', zh: '今天不接买单！', tx: 1250, ty: 602 },
+      { type: 'note', at: 'L1', x: 1240, y: 90, w: 640, h: 230, size: 28, fill: '#f3c6c0', anim: 'slideR',
+        en: 'Sugar, T.C.&I.: max 2 pts a ticket, even on a 10-pt move. Risk $1 to make 2, not 10.', zh: '糖业、田纳西煤铁：每张单最多赚2点，哪怕涨10点。冒1美元险只赚2美元，不是10美元。' },
+      { type: 'bubble', at: 'L2@buy', x: 1020, y: 345, w: 460, kind: 'shout', en: 'No buy orders today!', zh: '今天不接买单！', tx: 1250, ty: 602 },
       { type: 'stamp', at: 'L2@three', x: 380, y: 420, en: '3 TO 1 ON McKINLEY', zh: '麦金莱胜率3比1', size: 52, rot: -8 }],
     lines: [
       N('The old shops had one virtue: when your margin ran out, the trade closed itself. The best stop-loss order there is.', '老式对赌行有一个优点：保证金一用完，交易就自动结束。那是最好的止损单。'),

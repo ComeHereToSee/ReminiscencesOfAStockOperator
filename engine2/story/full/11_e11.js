@@ -33,10 +33,10 @@ module.exports = (h) => {
       { type: 'bubble', at: 'L2', until: 'L3', x: 990, y: 70, w: 560, en: 'Make us a market, and sell our holdings at better prices than we could get. Your terms?', zh: '请为我们造个市场，把我们的股票卖出比我们自己卖更好的价钱。您的条件？', tx: 1250, ty: 590 },
       { type: 'note', at: 'L3@valuable', x: 1300, y: 110, w: 560, h: 150, size: 30, fill: '#cfe3c4', anim: 'slideU', en: 'Experts: valuable. A rise = the market discounting the future.', zh: '专家：确有价值。上涨＝市场提前反映未来。' }],
     lines: [
-      N('Here is how a market is made. Imperial Steel was sound, but nobody traded it.', '造市是怎么回事？看帝国钢铁。这家公司不错，却没人交易。'),
+      N('Take a real case. Imperial Steel was sound, but nobody traded it.', '看一个真实案例。帝国钢铁这家公司不错，却没人交易。'),
       N('The public held about thirty percent; the syndicate that brought it out controlled the other seventy.', '公众持有约百分之三十，发行它的承销团控制着另外百分之七十。'),
       L('banker', 'Make us a market, and sell our holdings at better prices than we could get. Your terms?', '请为我们造个市场，把我们的股票卖出比我们自己卖更好的价钱。您的条件？', { speak: 'synd' }),
-      N('My experts found it valuable, so a rise would simply be the market discounting the future. I took the job.', '我的专家查明它确有价值，所以上涨只不过是市场在提前反映未来。我接下了这份工作。'),
+      N('My experts found it valuable: a rise would simply discount the future. I took the job.', '我的专家查明它确有价值：上涨只不过是在提前反映未来。我接下了这份工作。'),
     ] });
 
   lesson(h, { id: 'e11_fee', tag: ['THE DEAL', '交易条件'], title: ['Paid Only If It Works: Calls from 70 to 100', '成功了才有报酬：70到100的看涨期权'], titleSize: 48,
@@ -157,7 +157,7 @@ module.exports = (h) => {
     kb: [{ t: 0, x: 960, y: 500, z: 1.02 }, { t: 14, x: 960, y: 440, z: 1.14 }],
     items: [{ type: 'newspaper', screen: true, at: 'L1@papers', x: 1460, y: 560, w: 640, h: 400, rot: 4, paper: 'The Financial Page', date: 'AFTER THE COMEBACK', en: 'LIVINGSTON PAYS BACK HIS MILLIONS', zh: '利文斯顿还清数百万旧债', size: 42 }],
     lines: [
-      N('No manipulator can beat the general market. Keene\'s U.S. Steel job in 1901 worked chiefly because the market and the public mood were right.', '没有哪个操纵者能战胜大盘。基恩1901年操作美国钢铁之所以成功，主要是因为大势和公众情绪都对了。'),
+      N('People think a manipulator can do anything. He can\'t. Keene\'s U.S. Steel job in 1901 worked chiefly because the market and the public mood were right.', '人们以为操纵者无所不能。其实不然。基恩1901年操作美国钢铁之所以成功，主要是因为大势和公众情绪都对了。'),
       N('After my comeback, the papers told how I had paid back millions. Keene was gone, so the promoters came to me.', '东山再起之后，报纸登出我还清数百万债务的故事。基恩已经不在了，于是发起人纷纷找上了我。'),
     ] });
 
@@ -170,7 +170,7 @@ module.exports = (h) => {
           draw: [['L0e', 1], ['L1@30', 2], ['L1@50', 4], ['L2', 8], ['L2@80', 10]] }],
         marks: [{ x: 2.3, y: 30, at: 'L1@surely', en: '"Surely the top"', zh: '"这肯定是顶了"', dx: -150, dy: -130, w: 200 },
           { x: 4.3, y: 50, at: 'L1@absolutely', en: '"Absolutely the end"', zh: '"绝对到头了"', dx: -200, dy: -140, w: 230 },
-          { x: 7.3, y: 75, at: 'L2@higher', en: '"Can\'t go any higher"', zh: '"不可能再涨了"', dx: -250, dy: -150, w: 240 },
+          { x: 7.3, y: 75, at: 'L2@higher', en: '"Can\'t go any higher"', zh: '"不可能再涨了"', dx: -230, dy: -150, w: 240 },
           { x: 9.3, y: 85, at: 'L2@stops', en: 'Stops believing in any limit', zh: '不再相信有任何上限', dx: -260, dy: 140, w: 230, fill: '#f3c6c0' }] },
       { type: 'note', at: 'L3', x: 1490, y: 600, w: 390, h: 230, size: 28, fill: '#f6d77a', anim: 'slideU', en: '"The top is never in sight when the vision is vitiated by hope."', zh: '"被希望蒙蔽了双眼，就永远看不见顶。"' }],
     lines: [
@@ -178,6 +178,7 @@ module.exports = (h) => {
       N('A stock nobody wanted at twelve or fourteen jumps to 30: surely the top. Then 50: absolutely the end.', '一只在十二、十四美元都没人要的股票涨到30：这肯定是顶了。接着到50：绝对到头了。'),
       N('Then 60, 70, 75: it can\'t go any higher. Then 80, 85, and he stops believing there is any limit.', '然后60、70、75：不可能再涨了。接着80、85，他干脆不再相信有任何上限。'),
       N('He thinks of prices, never of values. The top is never in sight when hope clouds the vision.', '他只想价格，从不想价值。被希望蒙住了眼，就永远看不见顶。'),
+      N('And after a boom, prices needn\'t even fall to make the public gloomy. A long dull spell will do it.', '而繁荣过后，价格甚至不必下跌，公众就会悲观起来。市场长期清淡就足够了。'),
     ] });
 
   // ---- chapter XXII: Consolidated Stove ----
@@ -240,16 +241,17 @@ module.exports = (h) => {
         marks: [{ x: 0.8, y: 50.4, at: 'L1@fraction', en: 'Never much above 50', zh: '从未比50高多少', dx: 30, dy: 160, w: 220 },
           { x: 6.2, y: 40, at: 'L2@40', en: 'No inside support; Barnes holds 40', zh: '内部人不护盘；巴恩斯守40', dx: 20, dy: -170, w: 260 },
           { x: 9.2, y: 37, at: 'L2@pegged', en: 'Pegged at 37', zh: '钉在37', dx: -100, dy: 60, w: 170, fill: '#f3c6c0' }] },
-      { type: 'table', at: 'L0@allotting', x: 1380, y: 230, w: 510, widths: [0.56, 0.44], size: 28, bottom: 570,
+      { type: 'table', at: 'L0@underallotting', x: 1380, y: 230, w: 510, widths: [0.56, 0.44], size: 28, bottom: 570,
         cols: [['If allotted in full', '如果足额配售'], ['Result', '结果']],
         rows: [[['Sell 125%', '卖出125%'], ['Short 25%', '形成25%空头']], [['Price dips', '股价回落'], ['Cover = free support', '回补＝免费护盘']]],
-        rowAt: ['L0@allotting', 'L1'] },
+        rowAt: ['L0@underallotting', 'L1'] },
       { type: 'note', at: 'L2@bear', x: 1380, y: 585, w: 510, h: 115, size: 28, fill: '#f3c6c0', en: 'No inside support = a bear tip', zh: '内部人不护盘＝看跌信号' },
       { type: 'note', at: 'L2@pegged', x: 1380, y: 712, w: 510, h: 118, size: 30, fill: '#f6d77a', en: 'Eager at 50. Unwanted at 37.', zh: '50时抢着买，37时没人要。' }],
     lines: [
-      N('Two blunders: they came late, into a market saturated with new issues, and by not allotting in full they gave up a free short of a quarter of the issue.', '两个错误。他们来得太晚，市场早被新股塞满；而且没有足额配售，白白放弃了相当于四分之一发行量的免费空头。'),
+      N('Two blunders: they came late, into a market saturated with new issues, and by underallotting they gave up a free short of a quarter of the issue.', '两个错误。他们来得太晚，市场早被新股塞满；而且没有足额配售，白白放弃了相当于四分之一发行量的免费空头。'),
       N('That short would have supported the price for free. Instead it never sold more than a fraction above 50.', '有了那部分空头，他们就能不花一分钱托住价格。结果股价从未比50高出多少。'),
       N('Insiders didn\'t support it: a bear tip. Barnes had to buy to hold 40, then pegged it at 37 to protect the bank\'s loan at 35.', '内部人不护盘，这是相当可靠的看跌信号。巴恩斯只好买入守住40，后来又把它钉在37，以保护银行每股35美元的贷款。'),
+      N('Then the boy-banker days ended. The bank wanted its loan paid, and Barnes asked me to sell its block.', '后来，少年银行家的时代结束了。银行要求还贷，巴恩斯便请我把银行手里那批股票卖掉。'),
     ] });
 
   shot({ id: 'e11_overhang', set: 'study', setOpts: { winX: 1180, lamp: false, ticker: true, tickerX: 250 }, trans: 'wipe', music: 'calm',
@@ -266,11 +268,12 @@ module.exports = (h) => {
       { type: 'text', at: 'L0@Wolff', x: 1680, y: 370, size: 48, font: 'cond', align: 'center', fill: '#b3302a', en: '60,000', zh: '约书亚·沃尔夫', zfill: '#5a4a36' },
       { type: 'equation', at: 'L0@active', until: 'L1', x: 1250, y: 220, size: 48, terms: [{ t: '70,000 + 70,000 + 60,000', at: 'L0@active' }, { t: '= 200,000 sh', zh: '随时可能砸盘', at: 'L0@active+0.6', hl: true }] },
       { type: 'bubble', at: 'L1', until: 'L2', x: 110, y: 60, w: 660, size: 29, en: 'Raise six millions in cash. Give the syndicate a call on your 200,000 shares at 40, and put your stock in escrow.', zh: '筹六百万美元现金。把你们二十万股按40给银团一个看涨期权，股票全部交第三方托管。', tx: 520, ty: 602 },
-      { type: 'note', at: 'L2', x: 100, y: 110, w: 820, h: 170, size: 28, fill: '#f6d77a', anim: 'slideU', en: 'Gates\'s verse: the tarantula on the centipede\'s back: "I\'ll poison him. If I don\'t, he\'ll poison me!"', zh: '盖茨的打油诗：狼蛛跳上蜈蚣的背："我得先毒死它，不然它就毒死我！"' }],
+      { type: 'equation', at: 'L2@three', x: 1310, y: 210, size: 44, terms: [{ t: '200,000 + 100,000', zh: '三大户 + 银行那批', at: 'L2@three' }, { t: '= 300,000 sh tied up', zh: '全部锁定', at: 'L2@three+0.6', hl: true }] },
+      { type: 'note', at: 'L2', x: 100, y: 110, w: 760, h: 200, size: 28, fill: '#f6d77a', anim: 'slideU', en: 'Gates\'s verse, the tarantula to the centipede: "I\'ll poison him. If I don\'t, he\'ll poison me!"', zh: '盖茨的打油诗，狼蛛对蜈蚣说："我得先毒死它，不然它就毒死我！"' }],
     lines: [
       N('The danger: Kane\'s firm held seventy thousand shares, Senator Gordon seventy thousand, Joshua Wolff sixty thousand. Make the stock active, and they\'d unload on me.', '真正的危险在于：凯恩的公司有七万股，戈登参议员七万股，约书亚·沃尔夫六万股。股票一旦活跃，他们就会把货倒给我。'),
       L('larry', 'Raise six millions in cash. Give the syndicate a call on your two hundred thousand shares at 40, and put all your stock in escrow.', '组一个银团，筹六百万美元现金。把你们的二十万股按40给银团一个看涨期权，所有股票都交第三方托管。', { speak: 'larry' }),
-      N('Escrow among friends? A verse credited to John W. Gates says why: poison him before he poisons you.', '朋友之间还要托管？正如一首据说出自约翰·W·盖茨的打油诗所说：先毒死对方，免得被对方毒死。'),
+      N('Escrow among friends? A verse credited to John W. Gates says why: poison him before he poisons you. Now three hundred thousand shares were tied up.', '朋友之间还要托管？一首据说出自约翰·W·盖茨的打油诗道出了原因：先毒死对方，免得被对方毒死。这样一来，共有三十万股被锁定。'),
     ] });
 
   shot({ id: 'e11_rise', set: 'floor', setOpts: { agitated: true, paperN: 18, posts: ['STEEL', 'U.P.', 'CONS. STOVE', 'SUGAR', 'RDG'] }, trans: 'whip', music: 'rag',
@@ -349,7 +352,7 @@ module.exports = (h) => {
     lines: [
       N('Gordon and Kane remembered the stock active near 44; now it was 30. They pooled their stock with me at 25 and a half.', '戈登和凯恩也来抱怨。他们记得股票在44附近很活跃，如今只剩30。于是他们以25½的价格把股票交给我统一处理。'),
       N('My fee: half of anything above that. In a falling market you can\'t put a stock up first, so I sold on the way down.', '我的报酬：高出部分的一半。在下跌的市场里，你没法先把股价拉上去，所以我在下跌途中卖出。'),
-      N('Bargain hunters think a stock is cheap fifteen or twenty points under a recent top. They took the whole line.', '抢便宜的人总以为，比最近的顶部低十五到二十点就算便宜。资金池的全部股票，就是他们接走的。'),
+      N('Bargain hunters think a stock is cheap fifteen or twenty points under a recent top. They bought the pool\'s stock.', '抢便宜的人总以为，比最近的顶部低十五到二十点就算便宜。资金池的股票，就是他们接走的。'),
     ] });
 
   shot({ id: 'e11_dress', set: 'home', trans: 'dip', music: 'calm',
@@ -373,12 +376,12 @@ module.exports = (h) => {
     gest: ['explain', 'pointUp', 'explainR'],
     items: [
       R(1, 'L0@manipulator', 'No manipulator can beat the general market. Check the trend first.', '没有操纵者能战胜大盘。先看大势。', 0),
-      R(2, 'L0@rises', 'Rises on your buying: you are right. Stops responding: sell.', '你一买就涨：你对了。买了不涨：卖出。', 1),
+      R(2, 'L0@Rising', 'Rises on your buying: you are right. Stops responding: sell.', '你一买就涨：你对了。买了不涨：卖出。', 1),
       R(3, 'L1', 'The only buyer? Stop. The only way to sell is to sell.', '只剩你在买？停手。要卖，唯一的办法就是卖。', 2),
       R(4, 'L1@big', 'The big selling is done on the way down.', '大笔卖出在下跌途中完成。', 3),
       R(5, 'L2', 'Hope hides the top. A tip can ruin people you never meet.', '希望遮住了顶部。小道消息会害了素不相识的人。', 4, { tag: '#b3302a' })],
     lines: [
-      N('In brief: no manipulator can beat the general market. A stock that rises on your buying says you are right; when it stops responding, sell.', '简而言之：没有哪个操纵者能战胜大盘。你一买它就涨，说明你对了；买了它不再响应，就卖出。'),
+      N('In brief: no manipulator beats the general market. Rising on your buying means you\'re right; when it stops responding, sell.', '简而言之：没有哪个操纵者能战胜大盘。你一买它就涨，说明你对了；买了它不再响应，就卖出。'),
       N('If you are the only buyer, stop. The big selling is done on the way down.', '如果只剩你自己在买，就停手。大笔卖出是在下跌途中完成的。'),
       N('Hope hides the top. And a tip can ruin people you will never meet.', '希望会遮住顶部。而一条小道消息，能害了你素不相识的人。'),
     ] });

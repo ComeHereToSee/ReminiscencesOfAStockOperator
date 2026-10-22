@@ -38,7 +38,7 @@ module.exports = (h) => {
       { type: 'note', at: 'L2@industry', x: 1400, y: 430, w: 470, h: 185, size: 30, anim: 'slideU', en: 'Now almost every industry in the world is on the list.', zh: '如今几乎全世界每个行业都在榜上。' },
       { type: 'note', at: 'L2@work', x: 1400, y: 630, w: 470, h: 185, size: 30, fill: '#f6d77a', anim: 'pop', en: 'Keeping posted takes far more time and work.', zh: '要掌握行情，需要多得多的时间和功夫。' }],
     lines: [
-      N('Wall Street has improved, but speculating profitably keeps getting harder. A real trader once knew practically every stock on the list.', '华尔街进步了，但投机赚钱却越来越难。过去，一个真正的交易者几乎认得榜上的每一只股票。'),
+      N('Speculating profitably keeps getting harder. A real trader once knew practically every stock on the list.', '投机赚钱越来越难。过去，一个真正的交易者几乎认得榜上的每一只股票。'),
       N('In 1901, when Morgan brought out U.S. Steel, the Exchange listed 275 stocks, plus about 100 unlisted, and many hadn\'t traded in years.', '1901年摩根推出美国钢铁时，交易所上市股票275只，另有约100只在非上市部，其中许多已多年无成交。'),
       N('Today about 900 are listed and some 600 trade in active markets, from almost every industry in the world. Keeping posted takes far more work.', '如今上市股票约900只，活跃交易的约600只，几乎涵盖全世界每个行业。要掌握行情，需要多得多的功夫。'),
     ] });
@@ -60,6 +60,7 @@ module.exports = (h) => {
     lines: [
       N('The speculator\'s deadly enemies are ignorance, greed, fear and hope. No statute book and no exchange rule can remove them from the human animal.', '投机者的致命敌人是无知、贪婪、恐惧和希望。任何法典、任何交易所规则，都无法把它们从人性中清除。'),
       N('And then there is deliberate misinformation. It comes disguised, which makes it the more dangerous.', '此外还有蓄意的误导。它总是乔装打扮而来，所以更加危险。'),
+      N('A friend\'s honest tip you cannot guard against. Against Wall Street rumours, the public has neither protection nor redress.', '朋友真心给的消息，你防不胜防。而对华尔街的谣言，公众既无保护，也无从追讨。'),
     ] });
 
   shot({ id: 'e12_slips', set: 'study', setOpts: { ticker: true, tickerX: 330, lampX: 1720 }, trans: 'dip', music: 'calm',
@@ -69,11 +70,13 @@ module.exports = (h) => {
     items: [
       { type: 'note', at: 'L0@leading', until: 'L1', x: 1120, y: 140, w: 740, h: 230, size: 32, anim: 'slideU', en: '"a leading insider" · "a prominent director" · "a high official"', zh: '"一位重要内部人士"·"一位知名董事"·"一位高级官员"' },
       { type: 'note', at: 'L1', x: 1120, y: 140, w: 740, h: 230, size: 34, fill: '#efe3c4', anim: 'pop', en: '"A leading banker says it is too early yet to expect a declining market."', zh: '"一位重要银行家表示，现在预期市场下跌还为时过早。"' },
-      { type: 'note', at: 'L2', x: 1120, y: 400, w: 740, h: 150, size: 32, fill: '#f6d77a', anim: 'slideU', en: 'Who said it? Why? And why no name?', zh: '是谁说的？为什么说？为什么不署名？' }],
+      { type: 'note', at: 'L2', x: 1120, y: 400, w: 740, h: 150, size: 32, fill: '#f6d77a', anim: 'slideU', en: 'Who said it? Why? And why no name?', zh: '是谁说的？为什么说？为什么不署名？' },
+      { type: 'note', at: 'L3', x: 1120, y: 570, w: 740, h: 170, size: 30, fill: '#f3c6c0', anim: 'slideU', en: 'A rise has one object: to sell at the best possible profit.', zh: '上涨只有一个目的：以最好的价格卖出。' }],
     lines: [
       N('Read the news slips any day. The authority is always “a leading insider,” “a prominent director,” or “a high official.”', '随便哪天去读读新闻快讯。消息来源永远是"一位重要内部人士"、"一位知名董事"，或者"一位高级官员"。'),
       N('Here\'s one at random: “A leading banker says it is too early yet to expect a declining market.”', '随手挑一条："一位重要银行家表示，现在预期市场下跌还为时过早。"'),
       N('Did he say it? If so, why? And why not print his name? Anonymous, nobody can be blamed for the damage it does.', '他真说过吗？说了又是为什么？为什么不登出他的名字？匿名发言，造成损害也无人负责。'),
+      N('Remember: manipulation enters into practically every rise in a single stock, with one object only, to sell at the best possible profit.', '记住：几乎每一只股票的上涨里都有操纵的成分，目的只有一个：以尽可能好的价格卖出。'),
     ] });
 
   lesson(h, { id: 'e12_cycle', tag: ['THE INSIDER CYCLE', '内部人的循环'], title: ['How Insiders Use the News', '内部人怎样利用消息'],
@@ -111,7 +114,7 @@ module.exports = (h) => {
       { type: 'note', at: 'L2', x: 80, y: 110, w: 640, h: 200, size: 29, fill: '#f3c6c0', anim: 'slideU', en: 'Loss 1: buys too high on bullish talk. Loss 2: holds on "bear raid" talk.', zh: '第一次亏：听信利好，高价买入。第二次亏：听信"空头打压"，死守不卖。' }],
     lines: [
       L('banker', 'The decline today was caused by a bear drive. Underlying conditions are unchanged. The bears will find they have sold themselves into a trap.', '今天的下跌是空头打压造成的。基本面毫无变化。空头会发现，他们卖空是自投罗网。', { speak: 'director' }),
-      N('So the public holds on, waiting for the squeeze. It never comes. Too much inside stock has been fed out, and the price keeps going down.', '于是公众继续持有，等着轧空。可轧空从来不来。内部人倒出来的股票太多，价格一路下跌。'),
+      N('The public holds on, waiting for a squeeze that never comes. Too much inside stock has been fed out, and the price keeps falling.', '公众继续持有，等着一场永远不会来的轧空。内部人倒出来的股票太多，价格一路下跌。'),
       N('The public pays twice: it buys on the bullish talk, and is talked out of selling on the way down.', '公众付了两次代价：听信利好而买入，又被一番说辞劝得在下跌途中不肯卖出。'),
     ] });
 
@@ -134,7 +137,7 @@ module.exports = (h) => {
         series: [{ pts: [[0, 255], [1, 240], [2, 225], [2.6, 232], [3.4, 200], [4, 208], [4.8, 170], [5.6, 150], [6.4, 120], [7.2, 90], [8, 60], [8.8, 35], [9.5, 20], [10, 12]], color: '#b3302a',
           draw: [['L0', 4], ['L1', 9], ['L2', 13]] }],
         marks: [{ x: 0, y: 255, at: 'L0', en: '255: New England\'s pride', zh: '255：新英格兰的骄傲', dx: 30, dy: 140, w: 260 },
-          { x: 2.6, y: 232, at: 'L0@bear', en: '"Reckless bear selling"', zh: '"肆无忌惮的空头卖压"', dx: 60, dy: -110, w: 240 },
+          { x: 2.6, y: 232, at: 'L0@bear', en: '"Reckless bear selling"', zh: '"肆无忌惮的空头卖压"', dx: 80, dy: -110, w: 240 },
           { x: 6.4, y: 120, at: 'L1@lows', en: 'New lows, no squeeze', zh: '屡创新低，轧空未至', dx: 30, dy: -150, w: 230 },
           { x: 10, y: 12, at: 'L2@12', en: '12', zh: '', dx: -120, dy: -170, w: 80, fill: '#f3c6c0' }] },
       { type: 'note', at: 'L0@dividends', x: 1450, y: 230, w: 440, h: 160, size: 28, anim: 'slideU', en: 'Dividends kept coming, so investors held.', zh: '股息照发，投资者便继续持有。' },
@@ -180,6 +183,7 @@ module.exports = (h) => {
       N('The scapegoat changes. They blamed Woerishoffer and Cammack, then Keene. Later on, I became the stock excuse.', '替罪羊换了一个又一个。先怪沃里肖弗和卡马克，后来怪基恩。再后来，我成了现成的借口。'),
       N('But a protracted decline is never caused by bear raiding. When a stock keeps going down, something is wrong, with its market or with the company.', '但长期下跌从来不是空头打压造成的。一只股票持续下跌，必定出了问题，要么是它的市场，要么是公司本身。'),
       N('An unjustified decline would soon make it cheap, and buying would stop it. Bears make big money only when a stock is too high, and insiders never say so.', '没有道理的下跌很快会让股票变便宜，买盘就会让它止跌。空头只有在股价过高时才能赚大钱，而内部人绝不会承认这一点。'),
+      N('In booms the public makes money first, then loses it by overstaying, and talk of bear raids helps it overstay.', '在繁荣期，公众先是赚钱，后来因为恋战不走又赔了回去；而"空头打压"之说，正帮着他们恋战。'),
     ] });
 
   // ---- chapter XXIV ----

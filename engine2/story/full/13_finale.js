@@ -146,7 +146,7 @@ module.exports = (h) => {
   shot({ id: 'e13_enemy', set: 'study', setOpts: STUDY, trans: 'dip',
     cam: [{ t: 0, x: 1000, y: 500, z: 1.05 }, { t: 'L0', x: 1080, y: 460, z: 1.3, dur: 4 }],
     cast: [old([{ t: 'L0', pose: 'chin', expr: 'think' }, { t: 'L0@enemy', pose: 'explain', expr: 'determined' }])],
-    lines: [N('The last group is the hardest, because the enemy is inside the trader: ignorance, greed, fear and hope. No law can remove them.', '最后一组最难，因为敌人就在交易者自己心里：无知、贪婪、恐惧和希望。任何法律都清除不了它们。')] });
+    lines: [N('The last group is the hardest, because the enemy is inside the trader: ignorance, greed, fear and hope. No statute and no exchange rule can remove them.', '最后一组最难，因为敌人就在交易者自己心里：无知、贪婪、恐惧和希望。任何法律、任何交易所规则都清除不了它们。')] });
 
   const R = (n, at, en, zh, row, o = {}) => Object.assign({ type: 'rule', at, x: 470, y: 222 + row * 125, w: 1400, h: 118, n: String(n), size: 32, en, zh }, o);
   lesson(h, { id: 'e13_rulesC', tag: ['THE RULES · 3 / 3', '规则 · 3/3'], title: ['Psychology and Independence', '心理与独立'],
@@ -173,7 +173,7 @@ module.exports = (h) => {
     cam: [{ t: 0, x: 1080, y: 460, z: 1.3 }, { t: 'end', x: 960, y: 520, z: 1.0, ease: 'sine' }],
     cast: [old([{ t: 'L1', pose: 'chin', expr: 'think' }, { t: 'L2', pose: 'relaxed', expr: 'smile' }], { expr: 'smile' })],
     items: [
-      { type: 'text', screen: true, at: 'L2e', x: 960, y: 805, size: 24, font: 'cond', fill: '#f1ead6', zfill: '#f6d77a', w: 1700,
+      { type: 'text', screen: true, at: 'L2e', x: 960, y: 770, size: 24, font: 'cond', fill: '#f1ead6', zfill: '#f6d77a', w: 1700,
         en: 'A study of a 1923 book. Markets and laws have changed since. Not investment advice.', zh: '本片研读一本1923年的书。此后市场与法律都已改变。不构成投资建议。' },
       { type: 'text', screen: true, at: 'L2e', x: 960, y: 860, size: 26, font: 'cond', fill: '#f1ead6', zfill: '#f6d77a', w: 1700,
         en: 'Adapted from Edwin Lefèvre, Reminiscences of a Stock Operator (1923, public domain). Photos: Library of Congress, Detroit Publishing Co., Bain News Service. Music: Musopen (CC0), pre-1923 recordings.',

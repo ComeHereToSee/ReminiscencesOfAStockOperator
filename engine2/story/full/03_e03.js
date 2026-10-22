@@ -293,7 +293,7 @@ module.exports = (h) => {
           [['Fills', '成交'], ['172–174', '172–174']],
           [['Loss', '亏损'], ['−$40,000', '−4万美元']]],
         rowAt: [0.5, 0.9, 'L1', 'L1@172', 'L2@forty'], hl: [null, null, null, null, 'L2@forty'] },
-      { type: 'note', at: 'L0@specialist', until: 'L3', x: 470, y: 734, w: 900, h: 106, size: 28, fill: MINT,
+      { type: 'note', at: 'L0@specialist', until: 'L3', x: 470, y: 728, w: 900, h: 112, size: 28, fill: MINT,
         en: 'New high. One specialist\'s mistake made him $350,000.', zh: '创出新高。一位专家经纪人的失误让他赚了35万美元。' },
       { type: 'equation', at: 'L3', x: 920, y: 790, size: 46, terms: [{ t: '−$40,000', zh: '平空亏损', at: 'L3', color: RED }, { t: '→', at: 'L3+0.4' },
         { t: '+$40,000', zh: '做多赚回', at: 'L3@forty' }, { t: '+ ≈$15,000', zh: '另赚约1.5万', at: 'L3@fifteen', hl: true }] }],
