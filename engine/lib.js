@@ -469,6 +469,16 @@ function header(tag, title, o = {}) {
   return { svg: s, h: 120 };
 }
 function table(e) {
+  // shrink the font until the fully revealed table fits above e.bottom (default: bottom of the content area)
+  const bottom = e.bottom || 815;
+  let sz = e.size || 28;
+  for (; sz > 16; sz--) {
+    const full = tableAt(Object.assign({}, e, { size: sz, zsize: e.zsize && Math.round(e.zsize * sz / (e.size || 28)), step: 99 }));
+    if (full.end <= bottom) break;
+  }
+  return tableAt(Object.assign({}, e, { size: sz, zsize: e.zsize && Math.round(e.zsize * sz / (e.size || 28)) })).svg;
+}
+function tableAt(e) {
   const { x, y, w } = e; const cols = e.cols; const n = cols.length;
   const widths = e.widths ? e.widths.map(f => f * w) : cols.map(() => w / n);
   const size = e.size || 28, zsize = e.zsize || Math.round(size * 0.85);
@@ -488,7 +498,7 @@ function table(e) {
     });
     yy += h;
   });
-  return s;
+  return { svg: s, end: yy };
 }
 // Line/price chart. series: [{pts:[[x,y]...], color, label}] ; xLabels; annotations
 function lineChart(e) {

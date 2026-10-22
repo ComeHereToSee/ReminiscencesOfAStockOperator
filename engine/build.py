@@ -64,7 +64,7 @@ async def tts_one(text, voice, rate, pitch, out_mp3):
     for attempt in range(5):
         try:
             c = edge_tts.Communicate(text, voice, rate=rate, pitch=pitch)
-            await c.save(out_mp3 + '.tmp')
+            await asyncio.wait_for(c.save(out_mp3 + '.tmp'), timeout=60)
             # guard against truncated responses: expect roughly >= 1.5 KB per word
             if os.path.getsize(out_mp3 + '.tmp') < 1500 * max(1, len(text.split()) // 2):
                 raise RuntimeError(f'truncated TTS output for: {text[:40]}')
