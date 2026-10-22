@@ -50,8 +50,8 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
       [['Old Southern', '老南方铁路'], ['Henry Keep, "William the Silent"', '亨利·基普（"沉默者威廉"）'], ['Squeezed Addison G. Jerome out of his millions', '把艾迪生·G·杰罗姆的数百万家产轧光']],
       [['Northern Pacific, 9 May 1901', '北太平洋铁路，1901年5月9日'], ['Competitive buying', '竞购'], ['A corner, but not manipulation', '是逼空，但不是操纵']],
     ], hl: [5] },
-    { type: 'box', at: 3, x: 70, y: 290, w: 1780, h: 220, anchor: 'middle', color: '#f6d77a', en: 'A corner pays only if you can sell the hoard above cost: it needs a big short interest.', zh: '逼空只有在能高于成本卖出囤货时才赚钱：需要巨大的空头仓位。', size: 28 },
-    { type: 'box', at: 4, x: 70, y: 560, w: 1780, h: 220, anchor: 'middle', color: '#f3c6c0', en: 'Aimed at professionals: the public rarely sells short. Motive: often vanity or revenge.', zh: '目标是职业交易者：公众很少做空。动机：常是虚荣或报复。', size: 28 },
+    { type: 'box', at: 3, x: 70, y: 290, w: 1780, h: 220, anchor: 'middle', color: '#f6d77a', en: 'A corner pays only if you can sell the hoard above cost: it needs a big short interest.', zh: '逼空只有在能高于成本卖出囤货时才赚钱：需要巨大的空头仓位。', size: 42 },
+    { type: 'box', at: 4, x: 70, y: 560, w: 1780, h: 220, anchor: 'middle', color: '#f3c6c0', en: 'Aimed at professionals: the public rarely sells short. Motive: often vanity or revenge.', zh: '目标是职业交易者：公众很少做空。动机：常是虚荣或报复。', size: 42 },
   ], lines: [
     L('host', 'Corners count as manipulation, though some come from competitive buying, like Northern Pacific on May 9, 1901.', '逼空也算操纵，但有些逼空源于竞购，比如1901年5月9日的北太平洋铁路。'),
     L('larry', 'Very few of the great corners paid. Vanderbilt\'s Harlem corners paid big, but Jay Gould lost in Northwestern.', '历史上的大逼空，很少有赚钱的。范德比尔特的哈莱姆逼空大赚，杰伊·古尔德却在西北铁路上亏了。'),
