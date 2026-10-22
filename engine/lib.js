@@ -590,6 +590,33 @@ function quoteBox(e) {
   if (e.src) s += `<text x="${e.x + w - 40}" y="${e.y + t.h + 90}" text-anchor="end" font-family="${F.cond}" font-size="24" fill="${C.grey}">${esc(e.src)}</text>`;
   return s;
 }
+// Capital timeline: items [{en, zh, v, vl, note:[en,zh], at}] ; v<0 = debt
+function timeline(e) {
+  const step = e.step ?? 99; const { x, y, w, h } = e;
+  const n = e.items.length, bw = (w - 40) / n;
+  const maxLog = Math.log10(Math.max(...e.items.map(i => Math.abs(i.v) || 1)));
+  const minLog = e.minLog ?? 0;
+  const base = y + h * (e.items.some(i => i.v < 0) ? 0.62 : 0.8);
+  const upH = base - y - 70, dnH = y + h - base - 90;
+  const sc = v => (Math.log10(Math.max(Math.abs(v), 1)) - minLog) / (maxLog - minLog);
+  let s = `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#fbf5e4" stroke="${C.ink}" stroke-width="4"/><line x1="${x + 10}" y1="${base}" x2="${x + w - 10}" y2="${base}" stroke="${C.ink}" stroke-width="3"/>`;
+  let prev = null;
+  e.items.forEach((it, i) => {
+    if ((it.at ?? 0) > step) return;
+    const cx = x + 20 + i * bw + bw / 2, ww = bw * 0.62;
+    const hh = Math.max(4, sc(it.v) * (it.v >= 0 ? upH : dnH));
+    const top = it.v >= 0 ? base - hh : base;
+    const col = it.color || (it.v < 0 ? C.down : it.v === 0 ? C.grey : C.up);
+    s += `<rect x="${cx - ww / 2}" y="${top}" width="${ww}" height="${it.v === 0 ? 4 : hh}" fill="${col}" stroke="${C.ink}" stroke-width="3"/>`;
+    const ty = it.v >= 0 ? top - 10 : top + hh + 26;
+    s += `<text x="${cx}" y="${ty}" text-anchor="middle" font-family="${F.cond}" font-weight="700" font-size="${e.vsize || 22}" fill="${C.ink}">${esc(it.vl)}</text>`;
+    const pt = [cx, it.v >= 0 ? top : top + hh];
+    if (prev) s += `<line x1="${prev[0]}" y1="${prev[1]}" x2="${pt[0]}" y2="${pt[1]}" stroke="${C.sepia}" stroke-width="2" stroke-dasharray="6 5"/>`;
+    prev = pt;
+    s += bi(it.en, it.zh, cx, it.v >= 0 ? base + 8 : base - 8 - (e.lsize || 18) * 2.3, { size: e.lsize || 18, zsize: (e.lsize || 18) - 2, font: F.cond, weight: 700, anchor: 'middle', maxW: bw - 4 }).svg;
+  });
+  return s;
+}
 function textEl(e) { return bi(e.en, e.zh, e.x, e.y, { size: e.size || 30, zsize: e.zsize, font: e.font || F.comic, weight: e.weight || 700, maxW: e.w, anchor: e.anchor, fill: e.fill, zfill: e.zfill }).svg; }
 function boxEl(e) {
   const t = e.h ? fitBi(e.en, e.zh, e.x + (e.anchor === 'middle' ? e.w / 2 : 24), e.y + 16, e.w - 48, e.h - 32, { max: e.size || 28, font: F.comic, weight: 700, anchor: e.anchor })
@@ -640,7 +667,7 @@ function renderInfo(shot, step) {
   (shot.els || []).forEach(e => {
     if ((e.at || 0) > step || (e.until !== undefined && e.until < step)) return;
     const ee = Object.assign({ step }, e);
-    s += ({ table, line: lineChart, bars: barChart, flow, cards, quote: quoteBox, text: textEl, box: boxEl, comic: el => el.svg, person: el => person(el), svg: el => el.svg })[e.type](ee);
+    s += ({ table, line: lineChart, bars: barChart, flow, cards, timeline, quote: quoteBox, text: textEl, box: boxEl, comic: el => el.svg, person: el => person(el), svg: el => el.svg })[e.type](ee);
   });
   if (shot.src) s += `<text x="${W - 60}" y="${STAGE_H - 46}" text-anchor="end" font-family="${F.cond}" font-size="22" fill="${C.grey}">${esc(shot.src)}</text>`;
   return s;

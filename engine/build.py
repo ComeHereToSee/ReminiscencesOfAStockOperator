@@ -100,20 +100,21 @@ async def tts_all(lines):
 
 
 # ---------------- music ----------------
-def synth_music(path, seconds):
-    """Original, procedurally generated soft piano-like bed (A minor, slow)."""
+def synth_music(path, cycles=4):
+    """Original, procedurally generated soft piano-like bed (A minor, slow), written as a seamless loop.
+    Long outputs loop it with ffmpeg instead of synthesising hours of audio in memory."""
     sr = SR
-    n = int(seconds * sr)
-    out = np.zeros(n + sr * 4)
     bpm = 66
     beat = 60 / bpm
     A4 = 440.0
+    # chord roots relative to A4 (semitones), minor/major triads
+    prog = [(-12, 'm'), (-16, 'M'), (-21, 'M'), (-14, 'M'), (-12, 'm'), (-19, 'm'), (-16, 'M'), (-17, 'M')]
+    seconds = beat * 4 * len(prog) * cycles
+    n = int(round(seconds * sr))
+    out = np.zeros(n + sr * 6)
 
     def f(semi):
         return A4 * 2 ** (semi / 12)
-
-    # chord roots relative to A4 (semitones), minor/major triads
-    prog = [(-12, 'm'), (-16, 'M'), (-21, 'M'), (-14, 'M'), (-12, 'm'), (-19, 'm'), (-16, 'M'), (-17, 'M')]
 
     def note(t0, freq, dur, amp):
         i0 = int(t0 * sr)
@@ -125,9 +126,8 @@ def synth_music(path, seconds):
         seg = out[i0:i0 + L]
         seg += amp * env[:len(seg)] * sig[:len(seg)]
 
-    t = 0.0
-    k = 0
-    while t < seconds:
+    for k in range(len(prog) * cycles):
+        t = k * beat * 4
         root, q = prog[k % len(prog)]
         third = 3 if q == 'm' else 4
         tones = [root, root + third, root + 7, root + 12]
@@ -136,19 +136,18 @@ def synth_music(path, seconds):
             note(t + j * beat / 2, f(tones[iv]), beat * 2, 0.10 if j % 2 else 0.13)
         if k % 2 == 1:
             note(t + beat * 2.5, f(tones[3] + 7), beat * 2, 0.06)
-        t += beat * 4
-        k += 1
-    # simple reverb: decaying noise convolution
+    # simple reverb: decaying noise convolution (FFT)
     ir_len = int(sr * 1.6)
     rng = np.random.default_rng(7)
     ir = rng.standard_normal(ir_len) * np.exp(-np.arange(ir_len) / sr * 3.5) * 0.02
     ir[0] = 1.0
-    wet = np.convolve(out, ir)[:len(out)]
-    sig = wet[:n]
+    nfft = 1 << (len(out) + ir_len - 1).bit_length()
+    wet = np.fft.irfft(np.fft.rfft(out, nfft) * np.fft.rfft(ir, nfft), nfft)[:len(out)]
+    # wrap the tail onto the head so the loop point is seamless
+    sig = wet[:n].copy()
+    tail = wet[n:]
+    sig[:len(tail)] += tail
     sig = sig / (np.abs(sig).max() + 1e-9) * 0.5
-    fade = int(sr * 3)
-    sig[-fade:] *= np.linspace(1, 0, fade)
-    sig[:fade] *= np.linspace(0, 1, fade)
     pcm = (sig * 32767).astype(np.int16)
     with wave.open(path, 'wb') as w:
         w.setnchannels(1)
@@ -245,14 +244,26 @@ def main():
     if only:
         print('partial build done')
         return
-    # subtitles + concat list
+    music = os.path.join(B, 'music_loop.wav')
+    if not os.path.exists(music):
+        synth_music(music)
+    name = 'Reminiscences_of_a_Stock_Operator_Motion_Comic'
+    episodes = sorted({s['ep'] for s in shots})
+    ep_names = {0: 'EP00_Prologue', 13: 'EP13_Finale'}
+    parts = [('ALL', name, shots)] + [(e, f"{name}_{ep_names.get(e, f'EP{e:02d}')}", [s for s in shots if s['ep'] == e]) for e in episodes]
+    for tag, base, group in parts:
+        assemble(group, timing, base, music, with_chapters=(tag == 'ALL'))
+    print(f'final: {len(parts)} files in {OUTD}')
+
+
+def assemble(group, timing, base, music, with_chapters=False):
+    """Concatenate shot clips into one MP4, add the music bed, and write SRTs (+ chapter list)."""
     t = 0.0
-    srt_bi, srt_en, srt_zh = [], [], []
-    chapters = []
+    srt_bi, srt_en, srt_zh, chapters = [], [], [], []
     k = 1
-    concat = os.path.join(CLIPS, 'all.txt')
+    concat = os.path.join(CLIPS, base + '.txt')
     with open(concat, 'w') as fh:
-        for s in shots:
+        for s in group:
             tot, fr = timing[s['id']]
             fh.write(f"file '{os.path.join(CLIPS, s['id'] + '.mp4')}'\n")
             if s.get('chapter'):
@@ -267,25 +278,25 @@ def main():
                     k += 1
                 lt += n / FPS
             t += tot
-    name = 'Reminiscences_of_a_Stock_Operator_Motion_Comic'
     for suf, data in (('bilingual', srt_bi), ('en', srt_en), ('zh', srt_zh)):
-        open(os.path.join(OUTD, f'{name}.{suf}.srt'), 'w', encoding='utf-8').write('\n'.join(data))
-    with open(os.path.join(OUTD, 'chapters.txt'), 'w', encoding='utf-8') as fh:
-        for ct, title in chapters:
-            m, s_ = divmod(int(ct), 60)
-            h, m = divmod(m, 60)
-            fh.write(f'{h:d}:{m:02d}:{s_:02d} {title}\n')
-    joined = os.path.join(B, 'joined.mp4')
+        open(os.path.join(OUTD, f'{base}.{suf}.srt'), 'w', encoding='utf-8').write('\n'.join(data))
+    if with_chapters:
+        with open(os.path.join(OUTD, 'chapters.txt'), 'w', encoding='utf-8') as fh:
+            for ct, title in chapters:
+                m, s_ = divmod(int(ct), 60)
+                h, m = divmod(m, 60)
+                fh.write(f'{h:d}:{m:02d}:{s_:02d} {title}\n')
+    joined = os.path.join(B, base + '.joined.mp4')
     run(['ffmpeg', '-y', '-v', 'error', '-f', 'concat', '-safe', '0', '-i', concat, '-c', 'copy', joined])
     dur = probe_dur(joined)
-    music = os.path.join(B, 'music.wav')
-    if not os.path.exists(music) or abs(probe_dur(music) - dur) > 1:
-        synth_music(music, dur)
-    final = os.path.join(OUTD, f'{name}.mp4')
-    run(['ffmpeg', '-y', '-v', 'error', '-i', joined, '-i', music, '-filter_complex',
-         '[1:a]volume=0.10[m];[0:a][m]amix=inputs=2:duration=first:normalize=0,alimiter=limit=0.95[a]',
-         '-map', '0:v', '-map', '[a]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-movflags', '+faststart', final])
-    print(f'final: {final}  ({dur / 60:.1f} min)')
+    final = os.path.join(OUTD, f'{base}.mp4')
+    run(['ffmpeg', '-y', '-v', 'error', '-i', joined, '-stream_loop', '-1', '-i', music, '-filter_complex',
+         f'[1:a]volume=0.10,afade=t=in:d=3,afade=t=out:st={max(0, dur - 4):.2f}:d=4[m];'
+         '[0:a][m]amix=inputs=2:duration=first:normalize=0,alimiter=limit=0.95[a]',
+         '-map', '0:v', '-map', '[a]', '-t', f'{dur:.3f}', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k',
+         '-movflags', '+faststart', final])
+    os.remove(joined)
+    print(f'  {os.path.basename(final)}  {dur / 60:.1f} min')
 
 
 if __name__ == '__main__':
