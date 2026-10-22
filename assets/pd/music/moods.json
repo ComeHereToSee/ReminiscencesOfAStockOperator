@@ -1,0 +1,6 @@
+{
+  "calm": {"files": ["calm_chopin_nocturne_op9no2_musopen.mp3", "calm_chopin_nocturne_op72no1_e_minor_musopen.mp3", "calm_schumann_traumerei_kindler_cello_1916.mp3", "calm_chopin_prelude_op28no15_raindrop_musopen.mp3"], "gain": 0.9, "offset": 0},
+  "rag": {"files": ["ragtime_maple_leaf_rag_new_orleans_rhythm_kings_1923.mp3", "ragtime_desecration_rag_felix_arndt_1914.mp3", "ragtime_1915_rag_mike_bernard_1913.mp3"], "gain": 0.75, "offset": 2},
+  "tense": {"files": ["dark_chopin_prelude_op28no24_d_minor_musopen.mp3", "dark_rachmaninoff_prelude_csharp_minor_schendel_1915.mp3", "dark_chopin_nocturne_op48no1_c_minor_musopen.mp3"], "gain": 0.85, "offset": 0},
+  "dark": {"files": ["dark_chopin_nocturne_op48no1_c_minor_musopen.mp3", "dark_rachmaninoff_prelude_csharp_minor_schendel_1915.mp3"], "gain": 0.85, "offset": 30}
+}

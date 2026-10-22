@@ -2,3 +2,6 @@ assets/fonts/*.ttf
 build/
 output/
 __pycache__/
+assets/pd/photos/
+assets/pd/music/*.mp3
+assets/pd/music/*.wav
