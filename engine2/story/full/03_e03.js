@@ -28,9 +28,9 @@ module.exports = (h) => {
         en: 'Patterns can fail. Conditions decide: bullish conditions make a bull market, even in a war.', zh: '图形会失灵，形势才是关键：形势看涨就是牛市，战争也改变不了。' }],
     lines: [
       N("Tape reading is more than arithmetic. My rule: if a stock doesn't act right, don't touch it.", '读纸带不只是算术。我的规则是：一只股票走得不对劲，就别碰它。'),
-      N("Charts are old, too. A Frenchman's curves claimed to explain Keene's campaigns; Keene found them right, but too slow.", '图表也由来已久。有个法国人声称他的曲线能解释基恩的战役；据说基恩认为图表是对的，只是太慢。'),
+      N("Charts are old, too. A Frenchman's curves claimed to explain Keene's campaigns; Keene reportedly called them right, but too slow.", '图表也由来已久。有个法国人声称他的曲线能解释基恩的战役；据说基恩认为图表是对的，只是太慢。'),
       N('One office used daily charts to check whether a tip deserved a rise: one more tipster.', '有家营业部用每日走势图核对某条消息配不配上涨：不过是又多了一个荐股人。'),
-      N('A trained mathematician won with charts for years, until the World War broke the precedents. His following lost millions.', '一位训练有素的数学家靠图表赢了好多年，直到世界大战打破了先例。他和追随者们亏掉了数百万。'),
+      N('A mathematician won with charts for years, until the World War broke the precedents and his following lost millions.', '一位数学家靠图表赢了好多年，直到世界大战打破了先例，他和追随者们亏掉了数百万。'),
       N("Yet even a war can't stop a bull market when conditions are bullish. To make money, appraise conditions.", '然而形势看涨时，连战争也挡不住牛市。要赚钱，就去判断形势。'),
     ] });
 
@@ -87,12 +87,12 @@ module.exports = (h) => {
       { type: 'bubble', at: 'L1', until: 'L2', x: 980, y: 70, w: 580, en: 'I got this tip from a friend of an insider. What do you think I ought to do?', zh: '我从一个内部人的朋友那儿得到这条消息。您看我该怎么办？', tx: 1250, ty: 600 },
       { type: 'bubble', at: 'L2', until: 'L3', x: 360, y: 90, w: 600, size: 40, en: "You know, it's a bull market!", zh: '你知道的，这是牛市！', tx: 760, ty: 590 },
       { type: 'note', at: 'L3', x: 1250, y: 110, w: 630, h: 205, size: 30, fill: PINK,
-        en: 'Fanning\'s tale: took 3 points on a Keene tip. The stock then rose 24 points in 3 days.', zh: '范宁的故事：靠基恩的消息赚了3点就跑。随后那只股票三天涨了24点。' }],
+        en: 'Fanning overheard Keene give an order, and took 3 points. The stock then rose 24 in 3 days.', zh: '范宁偷听到基恩下单，赚了3点就跑。随后那只股票三天涨了24点。' }],
     lines: [
       N('One old customer was different: he never gave advice or bragged. They called him Turkey, for his thick chest and strut.', '有一位老客户与众不同：他从不给人建议，也从不吹嘘。大家叫他“火鸡”，因为他胸膛厚实、走路昂首阔步。'),
       L('manager', 'I got this tip from a friend of an insider. What do you think I ought to do?', '我从一个内部人的朋友那儿得到这条消息。您看我该怎么办？', { speak: 'cust' }),
       L('partridge', "You know, it's a bull market!", '你知道的，这是牛市！', { speak: 'partridge' }),
-      N("He heard John Fanning's tale just as politely, for the fourth time: three points taken on a Keene tip, then a twenty-four point rise.", '他同样礼貌地第四次听约翰·范宁讲那段往事：靠基恩的消息赚了三个点就跑，结果那只股票随后涨了二十四个点。'),
+      N("He heard John Fanning's tale just as politely, for the fourth time: three points taken after overhearing Keene, then a twenty-four point rise.", '他同样礼貌地第四次听约翰·范宁讲那段往事：偷听到基恩下单后赚了三个点就跑，结果那只股票随后涨了二十四个点。'),
     ] });
 
   // ---- the grades of sucker ----

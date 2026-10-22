@@ -190,7 +190,7 @@ module.exports = (h) => {
     ] });
 
   lesson(h, { id: 'e04_busted', tag: ['MISTAKE', '错误'], tagColor: RED, title: ['Right on Direction, Wrong on Timing', '方向对了，时机错了'],
-    gest: ['explain', 'point', 'shrug', 'despair'], expr: [null, 'frown', 'worry', 'sad'],
+    gest: ['explain', 'point', 'shrug', 'despair', 'chin'], expr: [null, 'frown', 'worry', 'sad', 'think'],
     items: [{ type: 'chart', at: 0.4, x: 470, y: 220, w: 1000, h: 620, xr: [0, 10], yr: [84, 118], yTicks: [], illustrative: true, cursor: false,
         title: ['His 1906 short campaign', '他1906年的做空战役'],
         series: [{ pts: [[0, 100], [1, 96], [2, 103], [2.6, 101], [3, 99], [3.8, 104], [4.4, 102], [5, 100], [6, 106], [6.6, 103], [7.2, 101], [8.2, 107], [9, 105], [10, 110]], color: BLUE,
@@ -199,15 +199,16 @@ module.exports = (h) => {
           { x: 2, y: 103, at: 'L1', en: 'Rally: covers', zh: '反弹：平仓', dx: -90, dy: -142, w: 260 },
           { x: 3, y: 99, at: 'L2@exactly', en: 'Right for one day', zh: '只对了一天', dx: 65, dy: 62, w: 260 },
           { x: 10, y: 110, at: 'L3@cleaned', en: 'Rally: cleaned out', zh: '反弹：被洗光', dx: -330, dy: -108, w: 260, fill: PINK }] },
-      { type: 'note', at: 'L1@position', x: 1500, y: 220, w: 390, h: 260, size: 34, fill: YEL,
-        en: '"My position was right, but my play was wrong."', zh: '“我的立场是对的，但打法错了。”' },
-      { type: 'note', at: 'L3@twenty', x: 1500, y: 505, w: 390, h: 335, size: 34, fill: PINK, anim: 'slideU',
-        en: 'Nearly 27 years old. 12 years in the game. Right, and busted.', zh: '快27岁，入行12年。看对了，却破产了。' }],
+      { type: 'note', at: 'L1@position', x: 1500, y: 220, w: 390, h: 300, size: 30, fill: YEL,
+        en: '"My position was right, but my play was wrong." Selling only into a falling market: wrong, but not hurt.', zh: '“立场是对的，打法错了。”只在下跌中卖出：会错，但不会受伤。' },
+      { type: 'note', at: 'L3@twenty', x: 1500, y: 540, w: 390, h: 300, size: 32, fill: PINK, anim: 'slideU',
+        en: 'Nearly 27, twelve years in the game: right, and busted. He saw the storm through a telescope.', zh: '快27岁，入行12年：看对了，却破产了。他是用望远镜看的风暴。' }],
     lines: [
       N('My first trades usually showed a profit, so I plunged short. The market went off, came back, then rose steadily.', '我的第一笔交易通常会有盈利，于是我重仓做空。市场跌了，又涨回来，然后稳步上涨。'),
       N("I covered; holding on, I couldn't have bought a postcard. My position was right, my play wrong: I'd sold too soon.", '我平了仓；要是扛着不平，我连一张明信片都买不起了。立场是对的，打法错了：我卖得太早。'),
       N('When the rally faltered I sold again, and was right for exactly one whole day. Rally after rally took another bite.', '反弹乏力时我又卖空，结果只对了整整一天。一次又一次的反弹，每次都咬掉我一块。'),
       N('At last I sold all I could; stocks rallied once more, and it cleaned me out. Nearly twenty-seven: right, and busted!', '最后我卖空了能卖的全部；股市又一次反弹，把我洗光了。快二十七岁：看对了，却破产了！'),
+      N("I'd been looking through a telescope: the storm was much farther off than it seemed.", '我一直是在用望远镜看：风暴比看上去远得多。'),
     ] });
 
   // ---- the dollar heap ----
@@ -244,7 +245,7 @@ module.exports = (h) => {
       { id: 'harding', x: 1250, y: 890, s: 1.15, flip: true, pose: 'relaxed', expr: 'neutral',
         acts: [{ t: 'L2', pose: 'chin', expr: 'think' }, { t: 'L3', pose: 'explain', expr: 'worry' }] }],
     items: [{ type: 'caption', at: 0.3, en: 'Harding Brothers, New York. He waits, watchfully.', zh: '纽约，哈丁兄弟公司。他小心地等待着。' },
-      { type: 'newspaper', screen: true, at: 'L1', until: 'L2', x: 1460, y: 330, w: 640, h: 420, rot: 4, paper: 'Financial Notices', en: 'GREAT NORTHERN & NORTHERN PACIFIC: NEW STOCK, PAYABLE IN INSTALLMENTS', zh: '大北方与北太平洋：发行新股，可分期缴款', size: 34 },
+      { type: 'newspaper', screen: true, at: 'L1', until: 'L2', x: 1480, y: 290, w: 620, h: 380, rot: 4, paper: 'Financial Notices', en: 'GREAT NORTHERN & NORTHERN PACIFIC: NEW STOCK, PAYABLE IN INSTALLMENTS', zh: '大北方与北太平洋：发行新股，可分期缴款', size: 34 },
       { type: 'bubble', at: 'L2', until: 'L3', x: 280, y: 70, w: 620, en: "Ed, the time to sell is right now. That ad is the bankers' signed confession. What they fear is what I hope.", zh: '埃德，现在就是卖出的时候。这则广告等于银行家们签字画押的供状。他们害怕的，正是我所盼望的。', tx: 700, ty: 590 },
       { type: 'bubble', at: 'L3', until: 'L4', x: 960, y: 80, w: 600, en: 'Wait. This market has big rallies. Prices may be lower, but the operation will be safer.', zh: '等一等。这个市场常有大反弹。等下去价格也许更低，但操作更安全。', tx: 1250, ty: 600 },
       { type: 'stamp', screen: true, at: 'L4', x: 1450, y: 330, en: 'SOLD: TOO LITTLE', zh: '卖了：太少', size: 66 }],
@@ -299,7 +300,7 @@ module.exports = (h) => {
   lesson(h, { id: 'e04_reading', tag: ['CASE STUDY · READING', '案例 · 雷丁'], title: ['Reading: The Stock Everyone Feared to Sell', '雷丁：人人不敢卖空的股票'], titleSize: 50,
     gest: ['explain', 'explainR', 'point', 'fist'], expr: [null, null, 'determined', 'smile'],
     items: [{ type: 'chart', at: 0.4, x: 470, y: 220, w: 960, h: 620, xr: [0, 10], yr: [86, 118], yTicks: [90, 95, 100, 105, 110, 115], illustrative: true, cursorFmt: 'frac',
-        title: ['Reading, early 1907', '雷丁，1907年初'], xTicks: [[3, 'weeks: holds firm', '数周：坚挺'], [8, 'minutes', '几分钟']],
+        title: ['Reading: the "cornered" stock', '雷丁：所谓“被垄断”的股票'], xTicks: [[3, 'weeks: holds firm', '数周：坚挺'], [8, 'minutes', '几分钟']],
         bands: [{ x0: 0, x1: 6, y0: 109, y1: 118, color: '#9a9182', at: 'L0', en: 'Like the Rock of Gibraltar', zh: '像直布罗陀巨岩' }],
         series: [{ pts: [[0, 111.5], [1, 112], [2, 111], [3, 112.5], [4, 111.5], [5, 112], [6, 111], [6.4, 106], [6.8, 101], [7.2, 97], [7.8, 94], [8.4, 92], [10, 92]], color: '#7a4a22',
           draw: [['L0', 6], ['L3@111', 6], ['L3@111+0.6', 11], ['L3@92', 12]] }],
@@ -313,7 +314,7 @@ module.exports = (h) => {
         en: 'Play no favourites. A stock that defies conditions may be the best short of all.', zh: '不偏袒任何股票。逆形势而行的股票，可能是最好的卖空对象。' }],
     lines: [
       N('Everything gave way except Reading. It stood like the Rock of Gibraltar. Everybody said it was cornered, and selling it was suicide.', '所有股票都垮了，只有雷丁屹立不倒，像直布罗陀巨岩。人人都说它被垄断了，卖空它等于自杀。'),
-      N('The pool had cheap stock, friendly banks, and a member up three million on paper. Room traders tested it and quit.', '那个资金池持股成本低，和银行关系好，有个成员账面盈利超过三百万。场内交易员试探过，都放弃了。'),
+      N('The pool had cheap stock, friendly banks, a member up three million. Room traders tested it and quit. Such pools are illegal today.', '那个资金池持股成本低，和银行关系好，有个成员账面盈利超过三百万。场内交易员试探过，都放弃了。这种资金池如今是违法的。'),
       N("But conditions said down. If Reading didn't fall, my theory was wrong. I figured the Street was simply afraid to sell it.", '可形势说要跌。如果雷丁不跌，我的理论就是错的。我判断，华尔街只是不敢卖它。'),
       N('I gave two brokers each an order to sell four thousand, at once. It was 111; within minutes I covered everything at 92.', '我给两个经纪人各下一张卖四千股的单，同时下。当时它是111；几分钟之内，我在92把全部空单平掉了。'),
     ] });
