@@ -1,0 +1,4 @@
+assets/fonts/*.ttf
+build/
+output/*.mp4
+__pycache__/
