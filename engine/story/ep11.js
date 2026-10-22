@@ -38,7 +38,7 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
     ], caps: [
       { x: 70, y: 690, w: 560, en: 'Imperial Steel: sound, but nobody traded it.', zh: '帝国钢铁：公司扎实，却无人交易。' },
     ], bubbles: [
-      { at: 1, x: 90, y: 230, w: 520, en: 'Sell our holdings for us, at better prices than we could get?', zh: '能替我们出货吗？卖个比我们自己卖更好的价？', tx: 270, ty: 420, until: 2 },
+      { at: 1, x: 70, y: 70, w: 600, en: 'Sell our holdings for us, at better prices than we could get?', zh: '能替我们出货吗？卖个比我们自己卖更好的价？', tx: 280, ty: 420, until: 2 },
     ], sfx: [
       { at: 3, x: 1620, y: 420, t: 'NO CASH', zh: '不要现金', size: 70, color: '#fff', font: 'cond', rot: -6 },
       { at: 3, x: 1500, y: 600, t: 'CALLS: 100,000 SH · 70 → 100', zh: '十万股看涨期权 · 70→100', size: 50, color: '#f6d77a', font: 'cond', rot: -4 },
@@ -105,7 +105,7 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
     ], caps: [
       { x: 70, y: 690, w: 560, en: 'Petroleum Products: a pool of 100,000+ shares it couldn\'t sell.', zh: '石油产品：资金池手握十万多股，卖不出去。' },
     ], bubbles: [
-      { at: 1, x: 80, y: 250, w: 480, en: 'Take charge of it, as a favour to me!', zh: '就当帮我个忙，接手吧！', tx: 250, ty: 420, until: 2 },
+      { at: 1, x: 70, y: 70, w: 540, en: 'Take charge of it, as a favour to me!', zh: '就当帮我个忙，接手吧！', tx: 280, ty: 420, until: 2 },
       { at: 3, x: 1000, y: 70, w: 520, en: 'Sell for what you can get. The only way to sell is to sell.', zh: '能卖什么价就卖什么价。卖出的唯一办法就是卖。', tx: 1220, ty: 400 },
       { at: 4, x: 1460, y: 200, w: 380, kind: 'shout', en: 'Oh, no! Never!', zh: '不行！绝对不行！', tx: 1640, ty: 410 },
     ], lines: [
@@ -207,7 +207,7 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
       P(b, { at: 2, bg: 'office', bgo: { board: [['MARSHALL NAT\'L BANK'], ['LOANS: $$$']] },
         chars: [ch('larry', b, 0.5, 0.75, { expr: 'grin', pose: 'money', hair: '#3a2a1a', suit: '#5a4a6a', hy: 0.64 })] }),
     ], bubbles: [
-      { at: 0, x: 80, y: 220, w: 470, en: 'I want you to do me a great favour.', zh: '我想请你帮个大忙。', tx: 250, ty: 420, until: 1 },
+      { at: 0, x: 70, y: 70, w: 540, en: 'I want you to do me a great favour.', zh: '我想请你帮个大忙。', tx: 280, ty: 420, until: 1 },
     ], caps: [
       { at: 2, x: 1005, y: 720, w: 420, en: 'The boy banker.', zh: '少年银行家。' },
     ], lines: [

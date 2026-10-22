@@ -133,7 +133,7 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
       [['When you lose', '你亏钱时'], ['The house wins', '店家赚钱'], ['Another trader wins', '另一位交易者赚钱']],
     ], reveal: true, rowAt: [0, 1, 2, 2, 3, 4], hl: [4] },
   ], lines: [
-    L('host', 'How did a bucket shop work? You handed a clerk your money. He wrote the last tape price and the time on a ticket.', '对赌行怎么运作？你把钱交给职员，他把纸带上最后的价格和时间写在单据上。'),
+    L('host', 'How did it work? You handed a clerk your money; he wrote the last tape price and the time on a ticket.', '对赌行怎么运作？你把钱交给职员，他把纸带上最后的价格和时间写在单据上。'),
     L('host', 'No share was ever bought. You bet against the house on the printed price, known before you bet.', '它从不真正买入一股。你是在跟店家赌打印出来的价格，下注前就知道这个价。'),
     L('host', 'To close, the clerk marked the next price and the cashier paid. If the price ran past your margin, the ticket closed itself.', '平仓时，职员标上最新价，出纳付钱。价格一旦超出保证金，单子就自动平仓。'),
     L('host', 'In boiling bull markets, small shops took both commissions up front. A buy at 20 was written as 20¼.', '在火热的牛市里，小店会先把买卖两笔佣金都扣掉：20的买单写成20¼。'),
@@ -224,7 +224,7 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
   ], lines: [
     L('host', 'Within ten days, the Cosmopolitan got a dose of its own medicine, from a Stock Exchange member.', '不到十天，"大都会"就尝到了自己的药。出手的是一位纽约证券交易所会员。'),
     L('host', 'He sent thirty-five men into its main office and bigger branches. At a fixed hour, they all bought the same stock.', '他派了三十五个人进入它的总店和各大分店。在约定时刻，他们同时买入同一只股票。'),
-    L('host', 'Then he went onto the Exchange floor and bid the price up three or four points. The agents cashed in, as arranged.', '然后他走进交易所场内，把价格抬高三四个点。代理人按计划兑现。'),
+    L('host', 'Then he went onto the Exchange floor and bid the price up three or four points. The agents cashed in.', '然后他走进交易所场内，把价格抬高三四个点。代理人随即兑现。'),
     L('host', 'He netted over seventy thousand, then hit shops in other cities. A favourite was Western Union: buy, sell two points up, go short, take three more.', '他净赚七万多美元，又去别的城市如法炮制。他最爱西联电报：买入，涨两点卖出，再做空，又赚三点。'),
     L('larry', 'There is nothing new in Wall Street. Whatever happens in the market today has happened before, and will happen again.', '华尔街没有新鲜事。今天市场上发生的一切，以前都发生过，以后还会再发生。'),
   ] });
@@ -258,7 +258,7 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
     L('host', 'Why did the bucket-shop champion go broke? The game was different, and he played it ignorantly.', '对赌行的常胜将军，为什么在正规经纪行输光？因为游戏变了，而他对新游戏一无所知。'),
     L('host', 'In the shop, he knew his price before he traded. At Fullerton\'s, he learned it only when the report came back.', '在对赌行，交易前就知道价格。在富勒顿，要等回报回来才知道。'),
     L('host', 'And the tape lagged. When it printed Sugar at 105, the floor might already be at 104 or 103.', '而且纸带滞后。纸带打出糖业105时，场内可能已是104或103。'),
-    L('host', 'His own orders now moved prices. A big sale pushed the price down against him. In the shop, that never mattered.', '现在他自己的订单会推动价格，大笔卖出会把价格压向对他不利的方向。在对赌行，这从来不是问题。'),
+    L('host', 'His own orders now moved prices. A big sale pushed the price down against him.', '现在他自己的订单会推动价格，大笔卖出会把价格压向对他不利的方向。'),
     L('host', 'And margin was about ten percent. A call that made three thousand dollars in a shop might not make a cent here.', '保证金约为百分之十。在对赌行能赚三千美元的判断，在这里可能一分不赚。'),
   ] });
 
@@ -331,7 +331,7 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
       { at: 3, x: 1525, y: 560, t: '$5,100 DUE', zh: '应付5,100美元', size: 62, color: '#d9a441', font: 'cond' },
     ],
     lines: [
-      L('larry', 'Back at Fullerton\'s, old McDevitt told me Teller had opened a bucket shop in Hoboken, with no limit on the play.', '回到富勒顿公司，老麦克德维特告诉我，特勒在霍博肯开了一家对赌行，下注不设上限。'),
+      L('larry', 'Old McDevitt told me Teller had opened a bucket shop in Hoboken, with no limit on the play.', '在富勒顿公司，老麦克德维特告诉我，特勒在霍博肯开了一家对赌行，下注不设上限。'),
       L('larry', 'That Saturday I went over. The manager kept pitching me, and urged me to hurry: the market closed at noon.', '那个周六我过去了。经理一个劲儿地游说我，还催我快点：中午就收盘了。'),
       L('larry', 'At 11:15 I said all right, put up two thousand dollars in cash, and gave him selling orders in several stocks.', '十一点一刻，我说"好吧"，交了两千美元现金，下了好几只股票的卖空单。'),
       L('larry', 'Prices slid off, just as I\'d figured. I closed out just before the last-minute rally. Fifty-one hundred dollars was coming to me.', '价格果然如我所料下滑。我在最后几分钟的反弹之前平了仓。他们应付我五千一百美元。'),
@@ -357,7 +357,7 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
   ], lines: [
     L('host', 'Why that Saturday? After a week-long rise, the Saturday bank statement was sure to show a big drop in surplus reserve.', '为什么选那个周六？大盘涨了一整周，周六的银行报表必然显示超额准备金大幅减少。'),
     L('host', 'That gave the room traders their usual excuse to hammer stocks in the last half hour and shake out weak accounts.', '这正好给了场内交易员惯常的借口：在最后半小时打压股价，震出弱势账户。'),
-    L('host', 'They would hit the public\'s favourites, where the most stop orders sat: exactly the stocks Teller\'s customers were long of.', '他们会专打散户最爱、止损单最多的股票，而这些恰恰是特勒的客户重仓做多的。'),
+    L('host', 'They\'d hit the public\'s favourites, where most stop orders sat: exactly what Teller\'s customers were long of.', '他们会专打散户最爱、止损单最多的股票，而这些恰恰是特勒的客户重仓做多的。'),
     L('host', 'So he sold short at 11:15, rode the slide, and closed out before the traders\' own covering rally in the final five minutes.', '于是他在十一点一刻做空，吃下这段下跌，并在最后五分钟交易员回补反弹之前平仓。'),
   ] });
 
@@ -392,7 +392,7 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
   ] });
 
   shot({ id: 'p01_mistakes', kind: 'info', tag: { en: 'MISTAKE REVIEW', zh: '错误复盘' }, title: { en: 'Mistakes of Chapters I – II', zh: '第一、二章的错误' }, els: [
-    { type: 'table', x: 70, y: 260, w: 1780, size: 27, widths: [0.3, 0.37, 0.33], cols: [['Mistake', '错误'], ['Why', '原因'], ['Rule', '规则']], rows: [
+    { type: 'table', x: 70, y: 260, w: 1780, size: 25, widths: [0.3, 0.37, 0.33], cols: [['Mistake', '错误'], ['Why', '原因'], ['Rule', '规则']], rows: [
       [['Trading all the time in the shops, for excitement', '在对赌行为了刺激而频繁交易'], ['Most days there was no edge; he gambled instead of waiting for form', '大多数日子并无优势；他没等到形态出现就去赌'], ['Trade only when precedents favour you', '只在先例支持你时交易']],
       [['Using the bucket-shop method at Fullerton\'s', '把对赌行打法搬到富勒顿'], ['Tape lag, unknown fills, his own size, 10% margin', '纸带滞后、成交价未知、自身单量、10%保证金'], ['Learn the mechanics of the market you trade in', '先弄懂你所交易市场的机制']],
       [['Thinking that beating the shops meant beating the market', '以为赢了对赌行就是赢了市场'], ['He knew only one part of the game: short-term fluctuations', '他只懂游戏的一部分：短线波动'], ['Beating the shop ≠ beating the game', '赢了对赌行≠赢了这场游戏']],

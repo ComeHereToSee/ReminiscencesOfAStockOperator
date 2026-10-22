@@ -9,13 +9,13 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
     const [a, b] = HALF;
     shot({ id: 'p02_harding', kind: 'comic', panels: [
       P(a, { bg: 'office', chars: [ch('larry', a, 0.5, 1.05, { expr: 'smile', hy: 0.5, exprAt: { 1: 'grin' } })] }),
-      P(b, { at: 2, bg: 'office', bgo: { board: [['SUGAR', 'STEEL'], ['—', '—']] }, chars: [ch('larry', b, 0.5, 1.05, { expr: 'worry', hy: 0.5, exprAt: { 3: 'sad' } })] }),
+      P(b, { at: 2, bg: 'office', chars: [ch('larry', b, 0.38, 1.05, { expr: 'worry', hy: 0.5, exprAt: { 3: 'sad' } })] }),
     ], caps: [
       { x: 70, y: 70, w: 520, en: 'Chapter III. First day in New York: Harding Brothers.', zh: '第三章。在纽约的第一天：哈丁兄弟公司。' },
       { at: 1, x: 70, y: 700, w: 440, en: 'Bought 100 at 84 → sold at 85', zh: '84买入100股→85卖出' },
       { at: 2, x: 1005, y: 70, w: 460, en: 'Two hours. 1,100 shares, in and out.', zh: '两小时，进进出出共1,100股。' },
     ],
-    sfx: [{ at: 2, x: 1650, y: 330, t: '−$1,100', zh: '当天净亏', size: 96, font: 'cond' }],
+    sfx: [{ at: 2, x: 1690, y: 560, t: '−$1,100', zh: '当天净亏', size: 96, font: 'cond' }],
     lines: [
       L('larry', 'My first day in New York, before one o\'clock, I opened an account at Harding Brothers, members of the Stock Exchange.', '到纽约的第一天，不到一点钟，我就在证券交易所会员哈丁兄弟公司开了户。'),
       L('larry', 'Same quotation board, same ticker, same kind of customers. I bought a hundred at 84 and sold at 85 within half an hour.', '同样的报价板、同样的行情机、同样的客户。我在84买了一百股，不到半小时就在85卖掉。'),
@@ -29,7 +29,7 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
     shot({ id: 'p02_boom', kind: 'comic', panels: [
       P(a, { bg: 'floor' }),
       P(b, { at: 1, bg: 'office', chars: [ch('trader', b, 0.5, 0.62, { hat: 'top', hatColor: '#141414', mus: 'walrus', expr: 'grin', stout: true, hy: 0.58 })] }),
-      P(c, { at: 2, bg: 'floor', chars: [ch('keene', c, 0.5, 0.62, { expr: 'determined', hy: 0.58 })] }),
+      P(c, { at: 2, bg: 'office', bgo: { board: [['U.S. STEEL'], ['▲'], ['▲']] }, chars: [ch('keene', c, 0.5, 0.62, { expr: 'determined', hy: 0.58 })] }),
     ], caps: [
       { x: 810, y: 70, w: 560, en: '1901: the public goes stock mad.', zh: '1901年：公众为股票疯狂。' },
       { at: 1, x: 810, y: 640, w: 1040, size: 24, zsize: 21, en: 'High rollers: Gates, Drake, Loyal Smith · the Reid-Leeds-Moore crowd · Schwab, Frick, Phipps and the Pittsburgh coterie', zh: '豪赌客：盖茨、德雷克、洛亚尔·史密斯·里德-利兹-摩尔集团·施瓦布、弗里克、菲普斯与匹兹堡帮' },
@@ -54,7 +54,7 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
       series: [{ pts: [[0, 80], [1.5, 82], [3, 87], [4.5, 86], [6, 95], [7.5, 101], [9, 110]], color: '#2f7d3a', reveal: [1, 1, 1, 1, 1, 1, 2] }],
       hlines: [{ v: 110, at: 2, label: ['Sold near 110', '约110卖出'], color: '#2f7d3a', x1: 8.6 }],
       notes: [
-        { x: 0, y: 80, at: 1, en: 'Long 1,000 shares (about 30 points below the sale)', zh: '做多1,000股（约比卖价低30点）', dx: 30, dy: 30, w: 320 },
+        { x: 0, y: 80, at: 1, en: 'Long 1,000 shares (about 30 points below the sale)', zh: '做多1,000股（约比卖价低30点）', dx: 40, dy: -235, w: 320 },
         { x: 9, y: 110, at: 2, en: '+30 points', zh: '赚30点', dx: -200, dy: 60, w: 160 },
       ], illustrative: true },
   ], lines: [
@@ -101,15 +101,15 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
   }
 
   shot({ id: 'p02_lag', kind: 'info', tag: { en: 'CASE STUDY', zh: '案例分析' }, title: { en: 'Trading on Prices That No Longer Exist', zh: '用已不存在的价格做决策' }, els: [
-    { type: 'line', x: 70, y: 260, w: 1040, h: 555, xr: [0, 10], yr: [70, 115], yTicks: [80, 90, 100, 110], yLabel: ['Price (illustrative)', '价格（示意）'],
+    { type: 'line', x: 70, y: 260, w: 1040, h: 555, xr: [0, 10], yr: [70, 125], yTicks: [80, 90, 100, 110], yLabel: ['Price (illustrative)', '价格（示意）'],
       series: [
-        { pts: [[0, 110], [2, 106], [4, 100], [6, 97], [8, 95], [10, 94]], color: '#2f5d8a', label: ['Tape (lagging)', '纸带（滞后）'] },
-        { pts: [[0, 108], [2, 96], [4, 81], [5, 79], [6, 86], [8, 96], [10, 99]], color: '#b8322a', label: ['Real floor price', '场内真实价格'], labelBelow: true, at: 1 },
+        { pts: [[0, 110], [2, 106], [4, 100], [6, 97], [8, 94], [10, 92]], color: '#2f5d8a', label: ['Tape (lagging)', '纸带（滞后）'], labelBelow: true },
+        { pts: [[0, 108], [2, 96], [4, 81], [5, 79], [6, 86], [8, 96], [10, 99]], color: '#b8322a', label: ['Real floor price', '场内真实价格'], at: 1 },
       ],
       notes: [
-        { x: 4, y: 100, at: 1, en: 'He sees 100 and sells', zh: '他看到100就卖', dx: 30, dy: -95, w: 230 },
+        { x: 4, y: 100, at: 1, en: 'He sees 100 and sells', zh: '他看到100就卖', dx: -120, dy: -160, w: 230 },
         { x: 4, y: 81, at: 1, en: 'Filled ≈ 80', zh: '实际成交≈80', dx: -250, dy: 10, w: 190 },
-        { x: 8, y: 96, at: 1, en: 'His buy orders: 15 points above his figure', zh: '买单：比预计高15点', dx: -330, dy: -170, w: 290 },
+        { x: 8, y: 96, at: 1, en: 'His buy orders: 15 points above his figure', zh: '买单：比预计高15点', dx: -130, dy: -200, w: 260 },
       ], illustrative: true },
     { type: 'bars', at: 1, x: 1150, y: 260, w: 700, h: 555, max: 40, vsize: 30, bars: [
       { v: 20, vl: '20 pts', en: 'Selling: fills vs tape', zh: '卖出：成交比纸带低', color: '#b8322a', at: 1 },
@@ -129,7 +129,7 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
       [['When the ticker lags', '行情机滞后时'], ['The market gets away from you', '市场从你手边溜走'], ['You get in or out, at a cost', '一定能进出，但有代价']],
       [['What it really was for him', '对他来说意味着什么'], ['The old bucket-shop method, poorly adapted', '把老一套对赌行打法生搬硬套'], ['Taking his chances with the market', '在市场里承担应有的风险']],
     ], reveal: true, rowAt: [0, 1, 1] },
-    { type: 'box', at: 2, x: 70, y: 640, w: 1780, h: 140, anchor: 'middle', color: '#f3c6c0', size: 32, en: 'But he kept trading in and out with "a modified but still defective method". By early fall, cleaned out again.', zh: '但他仍用一套"改良过却依然有缺陷的方法"进进出出。到初秋，他再次输光。' },
+    { type: 'box', at: 2, x: 70, y: 640, w: 1780, h: 140, anchor: 'middle', color: '#f3c6c0', size: 32, en: 'But he kept trading in and out with a modified, still defective method. By early fall, cleaned out again.', zh: '但他仍用一套改良过却依然有缺陷的方法进进出出。到初秋，他再次输光。' },
   ], lines: [
     L('larry', 'I never could trade with a limit. I\'m trying to beat the market, not a particular price. When I think I should sell, I sell.', '我从来没法用限价单交易。我要战胜的是市场，而不是某个特定价格。我认为该卖，就卖。'),
     L('host', 'For him, limit orders were just the bucket-shop method, poorly adapted. When he tried them, the market simply got away from him.', '对他来说，限价单不过是把对赌行的老办法生搬硬套。他一用，市场就从他手边溜走。'),
@@ -197,7 +197,7 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
     const [a, b] = HALF;
     shot({ id: 'p02_home', kind: 'comic', panels: [
       P(a, { bg: 'bucketshop', chars: [ch('clerk', a, 0.28, 0.95, { expr: 'angry', pose: 'cross' }), ch('friend', a, 0.72, 0.95, { expr: 'shock', flip: true })] }),
-      P(b, { at: 1, bg: 'office', chars: [ch('agent', b, 0.3, 0.95, { expr: 'grin', pose: 'point', hat: 'bowler' }), ch('larry', b, 0.74, 0.95, { expr: 'think', pose: 'chin', flip: true, exprAt: { 3: 'frown' } })] }),
+      P(b, { at: 1, bg: 'office', chars: [ch('agent', b, 0.3, 0.95, { expr: 'grin', hat: 'bowler' }), ch('larry', b, 0.74, 0.95, { expr: 'think', pose: 'chin', flip: true, exprAt: { 3: 'frown' } })] }),
     ], caps: [
       { x: 70, y: 730, w: 420, en: 'Chapter IV. Back home.', zh: '第四章。回到家乡。' },
       { at: 1, x: 1005, y: 730, w: 420, en: 'A hotel lobby: "Roberts"', zh: '酒店大堂："罗伯茨"' },
@@ -236,14 +236,14 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
       xTicks: [[0.5, 'Morning', '上午'], [9.5, 'Close', '收盘']],
       series: [{ pts: [[0, 0], [1.5, 0], [2.5, -1.6], [4, -1.5], [6, -1.4], [7.5, -1.4], [8.5, 1.6], [10, 1.6]], color: '#5b3a1e', reveal: [0, 0, 2, 2, 2, 2, 3, 3] }],
       notes: [
-        { x: 2.5, y: -1.6, at: 2, en: 'His real sale of 100 prints low = his buy price at 5 shops', zh: '真实卖出100股打出低价＝他在5家的买入价', dx: 40, dy: 25, w: 380 },
-        { x: 8.5, y: 1.6, at: 3, en: 'Real buy-back: the price jumps', zh: '真实买回：价格跳升', dx: -340, dy: -20, w: 260 },
+        { x: 2.5, y: -1.6, at: 2, en: 'His real sale of 100 prints low = his buy price at 5 shops', zh: '真实卖出100股打出低价＝他在5家的买入价', dx: 30, dy: -125, w: 340 },
+        { x: 8.5, y: 1.6, at: 3, en: 'Real buy-back: the price jumps', zh: '真实买回：价格跳升', dx: -270, dy: -100, w: 250 },
       ], illustrative: true },
-    { type: 'cards', x: 1110, y: 260, w: 740, ch: 118, cols: 1, max: 25, items: [
-      { at: 1, en: 'Buy 100 of a once-popular, now inactive stock at each of 5 wire houses. They fill at the next tape price.', zh: '在5家电报行各买100股一只曾经热门、如今冷清的股票。成交价＝纸带下一笔价格。' },
-      { at: 2, en: 'Via the honest Exchange house: SELL 100 at the market, urgently. Net long 400 at a low price.', zh: '通过正规交易所会员行急速市价卖出100股。净多400股，价格很低。' },
-      { at: 3, en: 'Just before the close: BUY the 100 back at any price. The thin stock jumps.', zh: '临近收盘：不计价买回100股。冷门股随即跳升。' },
-      { at: 4, en: 'Sell the 500 bucketed shares at the jump. A point or two each: $600–800 per crack.', zh: '在高点卖出被对赌的500股。每家一两个点：每次净赚600–800美元。', color: '#cfe3c4' },
+    { type: 'cards', x: 1110, y: 260, w: 740, ch: 120, cols: 1, max: 28, items: [
+      { at: 1, en: 'Buy 100 of a dull, once-popular stock at each of 5 wire houses, filled at the next tape price.', zh: '在5家电报行各买100股一只曾经热门、如今冷清的股票，按纸带下一笔价格成交。' },
+      { at: 2, en: 'Honest broker: SELL 100 at the market, urgently. The low print is his buy price. Net long 400.', zh: '通过正规经纪行急速市价卖出100股。打出的低价就是他的买入价。净多400股。' },
+      { at: 3, en: 'Near the close: BUY the 100 back at any price. The thin stock jumps.', zh: '临近收盘：不计价买回100股。冷门股随即跳升。' },
+      { at: 4, en: 'Sell the 500 bucketed shares at the jump: $600–800 per crack.', zh: '在高点卖出被对赌的500股：每次净赚600–800美元。', color: '#cfe3c4' },
     ] },
     { type: 'box', at: 5, x: 70, y: 715, w: 1000, h: 95, anchor: 'middle', color: '#f3c6c0', size: 26, en: '⚠ This is market manipulation, illegal today.', zh: '⚠ 这是操纵市场，在今天属于违法行为。' },
   ], lines: [
@@ -291,8 +291,8 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
       { at: 3, x: 1010, y: 70, w: 560, en: 'Students? You two are the biggest sharks in the United States of America!', zh: '学生？你们俩是全美国最大的鲨鱼！', tx: 1400, ty: 280, kind: 'shout' },
     ],
     sfx: [
-      { at: 1, x: 500, y: 200, t: '≈+$1,500', zh: '一个上午', size: 70, color: '#d9a441', font: 'cond' },
-      { at: 1, x: 760, y: 360, t: '+$500', zh: '空500股糖业', size: 56, color: '#d9a441', rot: 6, font: 'cond' },
+      { at: 1, x: 300, y: 150, t: '≈+$1,500', zh: '一个上午', size: 64, color: '#d9a441', font: 'cond' },
+      { at: 1, x: 720, y: 150, t: '+$500', zh: '空500股糖业', size: 64, color: '#d9a441', rot: 6, font: 'cond' },
     ],
     lines: [
       L('larry', 'Driving to New York with a trader friend, we stopped at a New Haven bucket shop. The orator running it took us for Yale boys.', '我和一位交易员朋友开车去纽约，途中在纽黑文一家对赌行停下。那位口若悬河的经理把我们当成了耶鲁学生。'),
@@ -303,12 +303,12 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
   }
 
   shot({ id: 'p02_postmortem', kind: 'info', tag: { en: 'POST-MORTEM', zh: '自我复盘' }, title: { en: 'He Knew Why He Had Lost, Mostly', zh: '他大致知道自己为什么输' }, els: [
-    { type: 'table', x: 70, y: 260, w: 1780, size: 26, widths: [0.22, 0.18, 0.6], cols: [['When', '何时'], ['Lost', '损失'], ['Why, in his own diagnosis', '他自己的诊断']], rows: [
+    { type: 'table', x: 70, y: 255, w: 1780, size: 24, widths: [0.22, 0.18, 0.6], cols: [['When', '何时'], ['Lost', '损失'], ['Why, in his own diagnosis', '他自己的诊断']], rows: [
       [['Age 20', '20岁'], ['His first $10,000', '第一个一万美元'], ['Traded out of season. When his system gave no signal, he gambled. He hoped to win instead of knowing he ought to win on form.', '不合时宜地交易。方法没给信号时，他就去赌。他是在希望赢，而不是确知按形态应该赢。']],
       [['About 22: May 9, 1901', '约22岁：1901年5月9日'], ['≈$50,000', '约五万美元'], ['The laggard tape, and the unprecedented violence of that day.', '滞后的纸带，以及那天前所未有的剧烈波动。']],
       [['After St. Louis; after May 9', '圣路易斯之后；5月9日之后'], ['Again', '再次亏损'], ['He did not yet know why. He had theories; he needed practice.', '他还不知道原因。他有一些理论，但需要实践。']],
     ], reveal: true, rowAt: [0, 2, 3], hl: [0] },
-    { type: 'quote', at: 4, x: 160, y: 615, w: 1600, size: 36, zsize: 30, en: 'There is nothing like losing all you have in the world for teaching you what not to do.', zh: '没有什么比输光你在世上的一切，更能教会你什么不该做。', src: 'Ch. IV' },
+    { type: 'box', at: 4, x: 160, y: 630, w: 1600, h: 165, anchor: 'middle', color: '#fbf3df', size: 36, en: '“There is nothing like losing all you have in the world for teaching you what not to do.” (Ch. IV)', zh: '「没有什么比输光你在世上的一切，更能教会你什么不该做。」' },
   ], lines: [
     L('larry', 'On my way back to Wall Street, I studied my defeats. At twenty I lost my first ten thousand by trading out of season.', '在重返华尔街的路上，我研究自己的失败。二十岁时我输掉第一个一万美元，是因为不合时宜地交易。'),
     L('larry', 'When my system gave no signal, I went in and gambled. I hoped to win, instead of knowing I ought to win on form.', '方法没给信号时，我就进场去赌。我是希望赢，而不是确知按形态应该赢。'),
@@ -332,7 +332,7 @@ module.exports = ({ shot, L, episode, FULL, HALF, BIGL, BIGR, THREE, P, ch }) =>
   ] });
 
   shot({ id: 'p02_mistakes', kind: 'info', tag: { en: 'MISTAKE REVIEW', zh: '错误复盘' }, title: { en: 'Mistakes of Chapters III – IV', zh: '第三、四章的错误' }, els: [
-    { type: 'table', x: 70, y: 260, w: 1780, size: 23, widths: [0.3, 0.37, 0.33], cols: [['Mistake', '错误'], ['Why', '原因'], ['Rule', '规则']], rows: [
+    { type: 'table', x: 70, y: 260, w: 1780, size: 27, widths: [0.3, 0.37, 0.33], cols: [['Mistake', '错误'], ['Why', '原因'], ['Rule', '规则']], rows: [
       [['Day one at Harding\'s: scalping as in a bucket shop', '在哈丁的第一天：照对赌行的方式抢短线'], ['Real fills differ from the tape; small gains vanish', '真实成交与纸带不同，小利润被吃掉'], ['Learn the new market\'s mechanics first', '先弄懂新市场的机制']],
       [['Bearish on "A.O.T." too early in 1901', '1901年过早看空"随便什么股"'], ['An opinion with no timing; the boom ran on', '有观点却没有时机，牛市继续'], ['Only one side: the right side', '只有一边：正确的一边']],
       [['May 9: market orders on a lagging tape', '5月9日：照着滞后的纸带下市价单'], ['The panic tape was 20 points behind; he reversed at once', '恐慌中纸带落后20点；他立刻反手'], ['In violent markets, the printed price is history', '剧烈行情中，打印价格只是历史']],
