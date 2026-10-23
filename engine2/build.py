@@ -548,7 +548,10 @@ def main():
         if r.returncode:
             raise SystemExit('render failed')
     for s in shots:
-        mix_shot(s, os.path.join(adir, s['id'] + '.wav'))
+        wav = os.path.join(adir, s['id'] + '.wav')
+        if '--skip-mix' in args and os.path.exists(wav):
+            continue
+        mix_shot(s, wav)
     if '--no-assemble' in args:
         return
     if only:
@@ -556,6 +559,9 @@ def main():
         return
     groups = story.get('outputs') or [{'name': version, 'shots': [s['id'] for s in shots], 'chapters': True}]
     byid = {s['id']: s for s in shots}
+    if '--groups' in args:  # e.g. --groups E05,E08 : only these outputs (lets several processes encode in parallel)
+        want = args[args.index('--groups') + 1].split(',')
+        groups = [g for g in groups if any(w in g['name'] for w in want)]
     for g in groups:
         assemble(g['name'], [byid[i] for i in g['shots']], vdir, adir, odir, g.get('chapters', False))
 
