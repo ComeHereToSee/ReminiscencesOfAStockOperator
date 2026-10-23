@@ -404,6 +404,29 @@ def ass_time(t):
     return f'{h}:{m:02d}:{s:05.2f}'
 
 
+def zh_width(z):
+    return sum(1 if ord(c) > 0x2e80 else 0.55 for c in z)
+
+
+def wrap_zh(z, maxw=34):
+    """Chinese has no spaces for libass to wrap on: split long lines into balanced rows at punctuation."""
+    if zh_width(z) <= maxw:
+        return z
+    rows = max(2, int(-(-zh_width(z) // maxw)))
+    target = zh_width(z) / rows
+    cut, best = None, 1e9
+    for i in range(1, len(z) - 1):
+        w = zh_width(z[:i])
+        after_punct = z[i - 1] in '，、；：。！？,;:'
+        inside_word = z[i - 1].isascii() and z[i].isascii() and z[i - 1].isalnum() and z[i].isalnum()
+        if inside_word:
+            continue
+        score = abs(w - target) - (target * 0.35 if after_punct else 0)
+        if score < best:
+            best, cut = score, i
+    return z[:cut] + '\\N' + wrap_zh(z[cut:], maxw)
+
+
 def write_ass(events, path):
     head = """[Script Info]
 ScriptType: v4.00+
@@ -421,7 +444,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     lines = []
     for a, b, en, zh in events:
         en = en.replace('\n', ' ').replace('{', '(').replace('}', ')')
-        zh = zh.replace('\n', ' ').replace('{', '(').replace('}', ')')
+        zh = wrap_zh(zh.replace('\n', ' ').replace('{', '(').replace('}', ')'))
         lines.append(f'Dialogue: 0,{ass_time(a)},{ass_time(b)},Sub,,0,0,0,,{en}\\N{{\\fnNoto Sans SC\\fs58\\b1\\c&H6BD8FF&}}{zh}')
     open(path, 'w', encoding='utf-8').write(head + '\n'.join(lines) + '\n')
 
