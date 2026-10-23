@@ -488,6 +488,10 @@ def assemble(name, shots, vdir, adir, odir, chapters=False):
          '-c:v', 'libx264', '-preset', 'faster', '-crf', '24', '-tune', 'animation', '-pix_fmt', 'yuv420p',
          '-c:a', 'aac', '-b:a', '192k', '-movflags', '+faststart', out])
     print(f'  -> {out}  ({total / 60:.1f} min)')
+    # the joined video and stem wavs are only inputs to this encode; drop them to save disk
+    for f in (vjoin, *(os.path.join(adir, name + ext) for ext in ('.vox.wav', '.fx.wav', '.music.wav'))):
+        if os.path.exists(f):
+            os.remove(f)
 
 
 def contact_sheets(sd, out, per=12):
