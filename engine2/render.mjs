@@ -72,7 +72,15 @@ const totalFrames = jobs.reduce((a, j) => a + j.frames, 0);
 console.log(`render: ${jobs.length} shots to render (${totalFrames} frames), ${shots.length - jobs.length} cached, ${N} workers`);
 
 let done = 0, t0 = Date.now();
-async function worker(wi) {
+// a capture can fail transiently (e.g. a renderer hiccup); retry a few times before giving up on the shot
+async function capture(client, opts, tries = 4) {
+  for (let k = 1; ; k++) {
+    try { return await client.send('Page.captureScreenshot', opts); }
+    catch (e) { if (k >= tries) throw e; await new Promise(r => setTimeout(r, 300 * k)); }
+  }
+}
+let failed = 0;
+async function openPage() {
   const browser = await chromium.launch({ args: ['--disable-gpu', '--font-render-hinting=none', '--allow-file-access-from-files'] });
   const page = await browser.newPage({ viewport: { width: 1920, height: 1080 }, deviceScaleFactor: 1 });
   await page.goto('file://' + pagePath);
@@ -80,15 +88,35 @@ async function worker(wi) {
   await page.waitForTimeout(500);
   const client = await page.context().newCDPSession(page);
   page.on('pageerror', e => console.log(`!! page error: ${e.message}`));
+  return { browser, page, client };
+}
+async function worker(wi) {
+  let { browser, page, client } = await openPage();
   while (jobs.length) {
     const j = jobs.shift();
+    try {
+      await renderJob(j, page, client, wi);
+    } catch (e) {
+      // the browser may be in a bad state: restart it, and re-queue the shot once
+      console.log(`!! [w${wi}] ${j.s.id} failed: ${String(e.message).split('\n')[0]}`);
+      try { fs.unlinkSync(j.out + '.part.mp4'); } catch { }
+      j.tries = (j.tries || 0) + 1;
+      if (j.tries < 3) jobs.push(j); else failed++;
+      try { await browser.close(); } catch { }
+      ({ browser, page, client } = await openPage());
+    }
+  }
+  await browser.close();
+}
+async function renderJob(j, page, client, wi) {
+  {
     await page.evaluate(([c, p]) => window.setShots(c, p), [j.s, j.prev]);
     // rasterise static background layers once (bitmap cache shared by later shots in this worker)
     const sj = await page.evaluate(() => window.staticJobs());
     for (const job of sj) {
       await page.evaluate(jb => window.showStatic(jb), job);
       if (job.alpha) await client.send('Emulation.setDefaultBackgroundColorOverride', { color: { r: 0, g: 0, b: 0, a: 0 } });
-      const cap = await client.send('Page.captureScreenshot', { format: job.alpha ? 'png' : 'jpeg', quality: 93, clip: { x: 0, y: 0, width: job.box[2], height: job.box[3], scale: job.scale }, captureBeyondViewport: true });
+      const cap = await capture(client, { format: job.alpha ? 'png' : 'jpeg', quality: 93, clip: { x: 0, y: 0, width: job.box[2], height: job.box[3], scale: job.scale }, captureBeyondViewport: true });
       if (job.alpha) await client.send('Emulation.setDefaultBackgroundColorOverride', {});
       await page.evaluate(([jb, d, m]) => window.registerStatic(jb, d, m), [job, cap.data, job.alpha ? 'image/png' : 'image/jpeg']);
     }
@@ -98,22 +126,25 @@ async function worker(wi) {
       for (let k = 0; k < ts.length; k++) {
         try { await page.evaluate(([t, f]) => window.drawFrame(t, f), [ts[k], Math.round(ts[k] * FPS)]); }
         catch (e) { console.log(`!! ${j.s.id} t=${ts[k].toFixed(2)}: ${e.message.split('\n')[0]}`); continue; }
-        const cap = await client.send('Page.captureScreenshot', { format: 'jpeg', quality: 80, clip: { x: 0, y: 0, width: 1920, height: 1080, scale: 0.5 } });
+        const cap = await capture(client, { format: 'jpeg', quality: 80, clip: { x: 0, y: 0, width: 1920, height: 1080, scale: 0.5 } });
         fs.writeFileSync(path.join(STILLS, `${String(shots.indexOf(j.s)).padStart(3, '0')}_${j.s.id}_${k}.jpg`), Buffer.from(cap.data, 'base64'));
       }
       done += j.frames;
-      continue;
+      return;
     }
     const tmp = j.out + '.part.mp4';
     const ff = spawn('ffmpeg', ['-y', '-v', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'mjpeg', '-i', '-',
       '-c:v', 'libx264', '-preset', 'ultrafast', '-crf', '14', '-pix_fmt', 'yuv420p', '-r', String(FPS), tmp], { stdio: ['pipe', 'inherit', 'inherit'] });
     const ffDone = new Promise((res, rej) => ff.on('close', c => c === 0 ? res() : rej(new Error('ffmpeg ' + c))));
+    ffDone.catch(() => { });
+    try {
     for (let f = 0; f < j.frames; f++) {
       await page.evaluate(([t, f]) => window.drawFrame(t, f), [f / FPS, f]);
-      const shot = await client.send('Page.captureScreenshot', { format: 'jpeg', quality: 88, clip: { x: 0, y: 0, width: 1920, height: 1080, scale: 1 }, optimizeForSpeed: true });
+      const shot = await capture(client, { format: 'jpeg', quality: 88, clip: { x: 0, y: 0, width: 1920, height: 1080, scale: 1 }, optimizeForSpeed: true });
       const buf = Buffer.from(shot.data, 'base64');
       if (!ff.stdin.write(buf)) await new Promise(r => ff.stdin.once('drain', r));
     }
+    } catch (e) { ff.kill('SIGKILL'); throw e; }
     ff.stdin.end();
     await ffDone;
     fs.renameSync(tmp, j.out);
@@ -122,7 +153,7 @@ async function worker(wi) {
     const el = (Date.now() - t0) / 1000;
     console.log(`[w${wi}] ${j.s.id} ${j.frames}f  total ${done}/${totalFrames}  ${(done / el).toFixed(1)} fps  eta ${((totalFrames - done) / Math.max(done / el, 0.1) / 60).toFixed(1)} min`);
   }
-  await browser.close();
 }
 await Promise.all(Array.from({ length: Math.min(N, jobs.length || 1) }, (_, i) => worker(i)));
+if (failed) { console.log(`render: ${failed} shot(s) failed`); process.exit(1); }
 console.log('render done');
