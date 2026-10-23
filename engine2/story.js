@@ -66,7 +66,7 @@ for (const f of fs.readdirSync(dir).filter(f => /\.js$/.test(f)).sort()) {
 // output groups: one per episode() call (full version); the build also makes a combined file.
 for (const g of outputs) g.shots = shots.filter(s => s.ep === g.ep).map(s => s.id);
 const groups = outputs.filter(g => g.shots.length);
-if (groups.length) groups.push({ name: `Reminiscences_${version}_complete`, shots: shots.map(s => s.id), chapters: true });
+if (groups.length && process.env.COMBINED) groups.push({ name: `Reminiscences_${version}_complete`, shots: shots.map(s => s.id), chapters: true });
 const out = outPath || path.join(__dirname, '..', 'build', 'v2', version, 'story.json');
 fs.mkdirSync(path.dirname(out), { recursive: true });
 fs.writeFileSync(out, JSON.stringify({ shots, outputs: groups.length ? groups : null }, null, 1));

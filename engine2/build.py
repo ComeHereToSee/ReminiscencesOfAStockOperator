@@ -84,7 +84,7 @@ def resolve_cue(v, shot):
     return t0 + d * k / max(len(disp), 1) + off
 
 
-CUE_KEYS = {'at', 'until', 't', 'hl', 'pulse', 'stamp'}
+CUE_KEYS = {'at', 'until', 't', 'hl', 'pulse', 'stamp', 'exitAt'}
 
 
 def resolve_all(obj, shot, key=None):
@@ -485,7 +485,7 @@ def assemble(name, shots, vdir, adir, odir, chapters=False):
     out = os.path.join(odir, name + '.mp4')
     run(['ffmpeg', '-y', '-v', 'error', '-i', vjoin, '-i', os.path.join(adir, name + '.vox.wav'), '-i', os.path.join(adir, name + '.fx.wav'),
          '-i', os.path.join(adir, name + '.music.wav'), '-filter_complex', af, '-vf', vf, '-map', '0:v', '-map', '[aout]',
-         '-c:v', 'libx264', '-preset', 'medium', '-crf', '24', '-tune', 'animation', '-pix_fmt', 'yuv420p',
+         '-c:v', 'libx264', '-preset', 'faster', '-crf', '24', '-tune', 'animation', '-pix_fmt', 'yuv420p',
          '-c:a', 'aac', '-b:a', '192k', '-movflags', '+faststart', out])
     print(f'  -> {out}  ({total / 60:.1f} min)')
 

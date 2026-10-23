@@ -166,8 +166,10 @@ WIDGETS.counter = (w, t) => {
   const size = w.size || 120;
   let s = '';
   if (w.panel) {
-    const pw = Math.max(measure((w.prefix || '') + fmtNum(w.to, w.fmt || 'int') + (w.suffix || ''), size, F.cond, 700), w.label ? measure(w.label[0], w.lsize || 30, F.cond, 700) : 0) + 70;
-    s += box(w.x - pw / 2, w.y - size * 0.72, pw, size * (w.label ? 1.55 : 0.95) + (w.label ? 30 : 0), { fill: '#fbf5e3', r: 14 });
+    const lab = w.label ? bi(w.label[0], w.label[1], 0, 0, { size: w.lsize || 30, font: F.cond, weight: 700 }) : { h: 0, w: 0 };
+    const pw = Math.max(measure((w.prefix || '') + fmtNum(w.to, w.fmt || 'int') + (w.suffix || ''), size, F.cond, 700), lab.w) + 70;
+    const top = w.y - size * 0.72, bot = w.label ? w.y + size * 0.55 + lab.h + 18 : w.y + size * 0.36;
+    s += box(w.x - pw / 2, top, pw, bot - top, { fill: '#fbf5e3', r: 14 });
   }
   s += tb(txt, w.x, w.y - size * 0.6, { size, font: F.cond, weight: 700, anchor: w.align || 'middle', fill: w.color || PAL.ink, stroke: w.stroke, sw: 8 }).svg;
   if (w.label) s += bi(w.label[0], w.label[1], w.x, w.y + size * 0.55, { size: w.lsize || 30, font: F.cond, weight: 700, anchor: w.align || 'middle', fill: w.panel ? PAL.ink : PAL.grey, zfill: w.panel ? PAL.sepia : PAL.grey }).svg;
@@ -344,6 +346,8 @@ WIDGETS.table = (w, t) => {
   const rows = [{ cells: w.cols, head: true }, ...w.rows.map((r, i) => ({ cells: r, i }))];
   const heights = sz => rows.map(r => Math.max(...r.cells.map((c, i) => cell(c[0], c[1], 0, widths[i], r.head, 0, sz).h)) + 24);
   for (; size > (w.minSize || 22); size--) { if (y + heights(size).reduce((a, b) => a + b, 0) <= bottom) break; }
+  // spare room below: grow the text (up to maxSize) rather than leave the page half empty
+  if (size === (w.size || 30)) for (let g = size + 1; g <= (w.maxSize || 34); g++) { if (y + heights(g).reduce((a, b) => a + b, 0) <= bottom - 10) size = g; else break; }
   const hs = heights(size);
   let s = '', yy = y;
   rows.forEach((r, ri) => {

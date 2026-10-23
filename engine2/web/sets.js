@@ -175,7 +175,7 @@ SETS.bucketshop = (o, t) => {
   mid += smokeSvg(t, 600, 520, 5, '#bdb3a2', 1.4, 0.18) + smokeSvg(t + 3, 1300, 560, 5, '#bdb3a2', 1.2, 0.15);
   if (o.ticker !== false) mid += tickerSvg(o.tickerX ?? 120, o.tickerY ?? 600, 0.9, t, { tape: o.tape });
   L.push({ depth: 0.8, svg: mid });
-  if (o.crowd !== false) L.push({ depth: 1.0, svg: crowdSvg({ n: o.crowd || 8, y: 860, w: 2000, x: -40, color: '#2a2016', bob: 4 }, t) });
+  if (o.crowd !== false) L.push({ depth: 1.0, svg: crowdSvg({ n: o.crowd || 8, y: 950, w: 2000, x: -40, color: '#2a2016', bob: 4 }, t) });
   L.push({ depth: 1.25, svg: `<rect x="-400" y="${1080 - 40}" width="2720" height="200" fill="#120d08" opacity=".9"/>` + (o.tickets ? [0, 1, 2, 3, 4, 5].map(i => `<rect x="${200 + i * 300}" y="${1000 + (i % 2) * 20}" width="70" height="44" fill="#f3b9c6" stroke="${PAL.ink}" stroke-width="2" transform="rotate(${(i * 37) % 60 - 30} ${200 + i * 300} 1000)"/>`).join('') : '') });
   return L;
 };
